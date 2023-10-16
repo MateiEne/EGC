@@ -1,0 +1,10 @@
+^C:\GFX FRAMEWORK\GFX-FRAMEWORK-MASTER\GFX-FRAMEWORK-MASTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/gfx framework/gfx-framework-master/gfx-framework-master" "-BC:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build" --check-stamp-file "C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

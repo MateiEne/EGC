@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\CMakeFiles\ecf2dc4c495e02f231a02d9f5e56fe42\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6D08A8E6-861D-356B-838E-92F9AD44E967}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
