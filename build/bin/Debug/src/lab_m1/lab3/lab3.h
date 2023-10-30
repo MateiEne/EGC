@@ -34,7 +34,12 @@ namespace m1
         float scaleX, scaleY;
         float angularStep;
 
+        bool isGoingUp;
+        bool isScaling;
+
         // TODO(student): If you need any other class variables, define them here.
+
+        bool isMovingRight;
 
     };
 }   // namespace m1

@@ -45,7 +45,7 @@ namespace m1
 		float velocityY;
 
 		float gravity;
-
+		float bounceLift;
 		bool isBounce;
 	};
 }   // namespace m1

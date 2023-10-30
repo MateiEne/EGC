@@ -31,6 +31,8 @@ namespace m1
         void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
         void OnWindowResize(int width, int height) override;
 
+        bool isCullFront;
+
      protected:
         GLenum cullFace;
         GLenum polygonMode;

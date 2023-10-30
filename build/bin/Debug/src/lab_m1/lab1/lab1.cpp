@@ -32,12 +32,13 @@ void Lab1::Init()
 	blue = 0;
 	alpha = 1;
 
-	gravity = 9.81;
-
+	gravity = -9.81;
+	bounceLift = 7;
 	velocityX = 1.5;
+	velocityY = 0;
 
 	currentMeshPostionX = 0;
-	currentMeshPostionY = 2;
+	currentMeshPostionY = 0;
 	currentMeshPostionZ = -1;
 
 	isBounce = false;
@@ -116,12 +117,13 @@ void Lab1::Update(float deltaTimeSeconds)
 	//RenderMesh(meshes["quad"], glm::vec3(0, 2, -1));
 	RenderMesh(meshes[currentMesh->GetMeshID()], glm::vec3(currentMeshPostionX, currentMeshPostionY, currentMeshPostionZ));
 
-	if (isBounce) {
-		if (currentMeshPostionY < 0) {
-			currentMeshPostionY = 0;
-		}
+	currentMeshPostionY += velocityY * deltaTimeSeconds;
 
-		currentMeshPostionY += 5 / deltaTimeSeconds;
+	velocityY += gravity * deltaTimeSeconds;
+
+	if (currentMeshPostionY <= 0) {
+		currentMeshPostionY = 0;
+		velocityY = 0;
 	}
 }
 
@@ -201,7 +203,7 @@ void Lab1::OnKeyPress(int key, int mods)
 	}
 
 	if (key == GLFW_KEY_SPACE) {
-		isBounce = true;
+		velocityY += bounceLift;
 	}
 }
 

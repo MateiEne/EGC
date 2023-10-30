@@ -46,6 +46,14 @@ namespace m1
         float angularStepOX, angularStepOY, angularStepOZ;
         GLenum polygonMode;
         ViewportArea miniViewportArea;
+
+        bool isViewPortUp;
+        bool isViewPortLeft;
+        bool isViewPortDown;
+        bool isViewPortRight;
+
+        bool isViewPortPositiveScale;
+        bool isViewPortNegativeScale;
     };
 }   // namespace m1
 

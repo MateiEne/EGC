@@ -28,86 +28,241 @@ Lab3::~Lab3()
 
 void Lab3::Init()
 {
-    glm::ivec2 resolution = window->GetResolution();
-    auto camera = GetSceneCamera();
-    camera->SetOrthographic(0, (float)resolution.x, 0, (float)resolution.y, 0.01f, 400);
-    camera->SetPosition(glm::vec3(0, 0, 50));
-    camera->SetRotation(glm::vec3(0, 0, 0));
-    camera->Update();
-    GetCameraInput()->SetActive(false);
+	glm::ivec2 resolution = window->GetResolution();
+	auto camera = GetSceneCamera();
+	camera->SetOrthographic(0, (float)resolution.x, 0, (float)resolution.y, 0.01f, 400);
+	camera->SetPosition(glm::vec3(0, 0, 50));
+	camera->SetRotation(glm::vec3(0, 0, 0));
+	camera->Update();
+	GetCameraInput()->SetActive(false);
 
-    glm::vec3 corner = glm::vec3(0, 0, 0);
-    float squareSide = 100;
+	glm::vec3 corner = glm::vec3(0, 0, 0);
+	float squareSide = 100;
 
-    // TODO(student): Compute coordinates of a square's center, and store
-    // then in the `cx` and `cy` class variables (see the header). Use
-    // `corner` and `squareSide`. These two class variables will be used
-    // in the `Update()` function. Think about it, why do you need them?
+	isGoingUp = true;
+	isScaling = true;
+	isMovingRight = true;
 
-    // Initialize tx and ty (the translation steps)
-    translateX = 0;
-    translateY = 0;
+	// TODO(student): Compute coordinates of a square's center, and store
+	// then in the `cx` and `cy` class variables (see the header). Use
+	// `corner` and `squareSide`. These two class variables will be used
+	// in the `Update()` function. Think about it, why do you need them?
+	cx = corner.x + squareSide / 2;
+	cy = corner.y + squareSide / 2;
 
-    // Initialize sx and sy (the scale factors)
-    scaleX = 1;
-    scaleY = 1;
+	// Initialize tx and ty (the translation steps)
+	translateX = 0;
+	translateY = 0;
 
-    // Initialize angularStep
-    angularStep = 0;
+	// Initialize sx and sy (the scale factors)
+	scaleX = 1;
+	scaleY = 1;
 
-    Mesh* square1 = object2D::CreateSquare("square1", corner, squareSide, glm::vec3(1, 0, 0), true);
-    AddMeshToList(square1);
+	// Initialize angularStep
+	angularStep = 0;
 
-    Mesh* square2 = object2D::CreateSquare("square2", corner, squareSide, glm::vec3(0, 1, 0));
-    AddMeshToList(square2);
+	Mesh* square1 = object2D::CreateSquare("square1", corner, squareSide, glm::vec3(1, 0, 0), true);
+	AddMeshToList(square1);
 
-    Mesh* square3 = object2D::CreateSquare("square3", corner, squareSide, glm::vec3(0, 0, 1));
-    AddMeshToList(square3);
+	Mesh* square2 = object2D::CreateSquare("square2", corner, squareSide, glm::vec3(0, 1, 0));
+	AddMeshToList(square2);
+
+	Mesh* square3 = object2D::CreateSquare("square3", corner, squareSide, glm::vec3(0, 0, 1));
+	AddMeshToList(square3);
+
+	Mesh* carTopSquare = object2D::CreateSquare("carTopSquare", corner, squareSide, glm::vec3(1, 0, 0), true);
+	AddMeshToList(carTopSquare);
+
+	Mesh* carBottomSquare = object2D::CreateSquare("carBottomSquare", corner, squareSide, glm::vec3(0, 1, 0), true);
+	AddMeshToList(carBottomSquare);
+
+	Mesh* carFrontTireSqaure = object2D::CreateSquare("carFrontTireSqaure", corner, squareSide, glm::vec3(0, 0, 1), true);
+	AddMeshToList(carFrontTireSqaure);
+
+	Mesh* carBackTireSqaure = object2D::CreateSquare("carBackTireSqaure", corner, squareSide, glm::vec3(0, 0, 1), true);
+	AddMeshToList(carBackTireSqaure);
 }
 
 
 void Lab3::FrameStart()
 {
-    // Clears the color buffer (using the previously set color) and depth buffer
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// Clears the color buffer (using the previously set color) and depth buffer
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glm::ivec2 resolution = window->GetResolution();
-    // Sets the screen area where to draw
-    glViewport(0, 0, resolution.x, resolution.y);
+	glm::ivec2 resolution = window->GetResolution();
+	// Sets the screen area where to draw
+	glViewport(0, 0, resolution.x, resolution.y);
 }
 
 
 void Lab3::Update(float deltaTimeSeconds)
 {
-    // TODO(student): Update steps for translation, rotation and scale,
-    // in order to create animations. Use the class variables in the
-    // class header, and if you need more of them to complete the task,
-    // add them over there!
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(600, 300);
+	// TODO(student): Update steps for translation, rotation and scale,
+	// in order to create animations. Use the class variables in the
+	// class header, and if you need more of them to complete the task,
+	// add them over there!
 
-    modelMatrix = glm::mat3(1);
-    modelMatrix *= transform2D::Translate(150, 250);
-    // TODO(student): Create animations by multiplying the current
-    // transform matrix with the matrices you just implemented.
-    // Remember, the last matrix in the chain will take effect first!
+	// TODO(student): Create animations by multiplying the current
+	// transform matrix with the matrices you just implemented.
+	// Remember, the last matrix in the chain will take effect first!
 
-    RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
+	//if (translateY >= 0 && translateY <= 100 && isGoingUp) {
+	//	translateY += deltaTimeSeconds * 100;
+	//}
 
-    modelMatrix = glm::mat3(1);
-    modelMatrix *= transform2D::Translate(400, 250);
-    // TODO(student): Create animations by multiplying the current
-    // transform matrix with the matrices you just implemented
-    // Remember, the last matrix in the chain will take effect first!
+	//if (translateY >= 0 && translateY <= 100 && !isGoingUp) {
+	//	translateY -= deltaTimeSeconds * 100;
+	//}
 
-    RenderMesh2D(meshes["square2"], shaders["VertexColor"], modelMatrix);
+	//if (translateY >= 100) {
+	//	translateY -= deltaTimeSeconds * 100;
 
-    modelMatrix = glm::mat3(1);
-    modelMatrix *= transform2D::Translate(650, 250);
-    // TODO(student): Create animations by multiplying the current
-    // transform matrix with the matrices you just implemented
-    // Remember, the last matrix in the chain will take effect first!
+	//	isGoingUp = false;
+	//}
 
-    RenderMesh2D(meshes["square3"], shaders["VertexColor"], modelMatrix);
+	//if (translateY <= 0) {
+	//	translateY += deltaTimeSeconds * 100;
+
+	//	isGoingUp = true;
+	//}
+
+	//modelMatrix *= transform2D::Translate(0, translateY);
+	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
+
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(400, 250);
+	//// TODO(student): Create animations by multiplying the current
+	//// transform matrix with the matrices you just implemented
+	//// Remember, the last matrix in the chain will take effect first!
+
+	//angularStep += deltaTimeSeconds * 1.5;
+	//modelMatrix *= transform2D::Rotate(angularStep);
+	//RenderMesh2D(meshes["square2"], shaders["VertexColor"], modelMatrix);
+
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(650, 250);
+	//// TODO(student): Create animations by multiplying the current
+	//// transform matrix with the matrices you just implemented
+	//// Remember, the last matrix in the chain will take effect first!
+
+
+	////scaleX += deltaTimeSeconds * 1.5;
+	////scaleY += deltaTimeSeconds * 1.5;
+
+	//if (scaleX >= 0 && scaleX <= 2 && isScaling) {
+	//	scaleX += deltaTimeSeconds * 1.5;
+	//	scaleY += deltaTimeSeconds * 1.5;
+	//}
+
+	//if (scaleX >= 1 && scaleY <= 2 && !isScaling) {
+	//	scaleX -= deltaTimeSeconds * 1.5;
+	//	scaleY -= deltaTimeSeconds * 1.5;
+	//}
+
+	//if (scaleX > 2) {
+	//	scaleX -= deltaTimeSeconds * 1.5;
+	//	scaleY -= deltaTimeSeconds * 1.5;
+	//	isScaling = false;
+	//}
+
+	//if (scaleX < 1) {
+	//	scaleX += deltaTimeSeconds * 1.5;
+	//	scaleY += deltaTimeSeconds * 1.5;
+	//	isScaling = true;
+	//}
+
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Scale(scaleX, scaleY);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
+	//RenderMesh2D(meshes["square3"], shaders["VertexColor"], modelMatrix);
+
+	/* top square */
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(600, 300);
+
+	if (translateX >= 0 && translateX < 100 && isMovingRight) {
+		translateX += deltaTimeSeconds * 100;
+	}
+
+	if (translateX <= 100 && translateX > 0 && !isMovingRight) {
+		translateX -= deltaTimeSeconds * 100;
+	}
+
+	if (translateX >= 100) {
+		translateX -= deltaTimeSeconds;
+
+		isMovingRight = false;
+	}
+
+	if (translateX <= 0) {
+		translateX += deltaTimeSeconds;
+
+		isMovingRight = true;
+	}
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Scale(2, 1);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	//modelMatrix *= transform2D::Translate(translateX, 0);
+
+	RenderMesh2D(meshes["carTopSquare"], shaders["VertexColor"], modelMatrix);
+
+	/* bottom square */
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(600, 300);
+
+	modelMatrix *= transform2D::Translate(0, -100);
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Scale(4, 1);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	//modelMatrix *= transform2D::Translate(translateX, 0);
+
+	RenderMesh2D(meshes["carBottomSquare"], shaders["VertexColor"], modelMatrix);
+
+
+	/* tires */
+
+	angularStep -= deltaTimeSeconds * 2;
+
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(600, 300);
+
+	modelMatrix *= transform2D::Translate(-120, -200);
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Scale(0.7, 0.7);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Rotate(angularStep);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	//modelMatrix *= transform2D::Translate(translateX, 0);
+
+	RenderMesh2D(meshes["carFrontTireSqaure"], shaders["VertexColor"], modelMatrix);
+
+
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(600, 300);
+
+	modelMatrix *= transform2D::Translate(120, -200);
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Scale(0.7, 0.7);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Rotate(angularStep);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+
+	//modelMatrix *= transform2D::Translate(translateX, 0);
+
+	RenderMesh2D(meshes["carBackTireSqaure"], shaders["VertexColor"], modelMatrix);
 }
 
 
@@ -129,31 +284,31 @@ void Lab3::OnInputUpdate(float deltaTime, int mods)
 
 void Lab3::OnKeyPress(int key, int mods)
 {
-    // Add key press event
+	// Add key press event
 }
 
 
 void Lab3::OnKeyRelease(int key, int mods)
 {
-    // Add key release event
+	// Add key release event
 }
 
 
 void Lab3::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
 {
-    // Add mouse move event
+	// Add mouse move event
 }
 
 
 void Lab3::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
 {
-    // Add mouse button press event
+	// Add mouse button press event
 }
 
 
 void Lab3::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
 {
-    // Add mouse button release event
+	// Add mouse button release event
 }
 
 
