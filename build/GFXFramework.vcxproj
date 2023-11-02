@@ -120,7 +120,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GL/x86_64/glew32.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GLFW/x86_64/glfw3.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/assimp/x86_64/assimp.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/spdlog/x86_64/spdlog.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/freetype/x86_64/freetype.dll" "C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/bin/Debug"
 if %errorlevel% neq 0 goto :cmEnd
@@ -208,7 +209,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GL/x86_64/glew32.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GLFW/x86_64/glfw3.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/assimp/x86_64/assimp.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/spdlog/x86_64/spdlog.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/freetype/x86_64/freetype.dll" "C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/bin/Release"
 if %errorlevel% neq 0 goto :cmEnd
@@ -296,7 +298,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GL/x86_64/glew32.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GLFW/x86_64/glfw3.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/assimp/x86_64/assimp.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/spdlog/x86_64/spdlog.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/freetype/x86_64/freetype.dll" "C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/bin/MinSizeRel"
 if %errorlevel% neq 0 goto :cmEnd
@@ -383,7 +386,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GL/x86_64/glew32.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/GLFW/x86_64/glfw3.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/assimp/x86_64/assimp.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/spdlog/x86_64/spdlog.dll" "C:/gfx framework/gfx-framework-master/gfx-framework-master/deps/prebuilt/freetype/x86_64/freetype.dll" "C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/bin/RelWithDebInfo"
 if %errorlevel% neq 0 goto :cmEnd
@@ -497,6 +501,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Turret.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\scene_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\simple_scene.cpp" />
@@ -526,6 +532,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\main.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\utils\gl_utils.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\utils\text_utils.cpp" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\object2D.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Turret.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera_input.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\exports.h" />

@@ -54,6 +54,8 @@ namespace m1
 
         bool isViewPortPositiveScale;
         bool isViewPortNegativeScale;
+
+        glm::vec3 secondCubeCenterCoordinates;
     };
 }   // namespace m1
 

@@ -79,12 +79,22 @@ void Lab4::RenderScene() {
 	modelMatrix *= transform3D::Translate(0.0f, 0.5f, -1.5f);
 	modelMatrix *= transform3D::Scale(scaleX, scaleY, scaleZ);
 	RenderMesh(meshes["box"], shaders["Simple"], modelMatrix);
+	
+	secondCubeCenterCoordinates.x = 0.0f;
+	secondCubeCenterCoordinates.y = 0.5f;
+	secondCubeCenterCoordinates.z = -1.5f;
 
 	modelMatrix = glm::mat4(1);
 	modelMatrix *= transform3D::Translate(2.5f, 0.5f, -1.5f);
-	modelMatrix *= transform3D::RotateOX(angularStepOX);
+	//modelMatrix *= transform3D::RotateOX(angularStepOX);
+	//modelMatrix *= transform3D::RotateOY(angularStepOY);
+	//modelMatrix *= transform3D::RotateOZ(angularStepOZ);
+
+	modelMatrix *= transform3D::Translate(-2.5f, -0.5f, -1.5f);
+	modelMatrix *= transform3D::Translate(-secondCubeCenterCoordinates.x, -secondCubeCenterCoordinates.y, -secondCubeCenterCoordinates.z);
 	modelMatrix *= transform3D::RotateOY(angularStepOY);
-	modelMatrix *= transform3D::RotateOZ(angularStepOZ);
+	modelMatrix *= transform3D::Translate(2.5f, 0.5f, -1.5f);
+	modelMatrix *= transform3D::Translate(secondCubeCenterCoordinates.x, secondCubeCenterCoordinates.y, secondCubeCenterCoordinates.z);
 	RenderMesh(meshes["box"], shaders["VertexNormal"], modelMatrix);
 }
 
@@ -207,7 +217,6 @@ void Lab4::OnInputUpdate(float deltaTime, int mods)
 	}
 
 	// rotire cub 3
-
 	if (window->KeyHold(GLFW_KEY_3)) {
 		angularStepOX += deltaTime;
 	}
@@ -230,6 +239,15 @@ void Lab4::OnInputUpdate(float deltaTime, int mods)
 
 	if (window->KeyHold(GLFW_KEY_8)) {
 		angularStepOZ -= deltaTime;
+	}
+
+	// rotire cub 3 fata de o axa paralela cu oY ce trece prin centrul cubului 2
+	if (window->KeyHold(GLFW_KEY_9)) {
+		angularStepOY += deltaTime;
+	}
+
+	if (window->KeyHold(GLFW_KEY_0)) {
+		angularStepOY -= deltaTime;
 	}
 }
 

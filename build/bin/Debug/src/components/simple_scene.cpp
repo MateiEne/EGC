@@ -175,8 +175,10 @@ void SimpleScene::DrawCoordinateSystem(const glm::mat4 & viewMatrix, const glm::
 
 void SimpleScene::RenderMesh(Mesh * mesh, Shader * shader, glm::vec3 position, glm::vec3 scale)
 {
-    if (!mesh || !shader || !shader->program)
+    if (!mesh || !shader || !shader->program) {
+        std::cout << mesh;
         return;
+    }
 
     // Render an object using the specified shader and the specified position
     shader->Use();
