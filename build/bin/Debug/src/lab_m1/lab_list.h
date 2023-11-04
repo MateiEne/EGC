@@ -11,6 +11,3 @@
 #include "lab_m1/lab8/lab8.h"
 #include "lab_m1/lab9/lab9.h"
 #include "lab_m1/tema1/Tema1.h"
-#include "lab_m1/tema1/objects/Turret.h"
-#include "lab_m1/tema1/objects/Enemy.h"
-#include "lab_m1/tema1/objects/Projectile.h"

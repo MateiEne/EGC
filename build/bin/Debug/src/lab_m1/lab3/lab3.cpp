@@ -98,8 +98,8 @@ void Lab3::FrameStart()
 
 void Lab3::Update(float deltaTimeSeconds)
 {
-	//modelMatrix = glm::mat3(1);
-	//modelMatrix *= transform2D::Translate(600, 300);
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(600, 300);
 	// TODO(student): Update steps for translation, rotation and scale,
 	// in order to create animations. Use the class variables in the
 	// class header, and if you need more of them to complete the task,
@@ -109,160 +109,160 @@ void Lab3::Update(float deltaTimeSeconds)
 	// transform matrix with the matrices you just implemented.
 	// Remember, the last matrix in the chain will take effect first!
 
-	//if (translateY >= 0 && translateY <= 100 && isGoingUp) {
-	//	translateY += deltaTimeSeconds * 100;
-	//}
+	if (translateY >= 0 && translateY <= 100 && isGoingUp) {
+		translateY += deltaTimeSeconds * 100;
+	}
 
-	//if (translateY >= 0 && translateY <= 100 && !isGoingUp) {
-	//	translateY -= deltaTimeSeconds * 100;
-	//}
+	if (translateY >= 0 && translateY <= 100 && !isGoingUp) {
+		translateY -= deltaTimeSeconds * 100;
+	}
 
-	//if (translateY >= 100) {
-	//	translateY -= deltaTimeSeconds * 100;
+	if (translateY >= 100) {
+		translateY -= deltaTimeSeconds * 100;
 
-	//	isGoingUp = false;
-	//}
+		isGoingUp = false;
+	}
 
-	//if (translateY <= 0) {
-	//	translateY += deltaTimeSeconds * 100;
+	if (translateY <= 0) {
+		translateY += deltaTimeSeconds * 100;
 
-	//	isGoingUp = true;
-	//}
+		isGoingUp = true;
+	}
 
-	//modelMatrix *= transform2D::Translate(0, translateY);
-	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
+	modelMatrix *= transform2D::Translate(0, translateY);
+	RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
 
-	//modelMatrix = glm::mat3(1);
-	//modelMatrix *= transform2D::Translate(400, 250);
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(400, 250);
 	//// TODO(student): Create animations by multiplying the current
 	//// transform matrix with the matrices you just implemented
 	//// Remember, the last matrix in the chain will take effect first!
 
-	//angularStep += deltaTimeSeconds * 1.5;
-	//modelMatrix *= transform2D::Rotate(angularStep);
-	//RenderMesh2D(meshes["square2"], shaders["VertexColor"], modelMatrix);
+	angularStep += deltaTimeSeconds * 1.5;
+	modelMatrix *= transform2D::Rotate(angularStep);
+	RenderMesh2D(meshes["square2"], shaders["VertexColor"], modelMatrix);
 
-	//modelMatrix = glm::mat3(1);
-	//modelMatrix *= transform2D::Translate(650, 250);
+	modelMatrix = glm::mat3(1);
+	modelMatrix *= transform2D::Translate(650, 250);
 	//// TODO(student): Create animations by multiplying the current
 	//// transform matrix with the matrices you just implemented
 	//// Remember, the last matrix in the chain will take effect first!
 
 
-	////scaleX += deltaTimeSeconds * 1.5;
-	////scaleY += deltaTimeSeconds * 1.5;
+	//scaleX += deltaTimeSeconds * 1.5;
+	//scaleY += deltaTimeSeconds * 1.5;
 
-	//if (scaleX >= 0 && scaleX <= 2 && isScaling) {
-	//	scaleX += deltaTimeSeconds * 1.5;
-	//	scaleY += deltaTimeSeconds * 1.5;
+	if (scaleX >= 0 && scaleX <= 2 && isScaling) {
+		scaleX += deltaTimeSeconds * 1.5;
+		scaleY += deltaTimeSeconds * 1.5;
+	}
+
+	if (scaleX >= 1 && scaleY <= 2 && !isScaling) {
+		scaleX -= deltaTimeSeconds * 1.5;
+		scaleY -= deltaTimeSeconds * 1.5;
+	}
+
+	if (scaleX > 2) {
+		scaleX -= deltaTimeSeconds * 1.5;
+		scaleY -= deltaTimeSeconds * 1.5;
+		isScaling = false;
+	}
+
+	if (scaleX < 1) {
+		scaleX += deltaTimeSeconds * 1.5;
+		scaleY += deltaTimeSeconds * 1.5;
+		isScaling = true;
+	}
+
+	modelMatrix *= transform2D::Translate(cx, cy);
+	modelMatrix *= transform2D::Scale(scaleX, scaleY);
+	modelMatrix *= transform2D::Translate(-cx, -cy);
+	RenderMesh2D(meshes["square3"], shaders["VertexColor"], modelMatrix);
+
+	/* top square */
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(600, 300);
+
+	//if (translateX >= 0 && translateX < 100 && isMovingRight) {
+	//	translateX += deltaTimeSeconds * 100;
 	//}
 
-	//if (scaleX >= 1 && scaleY <= 2 && !isScaling) {
-	//	scaleX -= deltaTimeSeconds * 1.5;
-	//	scaleY -= deltaTimeSeconds * 1.5;
+	//if (translateX <= 100 && translateX > 0 && !isMovingRight) {
+	//	translateX -= deltaTimeSeconds * 100;
 	//}
 
-	//if (scaleX > 2) {
-	//	scaleX -= deltaTimeSeconds * 1.5;
-	//	scaleY -= deltaTimeSeconds * 1.5;
-	//	isScaling = false;
+	//if (translateX >= 100) {
+	//	translateX -= deltaTimeSeconds;
+
+	//	isMovingRight = false;
 	//}
 
-	//if (scaleX < 1) {
-	//	scaleX += deltaTimeSeconds * 1.5;
-	//	scaleY += deltaTimeSeconds * 1.5;
-	//	isScaling = true;
+	//if (translateX <= 0) {
+	//	translateX += deltaTimeSeconds;
+
+	//	isMovingRight = true;
 	//}
 
 	//modelMatrix *= transform2D::Translate(cx, cy);
-	//modelMatrix *= transform2D::Scale(scaleX, scaleY);
+	//modelMatrix *= transform2D::Scale(2, 1);
 	//modelMatrix *= transform2D::Translate(-cx, -cy);
-	//RenderMesh2D(meshes["square3"], shaders["VertexColor"], modelMatrix);
 
-	/* top square */
-	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(600, 300);
+	////modelMatrix *= transform2D::Translate(translateX, 0);
 
-	if (translateX >= 0 && translateX < 100 && isMovingRight) {
-		translateX += deltaTimeSeconds * 100;
-	}
+	//RenderMesh2D(meshes["carTopSquare"], shaders["VertexColor"], modelMatrix);
 
-	if (translateX <= 100 && translateX > 0 && !isMovingRight) {
-		translateX -= deltaTimeSeconds * 100;
-	}
+	///* bottom square */
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(600, 300);
 
-	if (translateX >= 100) {
-		translateX -= deltaTimeSeconds;
+	//modelMatrix *= transform2D::Translate(0, -100);
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Scale(4, 1);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 
-		isMovingRight = false;
-	}
+	////modelMatrix *= transform2D::Translate(translateX, 0);
 
-	if (translateX <= 0) {
-		translateX += deltaTimeSeconds;
-
-		isMovingRight = true;
-	}
-
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Scale(2, 1);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
-
-	//modelMatrix *= transform2D::Translate(translateX, 0);
-
-	RenderMesh2D(meshes["carTopSquare"], shaders["VertexColor"], modelMatrix);
-
-	/* bottom square */
-	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(600, 300);
-
-	modelMatrix *= transform2D::Translate(0, -100);
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Scale(4, 1);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
-
-	//modelMatrix *= transform2D::Translate(translateX, 0);
-
-	RenderMesh2D(meshes["carBottomSquare"], shaders["VertexColor"], modelMatrix);
+	//RenderMesh2D(meshes["carBottomSquare"], shaders["VertexColor"], modelMatrix);
 
 
-	/* tires */
+	///* tires */
 
-	angularStep -= deltaTimeSeconds * 2;
+	//angularStep -= deltaTimeSeconds * 2;
 
-	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(600, 300);
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(600, 300);
 
-	modelMatrix *= transform2D::Translate(-120, -200);
+	//modelMatrix *= transform2D::Translate(-120, -200);
 
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Scale(0.7, 0.7);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Scale(0.7, 0.7);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Rotate(angularStep);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Rotate(angularStep);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 
-	//modelMatrix *= transform2D::Translate(translateX, 0);
+	////modelMatrix *= transform2D::Translate(translateX, 0);
 
-	RenderMesh2D(meshes["carFrontTireSqaure"], shaders["VertexColor"], modelMatrix);
+	//RenderMesh2D(meshes["carFrontTireSqaure"], shaders["VertexColor"], modelMatrix);
 
 
-	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(600, 300);
+	//modelMatrix = glm::mat3(1);
+	//modelMatrix *= transform2D::Translate(600, 300);
 
-	modelMatrix *= transform2D::Translate(120, -200);
+	//modelMatrix *= transform2D::Translate(120, -200);
 
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Scale(0.7, 0.7);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Scale(0.7, 0.7);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 
-	modelMatrix *= transform2D::Translate(cx, cy);
-	modelMatrix *= transform2D::Rotate(angularStep);
-	modelMatrix *= transform2D::Translate(-cx, -cy);
+	//modelMatrix *= transform2D::Translate(cx, cy);
+	//modelMatrix *= transform2D::Rotate(angularStep);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 
-	//modelMatrix *= transform2D::Translate(translateX, 0);
+	////modelMatrix *= transform2D::Translate(translateX, 0);
 
-	RenderMesh2D(meshes["carBackTireSqaure"], shaders["VertexColor"], modelMatrix);
+	//RenderMesh2D(meshes["carBackTireSqaure"], shaders["VertexColor"], modelMatrix);
 }
 
 
