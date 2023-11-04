@@ -8,38 +8,72 @@
 
 using namespace std;
 
-Turret::Turret(const char* name)
+Turret::Turret(const char* name, glm::vec3 position)
 {
 	this->name = name;
-
-	cout << "am intrat si am numele: " << this->name;
+	this->position = position;
 }
 
 Turret::~Turret()
 {
 }
 
-void Turret::CreateTurret(const std::vector<VertexFormat>& vertices, const std::vector<unsigned int>& indices)
+void Turret::Init()
+{
+	vertices.insert(vertices.end(), {
+		// position, color, norm
+		VertexFormat(glm::vec3(-1, 0, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // A - 0
+		VertexFormat(glm::vec3(0, 2, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // B - 1
+		VertexFormat(glm::vec3(1, 0, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // C - 2
+		VertexFormat(glm::vec3(0, -2, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // D - 3
+		VertexFormat(glm::vec3(0, 1, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // E - 4
+		VertexFormat(glm::vec3(2, 1, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // F - 5
+		VertexFormat(glm::vec3(2, -1, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // G - 6
+		VertexFormat(glm::vec3(0, -1, 0), glm::vec3(0, 1, 1), glm::vec3(0, 1, 0)), // H - 7
+		});
+
+	indices.insert(indices.end(), {
+		0, 1, 2, // ABC
+		0, 2, 3, // ACD
+		7, 4, 5, // HEF
+		7, 5, 6, // HFG
+		});
+
+	turretMesh = new Mesh(name);
+	CreateMesh();
+}
+
+glm::vec3 Turret::GetPosition()
+{
+	return position;
+}
+
+Mesh* Turret::GetMesh()
+{
+	return turretMesh;
+}
+
+void Turret::CreateMesh()
 {
 	unsigned int VAO = 0;
-	// Create the VAO and bind it
+	// TODO(student): Create the VAO and bind it
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
 	unsigned int VBO = 0;
-	// Create the VBO and bind it
+	// TODO(student): Create the VBO and bind it
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	// Send vertices data into the VBO buffer
+	// TODO(student): Send vertices data into the VBO buffer
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
 	unsigned int IBO = 0;
-	// Create the IBO and bind it
+	// TODO(student): Create the IBO and bind it
 	glGenBuffers(1, &IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 
-	// Send indices data into the IBO buffer
+	// TODO(student): Send indices data into the IBO buffer
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices.size(), &indices[0], GL_STATIC_DRAW);
 
 	// ========================================================================
@@ -76,17 +110,8 @@ void Turret::CreateTurret(const std::vector<VertexFormat>& vertices, const std::
 	}
 
 	// Mesh information is saved into a Mesh object
-	meshes[name] = new Mesh(name);
-	meshes[name]->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));
-}
+	turretMesh->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));
 
-
-const char* Turret::GetName()
-{
-	return name;
-}
-
-void Turret::Render(glm::vec3 position, glm::vec3 scale)
-{
-	RenderMesh(meshes[name], shaders["VertexColor"], position, scale);
+	//meshes[name] = new Mesh(name);
+	//meshes[name]->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));
 }

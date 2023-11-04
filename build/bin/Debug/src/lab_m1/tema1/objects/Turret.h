@@ -2,23 +2,29 @@
 
 #include "components/simple_scene.h"
 
-//#include "core/gpu/vertex_format.h"
+#include "core/gpu/vertex_format.h"
 
 #include <vector>
 
-class Turret : public gfxc::SimpleScene {
+class Turret {
 public:
-	Turret(const char* name);
+	Turret(const char* name, glm::vec3 position);
 	~Turret();
 
-	void CreateTurret(const std::vector<VertexFormat>& vertices,
-		const std::vector<unsigned int>& indices);
-	const char* GetName();
-	void Render(glm::vec3 position, glm::vec3 scale);
-private:
-	const char* name;
-	//const std::vector<VertexFormat> vertices;
-	//const std::vector<unsigned int> indices;
+	void Init();
 
-protected:
+	Mesh* GetMesh();
+	glm::vec3 GetPosition();
+private:
+	glm::vec3 position;
+
+private:
+	// position,
+	std::vector<VertexFormat> vertices;
+	std::vector<unsigned int> indices;
+	const char* name;
+
+	Mesh* turretMesh;
+
+	void CreateMesh();
 };

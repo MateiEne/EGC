@@ -15,41 +15,10 @@ Tema1::~Tema1() {
 }
 
 void Tema1::Init() {
-	cullFace = GL_BACK;
 	polygonMode = GL_FILL;
 
-	testTuret = new Turret("TestTurret");
-
-	glEnable(GL_CULL_FACE);
-
-	vector<VertexFormat> vertices{
-		// position, color, norm
-		VertexFormat(glm::vec3(0, 0, 1), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(1, 0, 1), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(0, 1, 1), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(1, 1, 1), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(0, 0, 0), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(1, 0, 0), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(0, 1, 0), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-		VertexFormat(glm::vec3(1, 1, 0), glm::vec3(0, 1, 1), glm::vec3(0.2, 0.8, 0.6)),
-	};
-
-	vector<unsigned int> indices = {
-		0, 1, 2,    // indices for first triangle
-		1, 3, 2,    // indices for second triangle
-		2, 3, 7,
-		2, 7, 6,
-		1, 7, 3,
-		1, 5, 7,
-		6, 7, 4,
-		7, 5, 4,
-		0, 4, 1,
-		1, 4, 5,
-		2, 6, 4,
-		0, 2, 4,
-	};
-
-	testTuret->CreateTurret(vertices, indices);
+	testTuret = new Turret("TestTurret", glm::vec3(0, 0, 0));
+	testTuret->Init();
 }
 
 void Tema1::FrameStart() {
@@ -68,7 +37,8 @@ void Tema1::Update(float deltaTimeSeconds) {
 	glPointSize(5);
 	glPolygonMode(GL_FRONT_AND_BACK, polygonMode);
 
-	testTuret->Render(glm::vec3(0, 0, 0), glm::vec3(0.25f));
+
+	RenderMesh(testTuret->GetMesh(), shaders["VertexColor"], testTuret->GetPosition(), glm::vec3(0.25f));
 }
 
 void Tema1::FrameEnd() {
