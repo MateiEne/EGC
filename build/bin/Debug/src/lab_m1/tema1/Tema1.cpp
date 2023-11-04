@@ -17,13 +17,13 @@ Tema1::~Tema1() {
 void Tema1::Init() {
 	polygonMode = GL_FILL;
 
-	testTuret = new Turret("TestTurret", glm::vec3(0, 0, 0));
+	testTuret = new Turret("TestTurret", glm::vec3(1, 1, 0));
 	testTuret->Init();
 
-	enemy = new Enemy("E1", glm::vec3(3, 0, 0));
+	enemy = new Enemy("E1", glm::vec3(2, 1, 0));
 	enemy->Init();
 
-	projectile = new Projectile("P1", glm::vec3(2, 0, 0));
+	projectile = new Projectile("P1", glm::vec3(3, 1, 0));
 	projectile->Init();
 }
 
@@ -50,7 +50,7 @@ void Tema1::Update(float deltaTimeSeconds) {
 }
 
 void Tema1::FrameEnd() {
-	//DrawCoordinateSystem();
+	DrawCoordinateSystem();
 }
 
 void m1::Tema1::OnInputUpdate(float deltaTime, int mods)

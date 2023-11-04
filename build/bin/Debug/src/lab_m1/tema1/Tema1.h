@@ -1,20 +1,20 @@
 #pragma once
 
-#include "components/simple_scene.h"
+#include "lab_m1/tema1/game_components/game_scene.h"
 
 #include "lab_m1/tema1/objects/Turret.h"
 #include "lab_m1/tema1/objects/Enemy.h"
 #include "lab_m1/tema1/objects/Projectile.h"
 
 namespace m1 {
-	class Tema1 : public gfxc::SimpleScene {
+	class Tema1 : public GameScene {
 	public:
 		Tema1();
 		~Tema1();
 
 		void Init() override;
 
-	private: 
+	private:
 		void FrameStart() override;
 		void Update(float deltaTimeSeconds) override;
 		void FrameEnd() override;
