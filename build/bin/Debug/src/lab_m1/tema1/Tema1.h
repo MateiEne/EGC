@@ -3,6 +3,8 @@
 #include "components/simple_scene.h"
 
 #include "lab_m1/tema1/objects/Turret.h"
+#include "lab_m1/tema1/objects/Enemy.h"
+#include "lab_m1/tema1/objects/Projectile.h"
 
 namespace m1 {
 	class Tema1 : public gfxc::SimpleScene {
@@ -27,6 +29,8 @@ namespace m1 {
 		void OnWindowResize(int width, int height) override;
 
 		Turret* testTuret;
+		Enemy* enemy;
+		Projectile* projectile;
 
 	protected:
 		GLenum polygonMode;

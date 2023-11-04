@@ -19,6 +19,12 @@ void Tema1::Init() {
 
 	testTuret = new Turret("TestTurret", glm::vec3(0, 0, 0));
 	testTuret->Init();
+
+	enemy = new Enemy("E1", glm::vec3(3, 0, 0));
+	enemy->Init();
+
+	projectile = new Projectile("P1", glm::vec3(2, 0, 0));
+	projectile->Init();
 }
 
 void Tema1::FrameStart() {
@@ -39,10 +45,12 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 
 	RenderMesh(testTuret->GetMesh(), shaders["VertexColor"], testTuret->GetPosition(), glm::vec3(0.25f));
+	RenderMesh(enemy->GetMesh(), shaders["VertexColor"], enemy->GetPosition(), glm::vec3(0.25f));
+	RenderMesh(projectile->GetMesh(), shaders["VertexColor"], projectile->GetPosition(), glm::vec3(0.25f));
 }
 
 void Tema1::FrameEnd() {
-	DrawCoordinateSystem();
+	//DrawCoordinateSystem();
 }
 
 void m1::Tema1::OnInputUpdate(float deltaTime, int mods)

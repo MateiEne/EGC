@@ -1,8 +1,18 @@
 #pragma once
 
-#include "components/simple_scene.h"
+#include "core/world.h"
+#include "core/engine.h"
+#include "core/gpu/mesh.h"
+#include "core/gpu/shader.h"
+#include "core/gpu/texture2D.h"
+#include "core/managers/resource_path.h"
+#include "core/managers/texture_manager.h"
 
-#include "core/gpu/vertex_format.h"
+#include "utils/text_utils.h"
+#include "utils/memory_utils.h"
+#include "utils/gl_utils.h"
+#include "utils/math_utils.h"
+
 
 #include <vector>
 
