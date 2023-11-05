@@ -72,21 +72,18 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 void Tema1::DrawScene(glm::mat3 visMatrix)
 {
-	modelMatrix = visMatrix * transform2D::Translate(0, 0);
+	modelMatrix = visMatrix * transform2D::Translate(0, 1);
 	RenderMesh2D(square->GetMesh(), shaders["VertexColor"], modelMatrix);
 	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
 
-	//modelMatrix = visMatrix * transform2D::Translate(0, 10);
-	//RenderMesh2D(enemy->GetMesh(), shaders["VertexColor"], modelMatrix);
+	modelMatrix = visMatrix * transform2D::Translate(3, 1);
+	RenderMesh2D(enemy->GetMesh(), shaders["VertexColor"], modelMatrix);
 
-	//modelMatrix = visMatrix * transform2D::Translate(1.5, 1.5);
-	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
+	modelMatrix = visMatrix * transform2D::Translate(6, 3);
+	RenderMesh2D(projectile->GetMesh(), shaders["VertexColor"], modelMatrix);
 
-	//modelMatrix = visMatrix * transform2D::Translate(0, 3);
-	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
-
-	//modelMatrix = visMatrix * transform2D::Translate(3, 3);
-	//RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
+	modelMatrix = visMatrix * transform2D::Translate(0, 4);
+	RenderMesh2D(testTuret->GetMesh(), shaders["VertexColor"], modelMatrix);
 }
 
 void Tema1::FrameEnd() {

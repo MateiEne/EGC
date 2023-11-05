@@ -1,16 +1,6 @@
-﻿  lab3_vis2D.cpp
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(171,29): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(175,29): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(179,29): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(183,29): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(188,33): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(189,34): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(190,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(191,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(195,33): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(196,34): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(197,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\lab3\lab3_vis2D.cpp(198,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+﻿  Tema1.cpp
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(112,16): warning C4101: 'tx': unreferenced local variable
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(112,20): warning C4101: 'ty': unreferenced local variable
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets
