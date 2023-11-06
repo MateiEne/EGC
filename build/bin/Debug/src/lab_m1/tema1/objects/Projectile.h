@@ -4,7 +4,7 @@
 
 class Projectile : public Object_2D {
 public:
-	Projectile(const char* name, glm::vec2 position);
+	Projectile(const char* name, glm::vec2 position, glm::vec3 color);
 	~Projectile();
 
 	void InitVertices() override;

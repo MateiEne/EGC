@@ -24,17 +24,24 @@ void Tema1::Init() {
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
-	base = new Square("base", glm::vec2(2, 3));
+	InitGameScene();
+}
+
+void Tema1::InitGameScene() {
+	base = new Square("base", glm::vec2(1, 8), glm::vec3(1, 0, 0));
 	base->Init();
-	base->Scale(glm::vec2(1, 4));
+	base->Scale(glm::vec2(1.5, 15));
 
 	for (int i = 0; i < 3; i++) {
-		Square* cell = new Square("cell", glm::vec2(0, 0));
-		cells.push_back(cell);
-	}
+		for (int j = 0; j < 3; j++) {
+			Square* cell = new Square("cell", glm::vec2(5, 2.8), glm::vec3(34.0f / 256, 139.0f / 256, 34.0f / 256));
+			cell->Init();
+			float scaleFactor = 3.8;
+			cell->Scale(scaleFactor, scaleFactor);
+			cell->Translate(j * (2 * cell->GetRadius()) / scaleFactor, i * 2 * cell->GetRadius() / scaleFactor);
 
-	for each (auto cell in cells) {
-		cell->Init();
+			cells.push_back(cell);
+		}
 	}
 }
 
@@ -55,8 +62,14 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 void Tema1::DrawScene()
 {
-	//base->Translate(glm::vec2(2, 3));
+	RenderMesh2D(base->GetDebugMesh(), shaders["VertexColor"], base->GetModelMatrix());
 	RenderMesh2D(base->GetMesh(), shaders["VertexColor"], base->GetModelMatrix());
+
+	for each (auto cell in cells) {
+		RenderMesh2D(cell->GetDebugMesh(), shaders["VertexColor"], cell->GetModelMatrix());
+		RenderMesh2D(cell->GetMesh(), shaders["VertexColor"], cell->GetModelMatrix());
+	}
+	//base->Translate(glm::vec2(2, 3));
 }
 
 void Tema1::FrameEnd() {

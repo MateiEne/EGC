@@ -22,7 +22,7 @@ using namespace std;
 
 class Object_2D : public Transform2D {
 public: 
-	Object_2D(const char* name, glm::vec2 position);
+	Object_2D(const char* name, glm::vec2 position, glm::vec3 color);
 	virtual ~Object_2D();
 
 	void Init();
@@ -30,10 +30,12 @@ public:
 	float GetRadius();
 
 	Mesh* GetMesh();
+	Mesh* GetDebugMesh();
 protected:
 	std::vector<VertexFormat> vertices;
 	std::vector<unsigned int> indices;
 	const char* name;
+	glm::vec3 color;
 
 	virtual void InitVertices() = 0;
 

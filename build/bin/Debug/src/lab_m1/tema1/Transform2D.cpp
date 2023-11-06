@@ -2,9 +2,19 @@
 
 Transform2D::Transform2D() {
 	modelMatrix = glm::mat3(1);
+	position = glm::vec2(0);
+	scale = glm::vec2(1);
 }
 
 Transform2D::~Transform2D() {
+}
+
+void Transform2D::Translate(float translateX, float translateY) {
+	Translate(glm::vec2(translateX, translateY));
+}
+
+void Transform2D::Scale(float scaleX, float scaleY) {
+	Scale(glm::vec2(scaleX, scaleY));
 }
 
 void Transform2D::Translate(glm::vec2 translate) {
@@ -15,6 +25,8 @@ void Transform2D::Translate(glm::vec2 translate) {
 			0, 0, 1
 		)
 	);
+
+	position += translate;
 }
 
 void Transform2D::Scale(glm::vec2 scale) {
@@ -25,6 +37,8 @@ void Transform2D::Scale(glm::vec2 scale) {
 			0, 0, 1
 		)
 	);
+
+	this->scale *= scale;
 }
 
 void Transform2D::Rotate(float radians) {

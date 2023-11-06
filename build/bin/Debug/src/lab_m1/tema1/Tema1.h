@@ -23,6 +23,7 @@ namespace m1 {
 		void FrameEnd() override;
 
 		void DrawScene();
+		void InitGameScene();
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -36,8 +37,6 @@ namespace m1 {
 	private:
 		Square* base;
 		vector<Square*> cells;
-
-		glm::mat3 modelMatrix;
 
 		GLenum polygonMode;
 		GLenum cullFace;

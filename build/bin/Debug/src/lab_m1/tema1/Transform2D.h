@@ -7,12 +7,18 @@ public:
 	Transform2D();
 	~Transform2D();
 
+
+	void Translate(float translateX, float translateY);
+	void Scale(float scaleX, float scaleY);;
+
 	void Translate(glm::vec2 translate);
 	void Scale(glm::vec2 scale);
 	void Rotate(float radians);
 
 	glm::mat3 GetModelMatrix();
 
-private:
+protected:
 	glm::mat3 modelMatrix;
+	glm::vec2 position;
+	glm::vec2 scale;
 };
