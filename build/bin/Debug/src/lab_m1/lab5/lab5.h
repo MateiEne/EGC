@@ -34,8 +34,16 @@ namespace m1
         implemented::Camera *camera;
         glm::mat4 projectionMatrix;
         bool renderCameraTarget;
+        bool isPerspectiveProjection;
 
         // TODO(student): If you need any other class variables, define them here.
+        float right;
+        float left;
+        float bottom;
+        float top;
+        float zFar;
+        float zNear;
 
+        float FOV;
     };
 }   // namespace m1
