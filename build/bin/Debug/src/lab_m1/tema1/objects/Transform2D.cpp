@@ -7,36 +7,6 @@ Transform2D::Transform2D() {
 Transform2D::~Transform2D() {
 }
 
-void Transform2D::SetPosition(glm::vec2 position) {
-	modelMatrix = glm::transpose(
-		glm::mat3(
-			1, 0, position.x,
-			0, 1, position.y,
-			0, 0, 1
-		)
-	);
-}
-
-void Transform2D::SetScale(glm::vec2 scale) {
-	modelMatrix = glm::transpose(
-		glm::mat3(
-			scale.x, 0, 0,
-			0, scale.y, 0,
-			0, 0, 1
-		)
-	);
-}
-
-void Transform2D::SetRotation(float radians) {
-	modelMatrix = glm::transpose(
-		glm::mat3(
-			cos(radians), -sin(radians), 0,
-			sin(radians), cos(radians), 0,
-			0, 0, 1
-		)
-	);
-}
-
 void Transform2D::Translate(glm::vec2 translate) {
 	modelMatrix *= glm::transpose(
 		glm::mat3(

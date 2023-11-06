@@ -24,17 +24,11 @@ void Tema1::Init() {
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
-	testTuret = new Turret("TestTurret", glm::vec3(1, 1, 0));
-	testTuret->Init();
+	base = new Square("S1", glm::vec2(4, 1));
+	base->Translate(glm::vec2(4, 1));
+	base->Init();
 
-	enemy = new Enemy("E1", glm::vec3(2, 1, 0));
-	enemy->Init();
-
-	projectile = new Projectile("P1", glm::vec3(3, 1, 0));
-	projectile->Init();
-
-	square = new Square("S1", glm::vec3(4, 1, 0));
-	square->Init();
+	//for (int i = 0; i < 9;)
 }
 
 void Tema1::FrameStart() {
@@ -54,9 +48,7 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 void Tema1::DrawScene()
 {
-	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(10, 10);
-	RenderMesh2D(enemy->GetMesh(), shaders["VertexColor"], modelMatrix);
+	RenderMesh2D(base->GetMesh(), shaders["VertexColor"], base->GetModelMatrix());
 }
 
 void Tema1::FrameEnd() {

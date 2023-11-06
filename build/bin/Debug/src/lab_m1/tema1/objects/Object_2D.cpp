@@ -3,7 +3,7 @@
 Object_2D::Object_2D(const char* name, glm::vec2 position) {
 	this->name = name;
 
-	SetPosition(position);
+	Translate(position);
 
 	objectMesh = new Mesh(name);
 }

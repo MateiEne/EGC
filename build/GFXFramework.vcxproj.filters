@@ -279,14 +279,11 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Square.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\transform2D.h">
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Transform2D.h">
       <Filter>src\lab_m1\tema1</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Transform2D.h">
-      <Filter>src\lab_m1\tema1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

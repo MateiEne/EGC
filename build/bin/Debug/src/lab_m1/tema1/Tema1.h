@@ -22,7 +22,7 @@ namespace m1 {
 		void Update(float deltaTimeSeconds) override;
 		void FrameEnd() override;
 
-		void DrawScene(/*glm::mat3 visMatrix*/);
+		void DrawScene();
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -33,12 +33,10 @@ namespace m1 {
 		void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
 		void OnWindowResize(int width, int height) override;
 
-		Turret* testTuret;
-		Enemy* enemy;
-		Projectile* projectile;
-		Square* square;
-
 	private:
+		Square* base;
+		vector<Square*> cells;
+
 		glm::mat3 modelMatrix;
 
 		GLenum polygonMode;
