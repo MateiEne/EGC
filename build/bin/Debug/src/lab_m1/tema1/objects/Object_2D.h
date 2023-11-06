@@ -26,6 +26,8 @@ public:
 	virtual ~Object_2D();
 
 	void Init();
+	
+	float GetRadius();
 
 	Mesh* GetMesh();
 protected:
@@ -33,8 +35,12 @@ protected:
 	std::vector<unsigned int> indices;
 	const char* name;
 
-	Mesh* objectMesh;
+	virtual void InitVertices() = 0;
+
+private:
+	float radius;
 
 	void CreateMesh();
-	virtual void InitVertices() = 0;
+	float CalculateRadius();
+	Mesh* objectMesh;
 };

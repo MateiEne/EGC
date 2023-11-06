@@ -6,6 +6,8 @@ Object_2D::Object_2D(const char* name, glm::vec2 position) {
 	Translate(position);
 
 	objectMesh = new Mesh(name);
+
+	radius = 0;
 }
 
 
@@ -18,6 +20,28 @@ void Object_2D::Init()
 	InitVertices();
 
 	CreateMesh();
+
+	radius = CalculateRadius();
+}
+
+float Object_2D::GetRadius()
+{
+	return radius;
+}
+
+float Object_2D::CalculateRadius() {
+	float maxDistance = 0;
+
+	for each (auto vertex in vertices) {
+		// TODO: calculate mesh origin with alebric sum
+		float distance = sqrt(vertex.position.x * vertex.position.x + vertex.position.y * vertex.position.y);
+
+		if (maxDistance <= distance) {
+			maxDistance = distance;
+		}
+	}
+
+	return maxDistance;
 }
 
 Mesh* Object_2D::GetMesh()

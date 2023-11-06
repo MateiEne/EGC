@@ -505,9 +505,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Projectile.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Square.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Transform2D.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Turret.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Transform2D.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\scene_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\simple_scene.cpp" />

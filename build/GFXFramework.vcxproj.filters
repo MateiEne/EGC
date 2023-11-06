@@ -106,7 +106,7 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.cpp">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Transform2D.cpp">
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Transform2D.cpp">
       <Filter>src\lab_m1\tema1</Filter>
     </ClCompile>
   </ItemGroup>

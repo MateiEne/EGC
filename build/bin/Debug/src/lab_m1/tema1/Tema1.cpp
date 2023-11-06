@@ -24,8 +24,7 @@ void Tema1::Init() {
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
-	base = new Square("S1", glm::vec2(4, 1));
-	base->Translate(glm::vec2(4, 1));
+	base = new Square("S1", glm::vec2(1, 1));
 	base->Init();
 
 	//for (int i = 0; i < 9;)
