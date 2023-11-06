@@ -37,6 +37,8 @@ protected:
 	const char* name;
 	glm::vec3 color;
 
+	GLenum drawMode;
+
 	virtual void InitVertices() = 0;
 
 private:

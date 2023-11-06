@@ -25,6 +25,10 @@ void Tema1::Init() {
 	//GetCameraInput()->SetActive(false);
 
 	InitGameScene();
+
+	frame = new Frame("frame", glm::vec2(20, 20), glm::vec3(1, 0, 0));
+	frame->Init();
+	frame->SetScale(3.8, 3.8);
 }
 
 void Tema1::InitGameScene() {
@@ -69,7 +73,8 @@ void Tema1::DrawScene()
 		RenderMesh2D(cell->GetDebugMesh(), shaders["VertexColor"], cell->GetModelMatrix());
 		RenderMesh2D(cell->GetMesh(), shaders["VertexColor"], cell->GetModelMatrix());
 	}
-	//base->Translate(glm::vec2(2, 3));
+
+	RenderMesh2D(frame->GetMesh(), shaders["VertexColor"], frame->GetModelMatrix());
 }
 
 void Tema1::FrameEnd() {

@@ -1,8 +1,8 @@
 ﻿  Tema1.cpp
 ..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(23,40): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(39,22): warning C4305: 'initializing': truncation from 'double' to 'float'
-  main.cpp
-  Generating Code...
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(31,23): warning C4305: 'argument': truncation from 'double' to 'float'
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(31,18): warning C4305: 'argument': truncation from 'double' to 'float'
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(45,22): warning C4305: 'initializing': truncation from 'double' to 'float'
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets

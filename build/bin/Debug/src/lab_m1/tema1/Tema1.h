@@ -8,6 +8,7 @@
 #include "lab_m1/tema1/objects/Enemy.h"
 #include "lab_m1/tema1/objects/Projectile.h"
 #include "lab_m1/tema1/objects/Square.h"
+#include "lab_m1/tema1/objects/Frame.h"
 
 namespace m1 {
 	class Tema1 : public gfxc::SimpleScene {
@@ -24,6 +25,7 @@ namespace m1 {
 
 		void DrawScene();
 		void InitGameScene();
+		void InitHUD();
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -37,6 +39,8 @@ namespace m1 {
 	private:
 		Square* base;
 		vector<Square*> cells;
+
+		Frame* frame;
 
 		GLenum polygonMode;
 		GLenum cullFace;

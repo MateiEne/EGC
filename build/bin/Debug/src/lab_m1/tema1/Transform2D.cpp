@@ -9,6 +9,38 @@ Transform2D::Transform2D() {
 Transform2D::~Transform2D() {
 }
 
+void Transform2D::SetPosition(float x, float y) {
+	SetPosition(glm::vec2(x, y));
+}
+
+void Transform2D::SetScale(glm::vec2 scale) {
+	modelMatrix = glm::transpose(
+		glm::mat3(
+			scale.x, 0, position.x,
+			0, scale.y, position.y,
+			0, 0, 1
+		)
+	);
+
+	this->scale = scale;
+}
+
+void Transform2D::SetScale(float scaleX, float scaleY) {
+	SetScale(glm::vec2(scaleX, scaleY));
+}
+
+void Transform2D::SetPosition(glm::vec2 position) {
+	modelMatrix = glm::transpose(
+		glm::mat3(
+			scale.x, 0, position.x,
+			0, scale.y, position.y,
+			0, 0, 1
+		)
+	);
+
+	this->position = position;
+}
+
 void Transform2D::Translate(float translateX, float translateY) {
 	Translate(glm::vec2(translateX, translateY));
 }
