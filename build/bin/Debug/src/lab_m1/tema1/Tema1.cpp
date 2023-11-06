@@ -24,10 +24,18 @@ void Tema1::Init() {
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
-	base = new Square("S1", glm::vec2(1, 1));
+	base = new Square("base", glm::vec2(2, 3));
 	base->Init();
+	base->Scale(glm::vec2(1, 4));
 
-	//for (int i = 0; i < 9;)
+	for (int i = 0; i < 3; i++) {
+		Square* cell = new Square("cell", glm::vec2(0, 0));
+		cells.push_back(cell);
+	}
+
+	for each (auto cell in cells) {
+		cell->Init();
+	}
 }
 
 void Tema1::FrameStart() {
@@ -47,6 +55,7 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 void Tema1::DrawScene()
 {
+	//base->Translate(glm::vec2(2, 3));
 	RenderMesh2D(base->GetMesh(), shaders["VertexColor"], base->GetModelMatrix());
 }
 
