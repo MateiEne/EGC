@@ -7,5 +7,5 @@ public:
 	Turret(const char* name, glm::vec3 position);
 	~Turret();
 
-	void Init() override;
+	void InitVertices() override;
 };

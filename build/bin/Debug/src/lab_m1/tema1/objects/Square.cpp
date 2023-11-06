@@ -6,7 +6,7 @@ Square::Square(const char* name, glm::vec3 position) : Object_2D(name, position)
 Square::~Square() {
 }
 
-void Square::Init()
+void Square::InitVertices()
 {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
@@ -20,7 +20,4 @@ void Square::Init()
 		0, 1, 2, // ABC
 		0, 2, 3// ACD
 		});
-
-	turretMesh = new Mesh(name);
-	CreateMesh();
 }

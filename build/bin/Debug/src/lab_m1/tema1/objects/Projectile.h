@@ -7,5 +7,5 @@ public:
 	Projectile(const char* name, glm::vec3 position);
 	~Projectile();
 
-	void Init() override;
+	void InitVertices() override;
 };

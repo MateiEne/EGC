@@ -7,7 +7,7 @@ Projectile::~Projectile() {
 }
 
 
-void Projectile::Init()
+void Projectile::InitVertices()
 {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
@@ -23,7 +23,4 @@ void Projectile::Init()
 		0, 2, 4, // ABC
 		5, 1, 3, // EFD
 		});
-
-	turretMesh = new Mesh(name);
-	CreateMesh();
 }

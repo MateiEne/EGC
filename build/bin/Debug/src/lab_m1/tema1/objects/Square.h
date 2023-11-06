@@ -7,5 +7,5 @@ public:
 	Square(const char* name, glm::vec3 position);
 	~Square();
 
-	void Init() override;
+	void InitVertices() override;
 };

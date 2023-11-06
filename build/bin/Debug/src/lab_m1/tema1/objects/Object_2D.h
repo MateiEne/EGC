@@ -23,7 +23,7 @@ public:
 	Object_2D(const char* name, glm::vec3 position);
 	virtual ~Object_2D();
 
-	virtual void Init() = 0;
+	void Init();
 
 	Mesh* GetMesh();
 	glm::vec3 GetPosition();
@@ -33,7 +33,8 @@ protected:
 	std::vector<unsigned int> indices;
 	const char* name;
 
-	Mesh* turretMesh;
+	Mesh* objectMesh;
 
 	void CreateMesh();
+	virtual void InitVertices() = 0;
 };

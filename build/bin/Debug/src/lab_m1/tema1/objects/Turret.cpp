@@ -6,7 +6,7 @@ Turret::Turret(const char* name, glm::vec3 position) : Object_2D(name, position)
 Turret::~Turret() {
 }
 
-void Turret::Init()
+void Turret::InitVertices()
 {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
@@ -26,7 +26,4 @@ void Turret::Init()
 		7, 4, 5, // HEF
 		7, 5, 6, // HFG
 		});
-
-	turretMesh = new Mesh(name);
-	CreateMesh();
 }

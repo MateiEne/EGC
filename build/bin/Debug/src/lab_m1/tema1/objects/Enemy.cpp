@@ -6,7 +6,7 @@ Enemy::Enemy(const char* name, glm::vec3 position) : Object_2D(name, position) {
 Enemy::~Enemy() {
 }
 
-void Enemy::Init()
+void Enemy::InitVertices()
 {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
@@ -34,7 +34,4 @@ void Enemy::Init()
 		11, 8, 9, // LIJ
 		11, 9, 10, // LJK
 		});
-
-	turretMesh = new Mesh(name);
-	CreateMesh();
 }

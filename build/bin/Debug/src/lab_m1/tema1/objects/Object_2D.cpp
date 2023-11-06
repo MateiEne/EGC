@@ -3,11 +3,20 @@
 Object_2D::Object_2D(const char* name, glm::vec3 position) {
 	this->name = name;
 	this->position = position;
+
+	objectMesh = new Mesh(name);
 }
 
 
 Object_2D::~Object_2D()
 {
+}
+
+void Object_2D::Init()
+{
+	InitVertices();
+
+	CreateMesh();
 }
 
 glm::vec3 Object_2D::GetPosition()
@@ -17,7 +26,7 @@ glm::vec3 Object_2D::GetPosition()
 
 Mesh* Object_2D::GetMesh()
 {
-	return turretMesh;
+	return objectMesh;
 }
 
 void Object_2D::CreateMesh()
@@ -77,7 +86,7 @@ void Object_2D::CreateMesh()
 	}
 
 	// Mesh information is saved into a Mesh object
-	turretMesh->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));
+	objectMesh->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));
 
 	//meshes[name] = new Mesh(name);
 	//meshes[name]->InitFromBuffer(VAO, static_cast<unsigned int>(indices.size()));

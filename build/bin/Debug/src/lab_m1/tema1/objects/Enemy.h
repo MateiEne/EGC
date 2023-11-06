@@ -7,5 +7,5 @@ public:
 	Enemy(const char* name, glm::vec3 position);
 	~Enemy();
 
-	void Init() override;
+	void InitVertices() override;
 };
