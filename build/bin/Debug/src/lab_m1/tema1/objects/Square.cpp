@@ -1,6 +1,6 @@
 #include "lab_m1/tema1/objects/Square.h"
 
-Square::Square(const char* name, glm::vec3 position) : Object_2D(name, position) {
+Square::Square(const char* name, glm::vec2 position) : Object_2D(name, position) {
 }
 
 Square::~Square() {

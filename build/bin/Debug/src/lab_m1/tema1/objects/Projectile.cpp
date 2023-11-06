@@ -1,6 +1,6 @@
 #include "lab_m1/tema1/objects/Projectile.h"
 
-Projectile::Projectile(const char* name, glm::vec3 position) : Object_2D(name, position) {
+Projectile::Projectile(const char* name, glm::vec2 position) : Object_2D(name, position) {
 }
 
 Projectile::~Projectile() {

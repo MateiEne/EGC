@@ -100,17 +100,14 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Projectile.cpp">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\game_components\game_scene.cpp">
-      <Filter>src\lab_m1\tema1\game_components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\game_components\game_scene_input.cpp">
-      <Filter>src\lab_m1\tema1\game_components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Square.cpp">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.cpp">
       <Filter>src\lab_m1\tema1\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Transform2D.cpp">
+      <Filter>src\lab_m1\tema1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,9 +267,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.h">
       <Filter>src\lab_m1\tema1</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\object2D.h">
-      <Filter>src\lab_m1\tema1</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Turret.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
@@ -282,12 +276,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Projectile.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\game_components\game_scene.h">
-      <Filter>src\lab_m1\tema1\game_components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\game_components\game_scene_input.h">
-      <Filter>src\lab_m1\tema1\game_components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Square.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
@@ -296,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Transform2D.h">
+      <Filter>src\lab_m1\tema1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -370,9 +361,6 @@
     </Filter>
     <Filter Include="src\lab_m1\tema1\objects">
       <UniqueIdentifier>{3401dee7-3600-4213-ae93-988402a2379b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\lab_m1\tema1\game_components">
-      <UniqueIdentifier>{a1331724-9fc1-430b-a92c-81f8877d57e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

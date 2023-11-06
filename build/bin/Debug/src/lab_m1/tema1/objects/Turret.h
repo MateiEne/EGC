@@ -4,7 +4,7 @@
 
 class Turret : public Object_2D {
 public:
-	Turret(const char* name, glm::vec3 position);
+	Turret(const char* name, glm::vec2 position);
 	~Turret();
 
 	void InitVertices() override;

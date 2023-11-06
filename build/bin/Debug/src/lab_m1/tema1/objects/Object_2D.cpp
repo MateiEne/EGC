@@ -1,8 +1,9 @@
 #include "lab_m1/tema1/objects/Object_2D.h"
 
-Object_2D::Object_2D(const char* name, glm::vec3 position) {
+Object_2D::Object_2D(const char* name, glm::vec2 position) {
 	this->name = name;
-	this->position = position;
+
+	SetPosition(position);
 
 	objectMesh = new Mesh(name);
 }
@@ -17,11 +18,6 @@ void Object_2D::Init()
 	InitVertices();
 
 	CreateMesh();
-}
-
-glm::vec3 Object_2D::GetPosition()
-{
-	return position;
 }
 
 Mesh* Object_2D::GetMesh()

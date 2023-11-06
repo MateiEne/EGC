@@ -20,7 +20,7 @@ void Tema1::Init() {
 	auto camera = GetSceneCamera();
 	camera->SetPosition(glm::vec3(0, 0, 50));
 	camera->SetRotation(glm::vec3(0, 0, 0));
-	camera->SetOrthographic(0, 100, 0, 100, 0.01, 400);
+	camera->SetOrthographic(0, 60, 0, 30, 0.01, 400);
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
@@ -55,8 +55,8 @@ void Tema1::Update(float deltaTimeSeconds) {
 void Tema1::DrawScene()
 {
 	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(0, 1);
-	RenderMesh2D(square->GetMesh(), shaders["VertexColor"], modelMatrix);
+	modelMatrix *= transform2D::Translate(10, 10);
+	RenderMesh2D(enemy->GetMesh(), shaders["VertexColor"], modelMatrix);
 }
 
 void Tema1::FrameEnd() {

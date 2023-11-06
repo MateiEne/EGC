@@ -4,7 +4,7 @@
 
 class Square : public Object_2D {
 public:
-	Square(const char* name, glm::vec3 position);
+	Square(const char* name, glm::vec2 position);
 	~Square();
 
 	void InitVertices() override;

@@ -38,8 +38,8 @@ namespace m1 {
 		Projectile* projectile;
 		Square* square;
 
-	protected:
-		glm::mat3 modelMatrix, visMatrix;
+	private:
+		glm::mat3 modelMatrix;
 
 		GLenum polygonMode;
 		GLenum cullFace;

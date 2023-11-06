@@ -4,7 +4,7 @@
 
 class Enemy : public Object_2D {
 public:
-	Enemy(const char* name, glm::vec3 position);
+	Enemy(const char* name, glm::vec2 position);
 	~Enemy();
 
 	void InitVertices() override;
