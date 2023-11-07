@@ -26,6 +26,7 @@ namespace m1 {
 		void DrawScene();
 		void InitGameScene();
 		void InitHUD();
+		void DrawHUD();
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -40,7 +41,17 @@ namespace m1 {
 		Square* base;
 		vector<Square*> cells;
 
-		Frame* frame;
+		//vector<Turret*> turrets;
+
+		Frame* turretFrame;
+		Turret* orangeTurret;
+		Turret* blueTurret;
+		Turret* yellowTurret;
+		Turret* purpleTurret;
+
+		vector<Projectile> prices;
+		vector<Square> lives;
+		vector<Projectile> totalMoney;
 
 		GLenum polygonMode;
 		GLenum cullFace;
