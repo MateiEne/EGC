@@ -2,6 +2,13 @@
 
 Turret::Turret(const char* name, glm::vec2 position, glm::vec3 color, int cost) : Object_2D(name, position, color) {
 	this->cost = cost;
+
+	for (int i = 0; i < cost; i++) {
+		Projectile* priceStar = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		priceStar->Init();
+
+		prices.push_back(priceStar);
+	}
 }
 
 Turret::~Turret() {
@@ -27,6 +34,11 @@ void Turret::InitVertices()
 		5, 4, 7, // FEH
 		5, 7, 6, // FHG
 		});
+}
+
+vector<Projectile*> Turret::GetPrices()
+{
+	return prices;
 }
 
 int Turret::GetCost() {

@@ -110,7 +110,7 @@ namespace implemented
             right = glm::normalize(
                 glm::vec3(
                     glm::rotate(
-                        glm::mat4(1), angle, glm::vec3(0, 1, 0)
+                        glm::mat4(1), angle, glm::vec3(0, 1, 0) /*forward*/
                     ) *
                     glm::vec4(right, 0)
                 )

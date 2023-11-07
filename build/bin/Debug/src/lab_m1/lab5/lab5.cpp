@@ -35,10 +35,18 @@ void Lab5::Init()
 	zNear = .01f;
 	zFar = 200.f;
 
+	glm::ivec2 resolution = window->GetResolution();
+
+	// left, right, bottom, top
+	//right = resolution.x / 2.f;
+	//left = -resolution.x / 2.f;
+	//bottom = -resolution.y / 2.f;
+	//top = resolution.y / 2.f;
+
+	left = -10.f;
 	right = 10.f;
-	left = .01f;
-	bottom = .01f;
-	top = 10.f;
+	bottom = -4.f;
+	top = 4.f;
 
 	FOV = 40.f;
 

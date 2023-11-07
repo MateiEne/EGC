@@ -23,10 +23,16 @@ namespace m1 {
 		void Update(float deltaTimeSeconds) override;
 		void FrameEnd() override;
 
-		void DrawScene();
 		void InitGameScene();
 		void InitHUD();
+		void InitLives();
+		void InitTotalMoney();
+
+		void DrawScene();
 		void DrawHUD();
+		void DrawHUDGUI(Turret* turret, int factor);
+		void DrawLives();
+		void DrawTotalMoney();
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -49,11 +55,16 @@ namespace m1 {
 		Turret* yellowTurret;
 		Turret* purpleTurret;
 
-		vector<Projectile> prices;
-		vector<Square> lives;
-		vector<Projectile> totalMoney;
+		Projectile* projectile;
+
+		//vector<Projectile> prices;
+		vector<Square*> lives;
+		vector<Projectile*> totalMoney;
 
 		GLenum polygonMode;
 		GLenum cullFace;
+
+		float orthoRight;
+		float orthoTop;
 	};
 }
