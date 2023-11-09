@@ -1,9 +1,5 @@
 #include "lab_m1/tema1/Tema1.h"
 
-#include <vector>
-#include <iostream>
-
-using namespace std;
 using namespace m1;
 
 Tema1::Tema1() {
@@ -17,13 +13,10 @@ Tema1::~Tema1() {
 void Tema1::Init() {
 	polygonMode = GL_FILL;
 
-	orthoRight = 60;
-	orthoTop = 30;
-
 	auto camera = GetSceneCamera();
 	camera->SetPosition(glm::vec3(0, 0, 50));
 	camera->SetRotation(glm::vec3(0, 0, 0));
-	camera->SetOrthographic(0, orthoRight, 0, orthoTop, 0.01, 400);
+	camera->SetOrthographic(0, CAMERA_ORTHO_WIDTH, 0, CAMERA_ORTHO_HEIGHT, 0.01, 400);
 	camera->Update();
 	//GetCameraInput()->SetActive(false);
 
@@ -38,7 +31,7 @@ void Tema1::InitGameScene() {
 
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			Square* cell = new Square("cell", glm::vec2(5, 2.8), glm::vec3(34.0f / 256, 139.0f / 256, 34.0f / 256));
+			Square* cell = new Square("cell", glm::vec2(5, 2.8), GREEN_COLOR);
 			cell->Init();
 			float scaleFactor = 3.8;
 			cell->Scale(scaleFactor, scaleFactor);
@@ -53,44 +46,36 @@ void m1::Tema1::InitHUD() {
 	turretFrame = new Frame("turretFrame", glm::vec2(0, 0), glm::vec3(1, 1, 1));
 	turretFrame->Init();
 
-	orangeTurret = new Turret("orangeTurret", glm::vec2(0, 0), glm::vec3(255 / 255.f, 128 / 256.f, 0), 1);
-	orangeTurret->Init();
-	for (int i = 0; i < orangeTurret->GetCost(); i++) {
-		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
-		star->Init();
-
-		orangeTurretStars.push_back(star);
-	}
-	
-	blueTurret = new Turret("blueTurret", glm::vec2(0, 0), glm::vec3(0.f, 0.f, 204 / 256.f), 2);
-	blueTurret->Init();
-	for (int i = 0; i < blueTurret->GetCost(); i++) {
-		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
-		star->Init();
-
-		blueTurretStars.push_back(star);
-	}
-
-	yellowTurret = new Turret("yellowTurret", glm::vec2(0, 0), glm::vec3(204 / 256.f, 204 / 256.f, 0.f), 2);
-	yellowTurret->Init();
-	for (int i = 0; i < yellowTurret->GetCost(); i++) {
-		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
-		star->Init();
-
-		yellowTurretStars.push_back(star);
-	}
-
-	purpleTurret = new Turret("purpleTurret", glm::vec2(0, 0), glm::vec3(102 / 256.f, 0.f, 204 / 256.f), 3);
-	purpleTurret->Init();
-	for (int i = 0; i < purpleTurret->GetCost(); i++) {
-		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
-		star->Init();
-
-		purpleTurretStars.push_back(star);
-	}
-
-	projectile = new Projectile("p", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+	projectile = new Projectile("p", glm::vec2(0, 0), GREY_COLOR);
 	projectile->Init();
+		
+	guiFrames.push_back(new GUIFrame(
+		"orangeFrame", 
+		glm::vec2(4, 27),
+		ORANGE_COLOR,
+		1
+	));
+
+	guiFrames.push_back(new GUIFrame(
+		"blueFrame",
+		glm::vec2(12, 27),
+		BLUE_COLOR,
+		2
+	));
+
+	guiFrames.push_back(new GUIFrame(
+		"yellowFrame",
+		glm::vec2(20, 27),
+		YELLOW_COLOR,
+		2
+	));
+
+	guiFrames.push_back(new GUIFrame(
+		"purpleFrame",
+		glm::vec2(28, 27),
+		PURPLE_COLOR,
+		3
+	));
 
 	InitLives();
 	InitTotalMoney();
@@ -101,9 +86,9 @@ void m1::Tema1::InitLives() {
 	float lifeOffset = 7.f;
 
 	for (int i = 0; i < 3; i++) {
-		Square* life = new Square("life", glm::vec2(0, 0), glm::vec3(1, 0, 0));
+		Square* life = new Square("life", glm::vec2(0, 0), RED_COLOR);
 		life->Init();
-		life->SetPosition(orthoRight - lifeOffset - i * (life->GetRadius() + 4.f), 27);
+		life->SetPosition(CAMERA_ORTHO_WIDTH - lifeOffset - i * (life->GetRadius() + 4.f), 27);
 		life->SetScale(2.8f, 2.8f);
 
 		lives.insert(lives.begin(), life);
@@ -114,9 +99,9 @@ void m1::Tema1::InitTotalMoney() {
 	float totalMoneyOffset = 5.f;
 
 	for (int i = 0; i < 10; i++) {
-		Projectile* money = new Projectile("life", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		Projectile* money = new Projectile("life", glm::vec2(0, 0), GREY_COLOR);
 		money->Init();
-		money->SetPosition(orthoRight - totalMoneyOffset - i * (money->GetRadius() + 1.f), 24.3f);
+		money->SetPosition(CAMERA_ORTHO_WIDTH - totalMoneyOffset - i * (money->GetRadius() + 1.f), 24.3f);
 		money->SetScale(1.1f, 1.1f);
 
 		totalMoney.insert(totalMoney.begin(), money);
@@ -139,50 +124,25 @@ void Tema1::Update(float deltaTimeSeconds) {
 	DrawHUD();
 }
 
-void Tema1::DrawScene()
-{
-	//RenderMesh2D(base->GetDebugMesh(), shaders["VertexColor"], base->GetModelMatrix());
-	RenderMesh2D(base->GetMesh(), shaders["VertexColor"], base->GetModelMatrix());
+void Tema1::DrawScene() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
+	base->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
 	for each (auto cell in cells) {
-		//RenderMesh2D(cell->GetDebugMesh(), shaders["VertexColor"], cell->GetModelMatrix());
-		RenderMesh2D(cell->GetMesh(), shaders["VertexColor"], cell->GetModelMatrix());
+		cell->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 }
 
 void Tema1::DrawHUD() {
 	float starPriceOffset = 2.f;
 
-	DrawHUDGUI(orangeTurret, 0);
-	for (int i = 0; i < orangeTurretStars.size(); i++) {
-		orangeTurretStars[i]->SetPosition(glm::vec2(i * (orangeTurretStars[i]->GetRadius() + .4f) + starPriceOffset, 27 - turretFrame->GetRadius()));
-		orangeTurretStars[i]->SetScale(1.1f, 1.1f);
-		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-		RenderMesh2D(orangeTurretStars[i]->GetMesh(), shaders["VertexColor"], orangeTurretStars[i]->GetModelMatrix());
-	}
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	DrawHUDGUI(blueTurret, 1);
-	for (int i = 0; i < blueTurretStars.size(); i++) {
-		blueTurretStars[i]->SetPosition(glm::vec2(i * (blueTurretStars[i]->GetRadius() + .4f) + 4 + turretFrame->GetRadius() + starPriceOffset, 27 - turretFrame->GetRadius()));
-		blueTurretStars[i]->SetScale(1.1f, 1.1f);
-		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-		RenderMesh2D(blueTurretStars[i]->GetMesh(), shaders["VertexColor"], blueTurretStars[i]->GetModelMatrix());
-	}
-
-	DrawHUDGUI(yellowTurret, 2);
-	for (int i = 0; i < yellowTurretStars.size(); i++) {
-		yellowTurretStars[i]->SetPosition(glm::vec2(i * (yellowTurretStars[i]->GetRadius() + .4f) + 2 * (4 + turretFrame->GetRadius()) + starPriceOffset, 27 - turretFrame->GetRadius()));
-		yellowTurretStars[i]->SetScale(1.1f, 1.1f);
-		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-		RenderMesh2D(yellowTurretStars[i]->GetMesh(), shaders["VertexColor"], yellowTurretStars[i]->GetModelMatrix());
-	}
-
-	DrawHUDGUI(purpleTurret, 3);
-	for (int i = 0; i < purpleTurretStars.size(); i++) {
-		purpleTurretStars[i]->SetPosition(glm::vec2(i * (purpleTurretStars[i]->GetRadius() + .4f) + 3 * (4 + turretFrame->GetRadius()) + starPriceOffset, 27 - turretFrame->GetRadius()));
-		purpleTurretStars[i]->SetScale(1.1f, 1.1f);
-		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-		RenderMesh2D(purpleTurretStars[i]->GetMesh(), shaders["VertexColor"], purpleTurretStars[i]->GetModelMatrix());
+	for each (auto frame in guiFrames) {
+		frame->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 
 	DrawLives();
@@ -192,31 +152,48 @@ void Tema1::DrawHUD() {
 void m1::Tema1::DrawHUDGUI(Turret* turret, int factor) {
 	float turretFrameOffset = 4.f;
 
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
 	for (int i = 0; i < 4; i++) {
 		turretFrame->SetPosition(i * (turretFrame->GetRadius() + turretFrameOffset) + 3.f, 27);
 		turretFrame->SetScale(3.8, 3.8);
-		//RenderMesh2D(turretFrame->GetDebugMesh(), shaders["VertexColor"], turretFrame->GetModelMatrix());
-		RenderMesh2D(turretFrame->GetMesh(), shaders["VertexColor"], turretFrame->GetModelMatrix());
+
+		turretFrame->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 
 	turret->SetPosition(factor * (turretFrame->GetRadius() + turretFrameOffset) + 3.f, 27);
 	turret->SetScale(1.5f, 1.8f);
-	//RenderMesh2D(turret->GetDebugMesh(), shaders["VertexColor"], turret->GetModelMatrix());
-	RenderMesh2D(turret->GetMesh(), shaders["VertexColor"], turret->GetModelMatrix());
+
+	turret->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 }
 
 void m1::Tema1::DrawLives() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
 	for (int i = 0; i < lives.size(); i++) {
-		//RenderMesh2D(lives[i]->GetDebugMesh(), shaders["VertexColor"], lives[i]->GetModelMatrix());
-		RenderMesh2D(lives[i]->GetMesh(), shaders["VertexColor"], lives[i]->GetModelMatrix());
+		lives[i]->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 }
 
 void m1::Tema1::DrawTotalMoney() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
 	for each (auto money in totalMoney) {
-		//RenderMesh2D(money->GetDebugMesh(), shaders["VertexColor"], money->GetModelMatrix());
-		RenderMesh2D(money->GetMesh(), shaders["VertexColor"], money->GetModelMatrix());
+		money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
+}
+
+void m1::Tema1::DrawStarsRandom() {
+
+}
+
+glm::vec2 m1::Tema1::GetTransformedScreenCoordToWorldCoord(int screenX, int screenY) {
+	glm::ivec2 resolution = window->GetResolution();
+
+	return glm::vec2(CAMERA_ORTHO_WIDTH * (float)screenX / resolution.x, CAMERA_ORTHO_HEIGHT * (float)(resolution.y - screenY) / resolution.y);
 }
 
 void Tema1::FrameEnd() {
@@ -239,6 +216,10 @@ void m1::Tema1::OnKeyPress(int key, int mods) {
 			totalMoney.pop_back();
 		}
 	}
+
+	if (key == GLFW_KEY_R) {
+		cout << rand() % (3 - 1 + 1) + 1 << " ";
+	}
 }
 
 void m1::Tema1::OnKeyRelease(int key, int mods)
@@ -249,8 +230,16 @@ void m1::Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
 {
 }
 
-void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
-{
+void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
+	glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
+
+	cout << mouseWorldPosition.x << " " << mouseWorldPosition.y << endl;
+
+	for each (auto frame in guiFrames) {
+		if (frame->IsCoordInFrame(mouseWorldPosition)) {
+			cout << "is in frame: " << frame->GetColor() << endl;
+		}
+	}
 }
 
 void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)

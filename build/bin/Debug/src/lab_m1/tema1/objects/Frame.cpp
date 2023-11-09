@@ -6,8 +6,15 @@ Frame::Frame(const char* name, glm::vec2 position, glm::vec3 color) : Object_2D(
 Frame::~Frame() {
 }
 
-void Frame::InitVertices()
-{
+float Frame::GetWidth() {
+	return scale.x * width;
+}
+
+float Frame::GetHeight() {
+	return scale.y * height;
+}
+
+void Frame::InitVertices() {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
 		VertexFormat(glm::vec3(-0.5f, -0.5f, 0), color, glm::vec3(0, 1, 0)), // A - 0
@@ -20,6 +27,9 @@ void Frame::InitVertices()
 		0, 1, 2, 3
 		}
 	);
+
+	height = 1;
+	width = 1;
 
 	drawMode = GL_LINE_LOOP;
 }

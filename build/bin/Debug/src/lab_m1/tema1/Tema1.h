@@ -1,6 +1,7 @@
 #pragma once
 
-//#include "lab_m1/tema1/game_components/game_scene.h"
+#include "lab_m1/tema1/Constants.h"
+
 #include "components/simple_scene.h"
 #include "lab_m1/lab3/transform2D.h"
 
@@ -9,6 +10,14 @@
 #include "lab_m1/tema1/objects/Projectile.h"
 #include "lab_m1/tema1/objects/Square.h"
 #include "lab_m1/tema1/objects/Frame.h"
+#include "lab_m1/tema1/objects/GUIFrame.h"
+
+#include <vector>
+#include <iostream>
+
+using namespace std;
+using namespace Tema1Constants;
+
 
 namespace m1 {
 	class Tema1 : public gfxc::SimpleScene {
@@ -33,6 +42,9 @@ namespace m1 {
 		void DrawHUDGUI(Turret* turret, int factor);
 		void DrawLives();
 		void DrawTotalMoney();
+		void DrawStarsRandom();
+
+		glm::vec2 GetTransformedScreenCoordToWorldCoord(int screenX, int screenY);
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
@@ -68,10 +80,9 @@ namespace m1 {
 		vector<Square*> lives;
 		vector<Projectile*> totalMoney;
 
+		vector<GUIFrame*> guiFrames;
+
 		GLenum polygonMode;
 		GLenum cullFace;
-
-		float orthoRight;
-		float orthoTop;
 	};
 }

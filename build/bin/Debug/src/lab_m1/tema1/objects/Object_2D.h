@@ -26,7 +26,8 @@ public:
 	virtual ~Object_2D();
 
 	void Init();
-	
+	void Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
+
 	float GetRadius();
 
 	Mesh* GetMesh();

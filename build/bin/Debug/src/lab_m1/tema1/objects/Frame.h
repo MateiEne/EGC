@@ -7,5 +7,13 @@ public:
 	Frame(const char* name, glm::vec2 position, glm::vec3 color);
 	~Frame();
 
+	float GetWidth();
+	float GetHeight();
+
+private:
 	void InitVertices() override;
+
+private:
+	float width;
+	float height;
 };

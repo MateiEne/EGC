@@ -112,6 +112,9 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Frame.cpp">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\GUIFrame.cpp">
+      <Filter>src\lab_m1\tema1\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera.h">
@@ -289,6 +292,12 @@
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Frame.h">
+      <Filter>src\lab_m1\tema1\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Constants.h">
+      <Filter>src\lab_m1\tema1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\GUIFrame.h">
       <Filter>src\lab_m1\tema1\objects</Filter>
     </ClInclude>
   </ItemGroup>
