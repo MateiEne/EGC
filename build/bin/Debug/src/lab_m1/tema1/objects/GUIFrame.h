@@ -18,6 +18,8 @@ public:
 	bool IsCoordInFrame(glm::vec2 coord);
 
 	glm::vec3 GetColor();
+	glm::vec2 GetPositon();
+	int GetCost();
 
 private:
 	Frame* frame;

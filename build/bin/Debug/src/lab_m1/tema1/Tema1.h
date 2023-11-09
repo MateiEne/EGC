@@ -62,20 +62,9 @@ namespace m1 {
 		//vector<Turret*> turrets;
 
 		Frame* turretFrame;
-
-		Turret* orangeTurret;
-		vector<Projectile*> orangeTurretStars;
-		
-		Turret* blueTurret;
-		vector<Projectile*> blueTurretStars;
-		
-		Turret* yellowTurret;
-		vector<Projectile*> yellowTurretStars;
-		
-		Turret* purpleTurret;
-		vector<Projectile*> purpleTurretStars;
-
 		Projectile* projectile;
+
+		Turret* generatedTurret;
 
 		vector<Square*> lives;
 		vector<Projectile*> totalMoney;

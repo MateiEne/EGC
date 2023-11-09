@@ -12,7 +12,7 @@ GUIFrame::GUIFrame(const char* name, glm::vec2 position, glm::vec3 color, int co
 	turret = new Turret(name, position, color, cost);
 	turret->Init();
 
-	turret->SetScale(1.5f, 1.8f);
+	turret->SetScale(TURRET_SCALE);
 
 	for (int i = 0; i < cost; i++) {
 		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), GREY_COLOR);
@@ -49,4 +49,12 @@ bool GUIFrame::IsCoordInFrame(glm::vec2 coord) {
 glm::vec3 GUIFrame::GetColor()
 {
 	return color;
+}
+
+glm::vec2 GUIFrame::GetPositon() {
+	return position;
+}
+
+int GUIFrame::GetCost() {
+	return turret->GetCost();
 }

@@ -40,6 +40,8 @@ void Tema1::InitGameScene() {
 			cells.push_back(cell);
 		}
 	}
+
+	generatedTurret = nullptr;
 }
 
 void m1::Tema1::InitHUD() {
@@ -120,8 +122,8 @@ void Tema1::FrameStart() {
 }
 
 void Tema1::Update(float deltaTimeSeconds) {
-	DrawScene();
 	DrawHUD();
+	DrawScene();
 }
 
 void Tema1::DrawScene() {
@@ -140,6 +142,10 @@ void Tema1::DrawHUD() {
 
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
+	if (generatedTurret != nullptr) {
+		generatedTurret->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	}
 
 	for each (auto frame in guiFrames) {
 		frame->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
@@ -222,12 +228,16 @@ void m1::Tema1::OnKeyPress(int key, int mods) {
 	}
 }
 
-void m1::Tema1::OnKeyRelease(int key, int mods)
-{
+void m1::Tema1::OnKeyRelease(int key, int mods) {
+	
 }
 
-void m1::Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
-{
+void m1::Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY) {
+	if (generatedTurret != nullptr) {
+		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
+
+		generatedTurret->SetPosition(mouseWorldPosition);
+	}
 }
 
 void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
@@ -238,12 +248,25 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 	for each (auto frame in guiFrames) {
 		if (frame->IsCoordInFrame(mouseWorldPosition)) {
 			cout << "is in frame: " << frame->GetColor() << endl;
+			
+			if (generatedTurret == nullptr) {
+				delete generatedTurret;
+			}
+
+			generatedTurret = new Turret("frame", frame->GetPositon(), frame->GetColor(), frame->GetCost());
+			generatedTurret->Init();
+
+			generatedTurret->SetScale(TURRET_SCALE);
 		}
 	}
 }
 
-void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
-{
+void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) {
+	if (generatedTurret != nullptr) {
+		delete generatedTurret;
+
+		generatedTurret = nullptr;
+	}
 }
 
 void m1::Tema1::OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY)
