@@ -8,13 +8,10 @@ public:
 	Turret(const char* name, glm::vec2 position, glm::vec3 color, int cost);
 	~Turret();
 
-	vector<Projectile*> GetPrices();
 	int GetCost();
 
 private:
 	void InitVertices() override;
 
 	int cost;
-
-	vector<Projectile*> prices;
 };

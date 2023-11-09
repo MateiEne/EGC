@@ -55,15 +55,39 @@ void m1::Tema1::InitHUD() {
 
 	orangeTurret = new Turret("orangeTurret", glm::vec2(0, 0), glm::vec3(255 / 255.f, 128 / 256.f, 0), 1);
 	orangeTurret->Init();
+	for (int i = 0; i < orangeTurret->GetCost(); i++) {
+		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		star->Init();
 
+		orangeTurretStars.push_back(star);
+	}
+	
 	blueTurret = new Turret("blueTurret", glm::vec2(0, 0), glm::vec3(0.f, 0.f, 204 / 256.f), 2);
 	blueTurret->Init();
+	for (int i = 0; i < blueTurret->GetCost(); i++) {
+		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		star->Init();
+
+		blueTurretStars.push_back(star);
+	}
 
 	yellowTurret = new Turret("yellowTurret", glm::vec2(0, 0), glm::vec3(204 / 256.f, 204 / 256.f, 0.f), 2);
 	yellowTurret->Init();
+	for (int i = 0; i < yellowTurret->GetCost(); i++) {
+		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		star->Init();
+
+		yellowTurretStars.push_back(star);
+	}
 
 	purpleTurret = new Turret("purpleTurret", glm::vec2(0, 0), glm::vec3(102 / 256.f, 0.f, 204 / 256.f), 3);
 	purpleTurret->Init();
+	for (int i = 0; i < purpleTurret->GetCost(); i++) {
+		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
+		star->Init();
+
+		purpleTurretStars.push_back(star);
+	}
 
 	projectile = new Projectile("p", glm::vec2(0, 0), glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f));
 	projectile->Init();
@@ -71,6 +95,7 @@ void m1::Tema1::InitHUD() {
 	InitLives();
 	InitTotalMoney();
 }
+
 
 void m1::Tema1::InitLives() {
 	float lifeOffset = 7.f;
@@ -126,17 +151,45 @@ void Tema1::DrawScene()
 }
 
 void Tema1::DrawHUD() {
+	float starPriceOffset = 2.f;
+
 	DrawHUDGUI(orangeTurret, 0);
+	for (int i = 0; i < orangeTurretStars.size(); i++) {
+		orangeTurretStars[i]->SetPosition(glm::vec2(i * (orangeTurretStars[i]->GetRadius() + .4f) + starPriceOffset, 27 - turretFrame->GetRadius()));
+		orangeTurretStars[i]->SetScale(1.1f, 1.1f);
+		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
+		RenderMesh2D(orangeTurretStars[i]->GetMesh(), shaders["VertexColor"], orangeTurretStars[i]->GetModelMatrix());
+	}
+
 	DrawHUDGUI(blueTurret, 1);
+	for (int i = 0; i < blueTurretStars.size(); i++) {
+		blueTurretStars[i]->SetPosition(glm::vec2(i * (blueTurretStars[i]->GetRadius() + .4f) + 4 + turretFrame->GetRadius() + starPriceOffset, 27 - turretFrame->GetRadius()));
+		blueTurretStars[i]->SetScale(1.1f, 1.1f);
+		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
+		RenderMesh2D(blueTurretStars[i]->GetMesh(), shaders["VertexColor"], blueTurretStars[i]->GetModelMatrix());
+	}
+
 	DrawHUDGUI(yellowTurret, 2);
+	for (int i = 0; i < yellowTurretStars.size(); i++) {
+		yellowTurretStars[i]->SetPosition(glm::vec2(i * (yellowTurretStars[i]->GetRadius() + .4f) + 2 * (4 + turretFrame->GetRadius()) + starPriceOffset, 27 - turretFrame->GetRadius()));
+		yellowTurretStars[i]->SetScale(1.1f, 1.1f);
+		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
+		RenderMesh2D(yellowTurretStars[i]->GetMesh(), shaders["VertexColor"], yellowTurretStars[i]->GetModelMatrix());
+	}
+
 	DrawHUDGUI(purpleTurret, 3);
+	for (int i = 0; i < purpleTurretStars.size(); i++) {
+		purpleTurretStars[i]->SetPosition(glm::vec2(i * (purpleTurretStars[i]->GetRadius() + .4f) + 3 * (4 + turretFrame->GetRadius()) + starPriceOffset, 27 - turretFrame->GetRadius()));
+		purpleTurretStars[i]->SetScale(1.1f, 1.1f);
+		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
+		RenderMesh2D(purpleTurretStars[i]->GetMesh(), shaders["VertexColor"], purpleTurretStars[i]->GetModelMatrix());
+	}
 
 	DrawLives();
 	DrawTotalMoney();
 }
 
 void m1::Tema1::DrawHUDGUI(Turret* turret, int factor) {
-	float starPriceOffset = 2.f;
 	float turretFrameOffset = 4.f;
 
 	for (int i = 0; i < 4; i++) {
@@ -146,19 +199,10 @@ void m1::Tema1::DrawHUDGUI(Turret* turret, int factor) {
 		RenderMesh2D(turretFrame->GetMesh(), shaders["VertexColor"], turretFrame->GetModelMatrix());
 	}
 
-
 	turret->SetPosition(factor * (turretFrame->GetRadius() + turretFrameOffset) + 3.f, 27);
 	turret->SetScale(1.5f, 1.8f);
 	//RenderMesh2D(turret->GetDebugMesh(), shaders["VertexColor"], turret->GetModelMatrix());
 	RenderMesh2D(turret->GetMesh(), shaders["VertexColor"], turret->GetModelMatrix());
-
-	vector<Projectile*> prices = turret->GetPrices();
-	for (int i = 0; i < prices.size(); i++) {
-		prices[i]->SetPosition(glm::vec2(i * (prices[i]->GetRadius() + .4f) +  + factor * (turretFrameOffset + turretFrame->GetRadius()) + starPriceOffset, 27 - turretFrame->GetRadius()));
-		prices[i]->SetScale(1.1f, 1.1f);
-		//RenderMesh2D(prices[i]->GetDebugMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-		RenderMesh2D(prices[i]->GetMesh(), shaders["VertexColor"], prices[i]->GetModelMatrix());
-	}
 }
 
 void m1::Tema1::DrawLives() {
