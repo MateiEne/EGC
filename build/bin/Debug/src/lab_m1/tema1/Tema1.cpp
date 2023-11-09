@@ -18,10 +18,12 @@ void Tema1::Init() {
 	camera->SetRotation(glm::vec3(0, 0, 0));
 	camera->SetOrthographic(0, CAMERA_ORTHO_WIDTH, 0, CAMERA_ORTHO_HEIGHT, 0.01, 400);
 	camera->Update();
-	//GetCameraInput()->SetActive(false);
+	GetCameraInput()->SetActive(false);
 
 	InitGameScene();
 	InitHUD();
+
+	generatedTurret = nullptr;
 }
 
 void Tema1::InitGameScene() {
@@ -31,17 +33,16 @@ void Tema1::InitGameScene() {
 
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			Square* cell = new Square("cell", glm::vec2(5, 2.8), GREEN_COLOR);
+			Square* cell = new Square("cell", glm::vec2(0, 0), GREEN_COLOR);
 			cell->Init();
-			float scaleFactor = 3.8;
-			cell->Scale(scaleFactor, scaleFactor);
-			cell->Translate(j * (2 * cell->GetRadius()) / scaleFactor, i * 2 * cell->GetRadius() / scaleFactor);
+
+			cell->SetScale(3.8, 3.8);
+			cell->SetPosition(j * (2 * cell->GetRadius()) + 5, i * 2 * cell->GetRadius() + 2.8f);
 
 			cells.push_back(cell);
 		}
 	}
 
-	generatedTurret = nullptr;
 }
 
 void m1::Tema1::InitHUD() {
@@ -50,9 +51,9 @@ void m1::Tema1::InitHUD() {
 
 	projectile = new Projectile("p", glm::vec2(0, 0), GREY_COLOR);
 	projectile->Init();
-		
+
 	guiFrames.push_back(new GUIFrame(
-		"orangeFrame", 
+		"orangeFrame",
 		glm::vec2(4, 27),
 		ORANGE_COLOR,
 		1
@@ -131,6 +132,12 @@ void Tema1::DrawScene() {
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
 	base->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+
+	if (!placedTurrets.empty()) {
+		for each (auto turret in placedTurrets) {
+			turret->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+		}
+	}
 
 	for each (auto cell in cells) {
 		cell->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
@@ -229,7 +236,7 @@ void m1::Tema1::OnKeyPress(int key, int mods) {
 }
 
 void m1::Tema1::OnKeyRelease(int key, int mods) {
-	
+
 }
 
 void m1::Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY) {
@@ -241,31 +248,55 @@ void m1::Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY) {
 }
 
 void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
-	glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
+	if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
 
-	cout << mouseWorldPosition.x << " " << mouseWorldPosition.y << endl;
+		cout << mouseWorldPosition.x << " " << mouseWorldPosition.y << endl;
 
-	for each (auto frame in guiFrames) {
-		if (frame->IsCoordInFrame(mouseWorldPosition)) {
-			cout << "is in frame: " << frame->GetColor() << endl;
-			
-			if (generatedTurret == nullptr) {
-				delete generatedTurret;
+		for each (auto frame in guiFrames) {
+			if (frame->IsCoordInFrame(mouseWorldPosition)) {
+				cout << "is in frame: " << frame->GetColor() << endl;
+
+				if (generatedTurret == nullptr) {
+					delete generatedTurret;
+				}
+
+				generatedTurret = new Turret("frame", frame->GetPositon(), frame->GetColor(), frame->GetCost());
+				generatedTurret->Init();
+
+				generatedTurret->SetScale(TURRET_SCALE);
 			}
-
-			generatedTurret = new Turret("frame", frame->GetPositon(), frame->GetColor(), frame->GetCost());
-			generatedTurret->Init();
-
-			generatedTurret->SetScale(TURRET_SCALE);
 		}
 	}
+
 }
 
 void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) {
-	if (generatedTurret != nullptr) {
-		delete generatedTurret;
+	if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
 
-		generatedTurret = nullptr;
+		if (generatedTurret != nullptr) {
+			for each (auto cell in cells) {
+				//cout << cell->GetPosition() << endl;
+
+				if (cell->IsCoordInObject(mouseWorldPosition)) {
+					Turret* turret = new Turret("turret", cell->GetPosition(), generatedTurret->GetColor(), generatedTurret->GetCost());
+					turret->Init();
+
+					turret->SetScale(TURRET_SCALE);
+
+					placedTurrets.push_back(turret);
+
+					//delete turret;
+					//turret = nullptr;
+				}
+			}
+
+
+			delete generatedTurret;
+
+			generatedTurret = nullptr;
+		}
 	}
 }
 

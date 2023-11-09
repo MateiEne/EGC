@@ -30,6 +30,11 @@ public:
 
 	float GetRadius();
 
+	virtual bool IsCoordInObject(glm::vec2 coord);
+
+	glm::vec2 GetPosition();
+	glm::vec3 GetColor();
+
 	Mesh* GetMesh();
 	Mesh* GetDebugMesh();
 protected:

@@ -6,7 +6,8 @@ Object_2D::Object_2D(const char* name, glm::vec2 position, glm::vec3 color) {
 
 	objectMesh = new Mesh(name);
 
-	Translate(position);
+	//Translate(position);
+	SetPosition(position);
 
 	radius = 0;
 
@@ -64,6 +65,24 @@ float Object_2D::CalculateRadius() {
 	}
 
 	return maxDistance;
+}
+
+glm::vec2 Object_2D::GetPosition() {
+	return position;
+}
+
+glm::vec3 Object_2D::GetColor() {
+	return color;
+}
+
+bool Object_2D::IsCoordInObject(glm::vec2 coord) {
+	float distance = sqrt((coord.x - position.x) * (coord.x - position.x) + (coord.y - position.y) * (coord.y - position.y));
+
+	if (distance < GetRadius()) {
+		return true;
+	}
+
+	return false;
 }
 
 Mesh* Object_2D::GetMesh()

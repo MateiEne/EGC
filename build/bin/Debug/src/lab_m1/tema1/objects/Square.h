@@ -7,5 +7,15 @@ public:
 	Square(const char* name, glm::vec2 position, glm::vec3 color);
 	~Square();
 
+	float GetHeight();
+	float GetWidth();
+
+	bool IsCoordInObject(glm::vec2 coord);
+
+private:
 	void InitVertices() override;
+
+private:
+	float width;
+	float height;
 };

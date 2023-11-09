@@ -37,7 +37,7 @@ void GUIFrame::Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 
 }
 
 bool GUIFrame::IsCoordInFrame(glm::vec2 coord) {
-	if (coord.x < (position.x + frame->GetWidth() / 2) && coord.x > (position.x - frame->GetWidth() / 2)) {
+	if (coord.x < (position.x + frame->GetWidth() / 2) && (coord.x > (position.x - frame->GetWidth() / 2))) {
 		if (coord.y < (position.y + frame->GetHeight() / 2) && coord.y >(position.y - frame->GetHeight() / 2)) {
 			return true;
 		}

@@ -6,8 +6,7 @@ Square::Square(const char* name, glm::vec2 position, glm::vec3 color) : Object_2
 Square::~Square() {
 }
 
-void Square::InitVertices()
-{
+void Square::InitVertices() {
 	vertices.insert(vertices.end(), {
 		// position, color, norm
 		VertexFormat(glm::vec3(-0.5f, -0.5f, 0), color, glm::vec3(0, 1, 0)), // A - 0
@@ -21,4 +20,30 @@ void Square::InitVertices()
 		0, 2, 3// ACD
 		}
 	);
+
+	width = 1;
+	height = 1;
+}
+
+bool Square::IsCoordInObject(glm::vec2 coord) {
+	return Object_2D::IsCoordInObject(coord);
+
+	cout << coord;
+
+	if (coord.x < (position.x + GetWidth() / 2) && (coord.x > (position.x - GetWidth() / 2))) {
+		if (coord.y < (position.y + GetHeight() / 2) && (coord.y > (position.y - GetHeight() / 2))) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+float Square::GetHeight() {
+	return scale.y * height;
+}
+
+float Square::GetWidth()
+{
+	return scale.x * width;
 }

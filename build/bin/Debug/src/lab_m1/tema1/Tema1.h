@@ -70,6 +70,7 @@ namespace m1 {
 		vector<Projectile*> totalMoney;
 
 		vector<GUIFrame*> guiFrames;
+		vector<Turret*> placedTurrets;
 
 		GLenum polygonMode;
 		GLenum cullFace;
