@@ -59,8 +59,6 @@ namespace m1 {
 		Square* base;
 		vector<Square*> cells;
 
-		//vector<Turret*> turrets;
-
 		Frame* turretFrame;
 		Projectile* projectile;
 
@@ -74,5 +72,7 @@ namespace m1 {
 
 		GLenum polygonMode;
 		GLenum cullFace;
+
+		glm::mat3 cellsMatrix;
 	};
 }

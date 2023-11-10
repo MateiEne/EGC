@@ -24,6 +24,8 @@ void Tema1::Init() {
 	InitHUD();
 
 	generatedTurret = nullptr;
+
+	cellsMatrix = glm::mat3(0);
 }
 
 void Tema1::InitGameScene() {
@@ -269,6 +271,30 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 		}
 	}
 
+	if (button == GLFW_MOUSE_BUTTON_MIDDLE) {
+		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
+
+		for (int i = 0; i < cells.size(); i++) {
+			if (cells[i]->IsCoordInObject(mouseWorldPosition) && cellsMatrix[(cells.size() - i - 1) / 3][i % 3] != 0) {
+				cellsMatrix[(cells.size() - i - 1) / 3][i % 3] = 0;
+
+				for (int j = 0; j < placedTurrets.size(); j++) {
+					if (placedTurrets[j]->IsCoordInObject(mouseWorldPosition)) {
+						placedTurrets.erase(placedTurrets.begin() + j);
+					}
+				}
+			}
+
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					cout << cellsMatrix[i][j] << " ";
+				}
+
+				cout << endl;
+			}
+		}
+	}
+
 }
 
 void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) {
@@ -276,25 +302,28 @@ void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) 
 		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
 
 		if (generatedTurret != nullptr) {
-			for each (auto cell in cells) {
-				//cout << cell->GetPosition() << endl;
-
-				if (cell->IsCoordInObject(mouseWorldPosition)) {
-					Turret* turret = new Turret("turret", cell->GetPosition(), generatedTurret->GetColor(), generatedTurret->GetCost());
+			for (int i = 0; i < cells.size(); i++) {
+				if (cells[i]->IsCoordInObject(mouseWorldPosition) && cellsMatrix[(cells.size() - i - 1) / 3][i % 3] == 0) {
+					Turret* turret = new Turret("turret", cells[i]->GetPosition(), generatedTurret->GetColor(), generatedTurret->GetCost());
 					turret->Init();
 
 					turret->SetScale(TURRET_SCALE);
 
 					placedTurrets.push_back(turret);
 
-					//delete turret;
-					//turret = nullptr;
+					cellsMatrix[(cells.size() - i - 1) / 3][i % 3] = 1;
+				}
+
+				for (int i = 0; i < 3; i++) {
+					for (int j = 0; j < 3; j++) {
+						cout << cellsMatrix[i][j] << " ";
+					}
+
+					cout << endl;
 				}
 			}
 
-
 			delete generatedTurret;
-
 			generatedTurret = nullptr;
 		}
 	}

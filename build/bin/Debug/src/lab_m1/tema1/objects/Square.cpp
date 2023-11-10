@@ -28,7 +28,7 @@ void Square::InitVertices() {
 bool Square::IsCoordInObject(glm::vec2 coord) {
 	return Object_2D::IsCoordInObject(coord);
 
-	cout << coord;
+	//cout << coord;
 
 	if (coord.x < (position.x + GetWidth() / 2) && (coord.x > (position.x - GetWidth() / 2))) {
 		if (coord.y < (position.y + GetHeight() / 2) && (coord.y > (position.y - GetHeight() / 2))) {
