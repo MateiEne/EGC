@@ -22,6 +22,7 @@ void Tema1::Init() {
 
 	InitGameScene();
 	InitHUD();
+	InitRandomMoney();
 
 	generatedTurret = nullptr;
 
@@ -51,8 +52,6 @@ void m1::Tema1::InitHUD() {
 	turretFrame = new Frame("turretFrame", glm::vec2(0, 0), glm::vec3(1, 1, 1));
 	turretFrame->Init();
 
-	projectile = new Projectile("p", glm::vec2(0, 0), GREY_COLOR);
-	projectile->Init();
 
 	guiFrames.push_back(new GUIFrame(
 		"orangeFrame",
@@ -104,12 +103,30 @@ void m1::Tema1::InitTotalMoney() {
 	float totalMoneyOffset = 5.f;
 
 	for (int i = 0; i < 10; i++) {
-		Projectile* money = new Projectile("life", glm::vec2(0, 0), GREY_COLOR);
+		Projectile* money = new Projectile("life", glm::vec2(0, 0), GOLD_COLOR);
 		money->Init();
 		money->SetPosition(CAMERA_ORTHO_WIDTH - totalMoneyOffset - i * (money->GetRadius() + 1.f), 24.3f);
 		money->SetScale(1.1f, 1.1f);
 
 		totalMoney.insert(totalMoney.begin(), money);
+	}
+}
+
+void m1::Tema1::InitRandomMoney() {
+	int n = rand() % 4 + 1;
+
+	cout << n << endl;
+
+	for (int i = 0; i < n; i++) {
+		Projectile* star = new Projectile("star", glm::vec2(0, 0), GOLD_COLOR);
+		star->Init();
+
+		float x = (rand() % (CAMERA_ORTHO_WIDTH - 1)) + 1;
+		float y = (rand() % (CAMERA_ORTHO_HEIGHT - 1)) + 1;
+		star->SetPosition(x, y);
+		star->SetScale(RANDOM_MONEY_SCALE);
+
+		randomMoney.push_back(star);
 	}
 }
 
@@ -125,6 +142,7 @@ void Tema1::FrameStart() {
 }
 
 void Tema1::Update(float deltaTimeSeconds) {
+	DrawRandomMoney();
 	DrawHUD();
 	DrawScene();
 }
@@ -201,8 +219,15 @@ void m1::Tema1::DrawTotalMoney() {
 	}
 }
 
-void m1::Tema1::DrawStarsRandom() {
+void m1::Tema1::DrawRandomMoney() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
+	if (!randomMoney.empty()) {
+		for each (auto money in randomMoney) {
+			money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+		}
+	}
 }
 
 glm::vec2 m1::Tema1::GetTransformedScreenCoordToWorldCoord(int screenX, int screenY) {

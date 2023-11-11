@@ -15,7 +15,7 @@ GUIFrame::GUIFrame(const char* name, glm::vec2 position, glm::vec3 color, int co
 	turret->SetScale(TURRET_SCALE);
 
 	for (int i = 0; i < cost; i++) {
-		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), GREY_COLOR);
+		Projectile* star = new Projectile("Cost", glm::vec2(0, 0), GOLD_COLOR);
 		star->Init();
 
 		star->SetPosition(glm::vec2(position.x - frame->GetRadius() / 2 + i * (star->GetRadius() * 2), position.y - frame->GetRadius()));

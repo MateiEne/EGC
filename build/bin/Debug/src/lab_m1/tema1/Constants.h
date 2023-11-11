@@ -14,6 +14,8 @@ namespace Tema1Constants {
 	const glm::vec3 GREY_COLOR = glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f);
 	const glm::vec3 RED_COLOR = glm::vec3(1, 0, 0);
 	const glm::vec3 WHITE_COLOR = glm::vec3(1, 1, 1);
+	const glm::vec3 GOLD_COLOR = glm::vec3(153 / 256.f, 153 / 256.f, 0);
 
 	const glm::vec2 TURRET_SCALE = glm::vec2(1.5f, 1.8f);
+	const glm::vec2 RANDOM_MONEY_SCALE = glm::vec2(2.f, 2.f);
 }

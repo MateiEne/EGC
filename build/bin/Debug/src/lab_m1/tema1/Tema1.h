@@ -36,13 +36,14 @@ namespace m1 {
 		void InitHUD();
 		void InitLives();
 		void InitTotalMoney();
+		void InitRandomMoney();
 
 		void DrawScene();
 		void DrawHUD();
 		void DrawHUDGUI(Turret* turret, int factor);
 		void DrawLives();
 		void DrawTotalMoney();
-		void DrawStarsRandom();
+		void DrawRandomMoney();
 
 		glm::vec2 GetTransformedScreenCoordToWorldCoord(int screenX, int screenY);
 
@@ -60,7 +61,8 @@ namespace m1 {
 		vector<Square*> cells;
 
 		Frame* turretFrame;
-		Projectile* projectile;
+		
+		vector<Projectile*> randomMoney;
 
 		Turret* generatedTurret;
 
