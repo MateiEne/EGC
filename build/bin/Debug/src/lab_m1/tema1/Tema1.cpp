@@ -22,11 +22,14 @@ void Tema1::Init() {
 
 	InitGameScene();
 	InitHUD();
-	InitRandomMoney();
+	//InitRandomMoney();
 
 	generatedTurret = nullptr;
 
 	cellsMatrix = glm::mat3(0);
+
+	timeCounterMoney = 0;
+	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
 }
 
 void Tema1::InitGameScene() {
@@ -115,8 +118,6 @@ void m1::Tema1::InitTotalMoney() {
 void m1::Tema1::InitRandomMoney() {
 	int n = rand() % 4 + 1;
 
-	cout << n << endl;
-
 	for (int i = 0; i < n; i++) {
 		Projectile* star = new Projectile("star", glm::vec2(0, 0), GOLD_COLOR);
 		star->Init();
@@ -128,6 +129,8 @@ void m1::Tema1::InitRandomMoney() {
 
 		randomMoney.push_back(star);
 	}
+
+	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
 }
 
 void Tema1::FrameStart() {
@@ -142,9 +145,21 @@ void Tema1::FrameStart() {
 }
 
 void Tema1::Update(float deltaTimeSeconds) {
+	UpdateTimeCunterMoney(deltaTimeSeconds);
+
 	DrawRandomMoney();
 	DrawHUD();
 	DrawScene();
+}
+
+void Tema1::UpdateTimeCunterMoney(float deltaTime) {
+	timeCounterMoney += deltaTime;
+
+	if (randomMoney.empty()) {
+		if (timeCounterMoney > timeToDrawRandomMoney) {
+			InitRandomMoney();
+		}
+	}
 }
 
 void Tema1::DrawScene() {
@@ -223,10 +238,8 @@ void m1::Tema1::DrawRandomMoney() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	if (!randomMoney.empty()) {
-		for each (auto money in randomMoney) {
-			money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
-		}
+	for each (auto money in randomMoney) {
+		money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 }
 
@@ -278,7 +291,7 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 	if (button == GLFW_MOUSE_BUTTON_RIGHT) {
 		glm::vec2 mouseWorldPosition = GetTransformedScreenCoordToWorldCoord(mouseX, mouseY);
 
-		cout << mouseWorldPosition.x << " " << mouseWorldPosition.y << endl;
+		//cout << mouseWorldPosition.x << " " << mouseWorldPosition.y << endl;
 
 		for each (auto frame in guiFrames) {
 			if (frame->IsCoordInFrame(mouseWorldPosition)) {
@@ -292,6 +305,16 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 				generatedTurret->Init();
 
 				generatedTurret->SetScale(TURRET_SCALE);
+			}
+		}
+
+		for (int i = 0; i < randomMoney.size(); i++) {
+			if (randomMoney[i]->IsCoordInObject(mouseWorldPosition)) {
+				randomMoney.erase(randomMoney.begin() + i);
+
+				if (randomMoney.empty()) {
+					timeCounterMoney = 0;
+				}
 			}
 		}
 	}

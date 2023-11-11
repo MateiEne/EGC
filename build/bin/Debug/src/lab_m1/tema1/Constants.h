@@ -18,4 +18,7 @@ namespace Tema1Constants {
 
 	const glm::vec2 TURRET_SCALE = glm::vec2(1.5f, 1.8f);
 	const glm::vec2 RANDOM_MONEY_SCALE = glm::vec2(2.f, 2.f);
+
+	const int DRAW_RANDOM_MONEY_INTERVAL_HIGH = 7;
+	const int DRAW_RANDOM_MONEY_INTERVAL_LOW = 3;
 }

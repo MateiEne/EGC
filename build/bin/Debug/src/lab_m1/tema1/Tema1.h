@@ -45,6 +45,8 @@ namespace m1 {
 		void DrawTotalMoney();
 		void DrawRandomMoney();
 
+		void UpdateTimeCunterMoney(float deltaTime);
+
 		glm::vec2 GetTransformedScreenCoordToWorldCoord(int screenX, int screenY);
 
 		void OnInputUpdate(float deltaTime, int mods) override;
@@ -76,5 +78,8 @@ namespace m1 {
 		GLenum cullFace;
 
 		glm::mat3 cellsMatrix;
+
+		float timeCounterMoney;
+		float timeToDrawRandomMoney;
 	};
 }
