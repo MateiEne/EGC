@@ -358,7 +358,7 @@ void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) 
 
 		if (generatedTurret != nullptr) {
 			for (int i = 0; i < cells.size(); i++) {
-				if (cells[i]->IsCoordInObject(mouseWorldPosition) && cellsMatrix[(cells.size() - i - 1) / 3][i % 3] == 0) {
+				if (cells[i]->IsCoordInObject(mouseWorldPosition) && cellsMatrix[(cells.size() - i - 1) / 3][i % 3] == 0 && totalMoneyNr - generatedTurret->GetCost() >= 0) {
 					Turret* turret = new Turret("turret", cells[i]->GetPosition(), generatedTurret->GetColor(), generatedTurret->GetCost());
 					turret->Init();
 
@@ -367,6 +367,8 @@ void m1::Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) 
 					placedTurrets.push_back(turret);
 
 					cellsMatrix[(cells.size() - i - 1) / 3][i % 3] = 1;
+
+					totalMoneyNr -= turret->GetCost();
 				}
 
 				for (int i = 0; i < 3; i++) {

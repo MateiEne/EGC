@@ -14,7 +14,7 @@
 ..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(332,12): message : see declaration of 'i'
 ..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(361,93): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
 ..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(369,41): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(372,14): warning C4456: declaration of 'i' hides previous local declaration
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(374,14): warning C4456: declaration of 'i' hides previous local declaration
 ..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(360,13): message : see declaration of 'i'
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
