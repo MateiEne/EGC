@@ -69,7 +69,7 @@ namespace m1 {
 		Turret* generatedTurret;
 
 		vector<Square*> lives;
-		vector<Projectile*> totalMoney;
+		//vector<Projectile*> totalMoney;
 
 		vector<GUIFrame*> guiFrames;
 		vector<Turret*> placedTurrets;
@@ -81,5 +81,12 @@ namespace m1 {
 
 		float timeCounterMoney;
 		float timeToDrawRandomMoney;
+
+		Projectile* money;
+		int totalMoneyNr;
+
+		float totalMoneyPosX;
+		float totalMoneyPosY;
+
 	};
 }

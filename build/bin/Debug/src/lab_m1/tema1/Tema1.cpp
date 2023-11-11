@@ -30,6 +30,7 @@ void Tema1::Init() {
 
 	timeCounterMoney = 0;
 	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
+	totalMoneyNr = 10;
 }
 
 void Tema1::InitGameScene() {
@@ -85,7 +86,9 @@ void m1::Tema1::InitHUD() {
 	));
 
 	InitLives();
-	InitTotalMoney();
+
+	money = new Projectile("life", glm::vec2(0, 0), GOLD_COLOR);
+	money->Init();
 }
 
 
@@ -99,19 +102,6 @@ void m1::Tema1::InitLives() {
 		life->SetScale(2.8f, 2.8f);
 
 		lives.insert(lives.begin(), life);
-	}
-}
-
-void m1::Tema1::InitTotalMoney() {
-	float totalMoneyOffset = 5.f;
-
-	for (int i = 0; i < 10; i++) {
-		Projectile* money = new Projectile("life", glm::vec2(0, 0), GOLD_COLOR);
-		money->Init();
-		money->SetPosition(CAMERA_ORTHO_WIDTH - totalMoneyOffset - i * (money->GetRadius() + 1.f), 24.3f);
-		money->SetScale(1.1f, 1.1f);
-
-		totalMoney.insert(totalMoney.begin(), money);
 	}
 }
 
@@ -229,9 +219,24 @@ void m1::Tema1::DrawTotalMoney() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	for each (auto money in totalMoney) {
+	totalMoneyPosX = TOTAL_MONEY_START_X;
+	totalMoneyPosY = TOTAL_MONEY_START_Y;
+
+	for (int i = 0; i < totalMoneyNr; i++) {
+		if (totalMoneyPosX + money->GetRadius() >= CAMERA_ORTHO_WIDTH) {
+			totalMoneyPosY -= 2 * money->GetRadius();
+			totalMoneyPosX = TOTAL_MONEY_START_X;
+		}
+
+
+		money->SetPosition(totalMoneyPosX, totalMoneyPosY);
+		money->SetScale(TOTAL_MONEY_SCALE);
+
 		money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+
+		totalMoneyPosX += 2 * money->GetRadius();
 	}
+
 }
 
 void m1::Tema1::DrawRandomMoney() {
@@ -264,9 +269,9 @@ void m1::Tema1::OnKeyPress(int key, int mods) {
 		}
 	}
 
-	if (totalMoney.size() > 0) {
+	if (totalMoneyNr > 0) {
 		if (key == GLFW_KEY_M) {
-			totalMoney.pop_back();
+			totalMoneyNr++;
 		}
 	}
 
@@ -311,6 +316,8 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 		for (int i = 0; i < randomMoney.size(); i++) {
 			if (randomMoney[i]->IsCoordInObject(mouseWorldPosition)) {
 				randomMoney.erase(randomMoney.begin() + i);
+
+				totalMoneyNr++;
 
 				if (randomMoney.empty()) {
 					timeCounterMoney = 0;
