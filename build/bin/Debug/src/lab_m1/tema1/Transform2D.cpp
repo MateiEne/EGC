@@ -58,7 +58,7 @@ void Transform2D::Translate(glm::vec2 translate) {
 		)
 	);
 
-	position += translate;
+	position = GetPositionFromModelMatrix();
 }
 
 void Transform2D::Scale(glm::vec2 scale) {
@@ -70,7 +70,7 @@ void Transform2D::Scale(glm::vec2 scale) {
 		)
 	);
 
-	this->scale *= scale;
+	this->scale = GetScaleFromModelMatrix();
 }
 
 void Transform2D::Rotate(float radians) {
@@ -83,6 +83,19 @@ void Transform2D::Rotate(float radians) {
 	);
 }
 
+void Transform2D::ResetModelMatrix() {
+	modelMatrix = glm::mat3(1);
+}
+
 glm::mat3 Transform2D::GetModelMatrix() {
 	return modelMatrix;
+}
+
+glm::vec2 Transform2D::GetPositionFromModelMatrix() {
+	return glm::vec2(modelMatrix[2][0], modelMatrix[2][1]);
+}
+
+glm::vec2 Transform2D::GetScaleFromModelMatrix()
+{
+	return glm::vec2(modelMatrix[0][0], modelMatrix[1][1]);
 }

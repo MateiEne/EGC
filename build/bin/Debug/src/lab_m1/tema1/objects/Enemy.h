@@ -4,8 +4,12 @@
 
 class Enemy : public Object_2D {
 public:
-	Enemy(const char* name, glm::vec2 position, glm::vec3 color);
+	Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor);
 	~Enemy();
 
+private:
 	void InitVertices() override;
+
+private:
+	glm::vec3 secondaryColor;
 };

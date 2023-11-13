@@ -69,7 +69,6 @@ namespace m1 {
 		Turret* generatedTurret;
 
 		vector<Square*> lives;
-		//vector<Projectile*> totalMoney;
 
 		vector<GUIFrame*> guiFrames;
 		vector<Turret*> placedTurrets;
@@ -88,5 +87,7 @@ namespace m1 {
 		float totalMoneyPosX;
 		float totalMoneyPosY;
 
+		Object_2D* enemy;
+		vector<glm::vec2> enemyPositions;
 	};
 }

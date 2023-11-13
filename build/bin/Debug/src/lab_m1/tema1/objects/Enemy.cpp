@@ -1,6 +1,7 @@
 #include "lab_m1/tema1/objects/Enemy.h"
 
-Enemy::Enemy(const char* name, glm::vec2 position, glm::vec3 color) : Object_2D(name, position, color) {
+Enemy::Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor) : Object_2D(name, position, color) {
+	this->secondaryColor = secondaryColor;
 }
 
 Enemy::~Enemy() {
@@ -16,12 +17,12 @@ void Enemy::InitVertices()
 		VertexFormat(glm::vec3(1, -0.4f, 0), color, glm::vec3(0, 1, 0)), // D - 3
 		VertexFormat(glm::vec3(0, -1, 0), color, glm::vec3(0, 1, 0)), // E - 4
 		VertexFormat(glm::vec3(-1, -0.4f, 0), color, glm::vec3(0, 1, 0)), // F - 5
-		VertexFormat(glm::vec3(0, 0.4f, 0), color, glm::vec3(0, 1, 0)), // G - 6
-		VertexFormat(glm::vec3(0.4f, 0.2f, 0), color, glm::vec3(0, 1, 0)), // H - 7
-		VertexFormat(glm::vec3(0.4f, -0.2f, 0), color, glm::vec3(0, 1, 0)), // I - 8
-		VertexFormat(glm::vec3(0, -0.4f, 0), color, glm::vec3(0, 1, 0)), // J - 9
-		VertexFormat(glm::vec3(-0.4f, -0.2f, 0), color, glm::vec3(0, 1, 0)), // K - 10
-		VertexFormat(glm::vec3(-0.4f, 0.2f, 0), color, glm::vec3(0, 1, 0)), // L - 11
+		VertexFormat(glm::vec3(0, 0.4f, 0), secondaryColor, glm::vec3(0, 1, 0)), // G - 6
+		VertexFormat(glm::vec3(0.4f, 0.2f, 0), secondaryColor, glm::vec3(0, 1, 0)), // H - 7
+		VertexFormat(glm::vec3(0.4f, -0.2f, 0), secondaryColor, glm::vec3(0, 1, 0)), // I - 8
+		VertexFormat(glm::vec3(0, -0.4f, 0), secondaryColor, glm::vec3(0, 1, 0)), // J - 9
+		VertexFormat(glm::vec3(-0.4f, -0.2f, 0), secondaryColor, glm::vec3(0, 1, 0)), // K - 10
+		VertexFormat(glm::vec3(-0.4f, 0.2f, 0), secondaryColor, glm::vec3(0, 1, 0)), // L - 11
 		});
 
 	indices.insert(indices.end(), {

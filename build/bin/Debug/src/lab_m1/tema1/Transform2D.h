@@ -20,10 +20,15 @@ public:
 	void Scale(glm::vec2 scale);
 	void Rotate(float radians);
 
+	void ResetModelMatrix();
 	glm::mat3 GetModelMatrix();
 
 protected:
 	glm::mat3 modelMatrix;
 	glm::vec2 position;
 	glm::vec2 scale;
+
+private:
+	glm::vec2 GetPositionFromModelMatrix();
+	glm::vec2 GetScaleFromModelMatrix();
 };

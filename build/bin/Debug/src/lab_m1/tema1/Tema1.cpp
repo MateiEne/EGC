@@ -20,9 +20,13 @@ void Tema1::Init() {
 	camera->Update();
 	GetCameraInput()->SetActive(false);
 
+	enemy = new Square("enemy", glm::vec2(0, 0), GREY_COLOR);
+	enemy->Init();
+
 	InitGameScene();
 	InitHUD();
-	//InitRandomMoney();
+
+	enemy->SetPosition(enemyPositions[0]);
 
 	generatedTurret = nullptr;
 
@@ -46,6 +50,10 @@ void Tema1::InitGameScene() {
 			cell->SetScale(3.8, 3.8);
 			cell->SetPosition(j * (2 * cell->GetRadius()) + 5, i * 2 * cell->GetRadius() + 2.8f);
 
+			if (j == i) {
+				enemyPositions.push_back(glm::vec2(CAMERA_ORTHO_WIDTH - enemy->GetRadius(), i * 2 * cell->GetRadius() + 2.8f));
+			}
+
 			cells.push_back(cell);
 		}
 	}
@@ -53,7 +61,7 @@ void Tema1::InitGameScene() {
 }
 
 void m1::Tema1::InitHUD() {
-	turretFrame = new Frame("turretFrame", glm::vec2(0, 0), glm::vec3(1, 1, 1));
+	turretFrame = new Frame("turretFrame", glm::vec2(0, 0), WHITE_COLOR);
 	turretFrame->Init();
 
 
@@ -136,6 +144,14 @@ void Tema1::FrameStart() {
 
 void Tema1::Update(float deltaTimeSeconds) {
 	UpdateTimeCunterMoney(deltaTimeSeconds);
+
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
+	//enemy->ResetModelMatrix();
+	enemy->Rotate(deltaTimeSeconds * 1.5f);
+	enemy->Translate(-deltaTimeSeconds * 5, 0);
+	enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
 	DrawRandomMoney();
 	DrawHUD();
