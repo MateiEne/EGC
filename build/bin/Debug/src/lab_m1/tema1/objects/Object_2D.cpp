@@ -6,8 +6,8 @@ Object_2D::Object_2D(const char* name, glm::vec2 position, glm::vec3 color) {
 
 	objectMesh = new Mesh(name);
 
-	//Translate(position);
-	SetPosition(position);
+	Translate(position);
+	//SetPosition(position);
 
 	radius = 0;
 
@@ -36,7 +36,7 @@ void Object_2D::Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4
 	glUniformMatrix4fv(shader->loc_view_matrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
 	glUniformMatrix4fv(shader->loc_projection_matrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
-	glm::mat3 mm = modelMatrix;
+	glm::mat3 mm = GetModelMatrix();
 	glm::mat4 model = glm::mat4(
 		mm[0][0], mm[0][1], mm[0][2], 0.f,
 		mm[1][0], mm[1][1], mm[1][2], 0.f,

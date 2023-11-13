@@ -133,13 +133,17 @@ void Lab3::Update(float deltaTimeSeconds)
 	RenderMesh2D(meshes["square1"], shaders["VertexColor"], modelMatrix);
 
 	modelMatrix = glm::mat3(1);
-	modelMatrix *= transform2D::Translate(400, 250);
+	modelMatrix *= transform2D::Translate(150, 250);
 	//// TODO(student): Create animations by multiplying the current
 	//// transform matrix with the matrices you just implemented
 	//// Remember, the last matrix in the chain will take effect first!
 
+	translateX += deltaTimeSeconds * 100;
+	//modelMatrix *= transform2D::Translate(translateX, 250);
+	//modelMatrix *= transform2D::Translate(cx, cy);
 	angularStep += deltaTimeSeconds * 1.5;
 	modelMatrix *= transform2D::Rotate(angularStep);
+	//modelMatrix *= transform2D::Translate(-cx, -cy);
 	RenderMesh2D(meshes["square2"], shaders["VertexColor"], modelMatrix);
 
 	modelMatrix = glm::mat3(1);

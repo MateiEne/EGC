@@ -89,5 +89,9 @@ namespace m1 {
 
 		Object_2D* enemy;
 		vector<glm::vec2> enemyPositions;
+		float angularStep;
+		float translateX;
+
+		Object_2D* dummy;
 	};
 }

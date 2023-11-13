@@ -20,13 +20,16 @@ void Tema1::Init() {
 	camera->Update();
 	GetCameraInput()->SetActive(false);
 
-	enemy = new Square("enemy", glm::vec2(0, 0), GREY_COLOR);
-	enemy->Init();
-
 	InitGameScene();
 	InitHUD();
 
-	enemy->SetPosition(enemyPositions[0]);
+	enemy = new Square("enemy", glm::vec2(0, 0), GREY_COLOR);
+	enemy->Init();
+
+	enemy->SetPosition(enemyPositions[1]);
+	enemy->SetScale(3.8, 3.8);
+
+	//enemy->SetPosition(enemyPositions[0]);
 
 	generatedTurret = nullptr;
 
@@ -35,6 +38,9 @@ void Tema1::Init() {
 	timeCounterMoney = 0;
 	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
 	totalMoneyNr = 10;
+
+	angularStep = 0;
+	translateX = 0;
 }
 
 void Tema1::InitGameScene() {
@@ -51,7 +57,7 @@ void Tema1::InitGameScene() {
 			cell->SetPosition(j * (2 * cell->GetRadius()) + 5, i * 2 * cell->GetRadius() + 2.8f);
 
 			if (j == i) {
-				enemyPositions.push_back(glm::vec2(CAMERA_ORTHO_WIDTH - enemy->GetRadius(), i * 2 * cell->GetRadius() + 2.8f));
+				enemyPositions.push_back(glm::vec2(CAMERA_ORTHO_WIDTH, i * 2 * cell->GetRadius() + 2.8f));
 			}
 
 			cells.push_back(cell);
@@ -107,7 +113,7 @@ void m1::Tema1::InitLives() {
 		Square* life = new Square("life", glm::vec2(0, 0), RED_COLOR);
 		life->Init();
 		life->SetPosition(CAMERA_ORTHO_WIDTH - lifeOffset - i * (life->GetRadius() + 4.f), 27);
-		life->SetScale(2.8f, 2.8f);
+		life->Scale(2.8f, 2.8f);
 
 		lives.insert(lives.begin(), life);
 	}
@@ -148,9 +154,9 @@ void Tema1::Update(float deltaTimeSeconds) {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	//enemy->ResetModelMatrix();
-	enemy->Rotate(deltaTimeSeconds * 1.5f);
-	enemy->Translate(-deltaTimeSeconds * 5, 0);
+
+	enemy->Translate(-deltaTimeSeconds * 10, 0);
+	enemy->Rotate(deltaTimeSeconds * 1.5);
 	enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
 	DrawRandomMoney();
