@@ -35,8 +35,8 @@ namespace m1 {
 		void InitGameScene();
 		void InitHUD();
 		void InitLives();
-		void InitTotalMoney();
 		void InitRandomMoney();
+		void InitRandomEnemies();
 
 		void DrawScene();
 		void DrawHUD();
@@ -44,8 +44,12 @@ namespace m1 {
 		void DrawLives();
 		void DrawTotalMoney();
 		void DrawRandomMoney();
+		void DrawEnemies();
+
+		void UpdateEnemies(float deltaTime);
 
 		void UpdateTimeCunterMoney(float deltaTime);
+		void UpdateTimeCounterEnemies(float deltaTime);
 
 		glm::vec2 GetTransformedScreenCoordToWorldCoord(int screenX, int screenY);
 
@@ -79,7 +83,7 @@ namespace m1 {
 		glm::mat3 cellsMatrix;
 
 		float timeCounterMoney;
-		float timeToDrawRandomMoney;
+		float timeToSpawnRandomMoney;
 
 		Projectile* money;
 		int totalMoneyNr;
@@ -87,11 +91,9 @@ namespace m1 {
 		float totalMoneyPosX;
 		float totalMoneyPosY;
 
-		Object_2D* enemy;
+		vector<Enemy*> enemies;
 		vector<glm::vec2> enemyPositions;
-		float angularStep;
-		float translateX;
-
-		Object_2D* dummy;
+		float timeCounterEnemies;
+		float timeToSpawnEnemies;
 	};
 }

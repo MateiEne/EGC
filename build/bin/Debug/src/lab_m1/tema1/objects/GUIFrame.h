@@ -6,8 +6,6 @@
 #include "lab_m1/tema1/objects/Frame.h"
 #include "lab_m1/tema1/objects/Turret.h"
 
-using namespace Tema1Constants;
-
 class GUIFrame {
 public:
 	GUIFrame(const char* name, glm::vec2 position, glm::vec3 color, int cost);

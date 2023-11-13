@@ -23,12 +23,6 @@ void Tema1::Init() {
 	InitGameScene();
 	InitHUD();
 
-	enemy = new Square("enemy", glm::vec2(0, 0), GREY_COLOR);
-	enemy->Init();
-
-	enemy->SetPosition(enemyPositions[1]);
-	enemy->SetScale(3.8, 3.8);
-
 	//enemy->SetPosition(enemyPositions[0]);
 
 	generatedTurret = nullptr;
@@ -36,11 +30,11 @@ void Tema1::Init() {
 	cellsMatrix = glm::mat3(0);
 
 	timeCounterMoney = 0;
-	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
+	timeToSpawnRandomMoney = rand() % SPAWN_RANDOM_MONEY_INTERVAL_HIGH + SPAWN_RANDOM_MONEY_INTERVAL_LOW;
 	totalMoneyNr = 10;
 
-	angularStep = 0;
-	translateX = 0;
+	timeCounterEnemies = 0;
+	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
 }
 
 void Tema1::InitGameScene() {
@@ -69,7 +63,6 @@ void Tema1::InitGameScene() {
 void m1::Tema1::InitHUD() {
 	turretFrame = new Frame("turretFrame", glm::vec2(0, 0), WHITE_COLOR);
 	turretFrame->Init();
-
 
 	guiFrames.push_back(new GUIFrame(
 		"orangeFrame",
@@ -134,7 +127,20 @@ void m1::Tema1::InitRandomMoney() {
 		randomMoney.push_back(star);
 	}
 
-	timeToDrawRandomMoney = rand() % DRAW_RANDOM_MONEY_INTERVAL_HIGH + DRAW_RANDOM_MONEY_INTERVAL_LOW;
+	timeToSpawnRandomMoney = rand() % SPAWN_RANDOM_MONEY_INTERVAL_HIGH + SPAWN_RANDOM_MONEY_INTERVAL_LOW;
+}
+
+void m1::Tema1::InitRandomEnemies() {
+	int colorIndex = rand() % 4;
+	int secondaryColorIndex = rand() % 3;
+	int line = rand() % enemyPositions.size();
+	
+	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), GREEN_COLOR, GREY_COLOR);
+	enemy->Init();
+	
+	enemies.push_back(enemy);
+
+	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
 }
 
 void Tema1::FrameStart() {
@@ -150,14 +156,9 @@ void Tema1::FrameStart() {
 
 void Tema1::Update(float deltaTimeSeconds) {
 	UpdateTimeCunterMoney(deltaTimeSeconds);
+	UpdateTimeCounterEnemies(deltaTimeSeconds);
 
-	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
-	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
-
-
-	enemy->Translate(-deltaTimeSeconds * 10, 0);
-	enemy->Rotate(deltaTimeSeconds * 1.5);
-	enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	UpdateEnemies(deltaTimeSeconds);
 
 	DrawRandomMoney();
 	DrawHUD();
@@ -168,9 +169,19 @@ void Tema1::UpdateTimeCunterMoney(float deltaTime) {
 	timeCounterMoney += deltaTime;
 
 	if (randomMoney.empty()) {
-		if (timeCounterMoney > timeToDrawRandomMoney) {
+		if (timeCounterMoney > timeToSpawnRandomMoney) {
 			InitRandomMoney();
 		}
+	}
+}
+
+void m1::Tema1::UpdateTimeCounterEnemies(float deltaTime) {
+	timeCounterEnemies += deltaTime;
+
+	if (timeCounterEnemies > timeToSpawnEnemies) {
+		InitRandomEnemies();
+		timeCounterEnemies = 0;
+
 	}
 }
 
@@ -178,6 +189,7 @@ void Tema1::DrawScene() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
+	DrawEnemies();
 	base->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
 	if (!placedTurrets.empty()) {
@@ -267,6 +279,30 @@ void m1::Tema1::DrawRandomMoney() {
 
 	for each (auto money in randomMoney) {
 		money->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	}
+}
+
+void m1::Tema1::DrawEnemies() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
+	for each (auto enemy in enemies) {
+		enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	}
+}
+
+void m1::Tema1::UpdateEnemies(float deltaTime) {
+	for (int i = 0; i < enemies.size(); i++) {
+		enemies[i]->Translate(-deltaTime * 10, 0);
+
+		if (enemies[i]->GetPosition().x + enemies[i]->GetRadius() < 0) {
+			Enemy* enemyToDelete = enemies[i];
+
+			enemies.erase(enemies.begin() + i);
+			i--;
+
+			delete enemyToDelete;
+		}
 	}
 }
 

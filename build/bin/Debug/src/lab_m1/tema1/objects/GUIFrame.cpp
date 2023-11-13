@@ -1,5 +1,7 @@
 #include "GUIFrame.h"
 
+using namespace Tema1Constants;
+
 GUIFrame::GUIFrame(const char* name, glm::vec2 position, glm::vec3 color, int cost) {
 	this->position = position;
 	this->color = color;
