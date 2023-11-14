@@ -195,19 +195,25 @@ void Lab6::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & modelM
     glUseProgram(shader->program);
 
     // TODO(student): Get shader location for uniform mat4 "Model"
-
+    int modelMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Model");
     // TODO(student): Set shader uniform "Model" to modelMatrix
+    glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
     // TODO(student): Get shader location for uniform mat4 "View"
-
+    int viewMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "View");
     // TODO(student): Set shader uniform "View" to viewMatrix
     glm::mat4 viewMatrix = GetSceneCamera()->GetViewMatrix();
+    glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix));
 
     // TODO(student): Get shader location for uniform mat4 "Projection"
-
+    int projectionMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Projection");
     // TODO(student): Set shader uniform "Projection" to projectionMatrix
     glm::mat4 projectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
+    int timeLocation = glGetUniformLocation(shader->GetProgramID(), "time");
+    glUniform1f(timeLocation, Engine::GetElapsedTime());
+    
     // Draw the object
     glBindVertexArray(mesh->GetBuffers()->m_VAO);
     glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);

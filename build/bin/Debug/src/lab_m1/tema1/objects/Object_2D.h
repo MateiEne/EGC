@@ -26,11 +26,13 @@ public:
 	virtual ~Object_2D();
 
 	void Init();
-	void Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
+	virtual void Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
+	void DrawDebug(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
 
 	float GetRadius();
 
 	virtual bool IsCoordInObject(glm::vec2 coord);
+	bool IsInCollision(Object_2D* object);
 
 	glm::vec2 GetPosition();
 	glm::vec3 GetColor();

@@ -34,7 +34,6 @@ namespace m1 {
 
 		void InitGameScene();
 		void InitHUD();
-		void InitLives();
 		void InitRandomMoney();
 		void InitRandomEnemies();
 
@@ -45,11 +44,17 @@ namespace m1 {
 		void DrawTotalMoney();
 		void DrawRandomMoney();
 		void DrawEnemies();
+		void DrawPojectiles();
 
 		void UpdateEnemies(float deltaTime);
 
 		void UpdateTimeCunterMoney(float deltaTime);
 		void UpdateTimeCounterEnemies(float deltaTime);
+		void UpdateTurrets(float deltaTime);
+
+		void CheckForEnemies(float deltaTime);
+
+		bool IsEnemyHit();
 
 		glm::vec2 GetTransformedScreenCoordToWorldCoord(int screenX, int screenY);
 
@@ -72,7 +77,7 @@ namespace m1 {
 
 		Turret* generatedTurret;
 
-		vector<Square*> lives;
+		//vector<Square*> lives;
 
 		vector<GUIFrame*> guiFrames;
 		vector<Turret*> placedTurrets;
@@ -87,10 +92,13 @@ namespace m1 {
 
 		Projectile* money;
 		int totalMoneyNr;
-
 		float totalMoneyPosX;
 		float totalMoneyPosY;
 
+		Square* life;
+		int totalLivesNr;
+		float totalLivesPosX;
+		
 		vector<Enemy*> enemies;
 		vector<glm::vec2> enemyPositions;
 		float timeCounterEnemies;

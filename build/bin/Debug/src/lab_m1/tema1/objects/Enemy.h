@@ -4,7 +4,7 @@
 
 class Enemy : public Object_2D {
 public:
-	Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor);
+	Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor, int lives);
 	~Enemy();
 
 private:
@@ -12,4 +12,5 @@ private:
 
 private:
 	glm::vec3 secondaryColor;
+	int lives;
 };

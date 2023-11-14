@@ -47,6 +47,25 @@ void Object_2D::Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4
 	objectMesh->Render();
 }
 
+void Object_2D::DrawDebug(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) {
+	if (!GetDebugMesh() || !shader || !shader->program)
+		return;
+
+	shader->Use();
+	glUniformMatrix4fv(shader->loc_view_matrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+	glUniformMatrix4fv(shader->loc_projection_matrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
+	glm::mat3 mm = GetModelMatrix();
+	glm::mat4 model = glm::mat4(
+		mm[0][0], mm[0][1], mm[0][2], 0.f,
+		mm[1][0], mm[1][1], mm[1][2], 0.f,
+		0.f, 0.f, mm[2][2], 0.f,
+		mm[2][0], mm[2][1], 0.f, 1.f);
+
+	glUniformMatrix4fv(shader->loc_model_matrix, 1, GL_FALSE, glm::value_ptr(model));
+	GetDebugMesh()->Render();
+}
+
 float Object_2D::GetRadius()
 {
 	return max(scale.x, scale.y) * radius;
@@ -79,6 +98,21 @@ bool Object_2D::IsCoordInObject(glm::vec2 coord) {
 	float distance = sqrt((coord.x - position.x) * (coord.x - position.x) + (coord.y - position.y) * (coord.y - position.y));
 
 	if (distance < GetRadius()) {
+		return true;
+	}
+
+	return false;
+}
+
+bool Object_2D::IsInCollision(Object_2D* object) {
+	if (object == nullptr) {
+		return false;
+	}
+
+	float distance = sqrt((object->position.x - position.x) * (object->position.x - position.x)
+		+ (object->position.y - position.y) * (object->position.y - position.y));
+
+	if (distance <= (GetRadius() + object->GetRadius())) {
 		return true;
 	}
 

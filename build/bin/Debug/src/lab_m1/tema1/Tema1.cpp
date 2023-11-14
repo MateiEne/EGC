@@ -23,8 +23,6 @@ void Tema1::Init() {
 	InitGameScene();
 	InitHUD();
 
-	//enemy->SetPosition(enemyPositions[0]);
-
 	generatedTurret = nullptr;
 
 	cellsMatrix = glm::mat3(0);
@@ -32,6 +30,8 @@ void Tema1::Init() {
 	timeCounterMoney = 0;
 	timeToSpawnRandomMoney = rand() % SPAWN_RANDOM_MONEY_INTERVAL_HIGH + SPAWN_RANDOM_MONEY_INTERVAL_LOW;
 	totalMoneyNr = 10;
+
+	totalLivesNr = 3;
 
 	timeCounterEnemies = 0;
 	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
@@ -92,24 +92,11 @@ void m1::Tema1::InitHUD() {
 		3
 	));
 
-	InitLives();
+	life = new Square("life", glm::vec2(0, 0), RED_COLOR);
+	life->Init();
 
-	money = new Projectile("life", glm::vec2(0, 0), GOLD_COLOR);
+	money = new Projectile("money", glm::vec2(0, 0), GOLD_COLOR);
 	money->Init();
-}
-
-
-void m1::Tema1::InitLives() {
-	float lifeOffset = 7.f;
-
-	for (int i = 0; i < 3; i++) {
-		Square* life = new Square("life", glm::vec2(0, 0), RED_COLOR);
-		life->Init();
-		life->SetPosition(CAMERA_ORTHO_WIDTH - lifeOffset - i * (life->GetRadius() + 4.f), 27);
-		life->Scale(2.8f, 2.8f);
-
-		lives.insert(lives.begin(), life);
-	}
 }
 
 void m1::Tema1::InitRandomMoney() {
@@ -134,10 +121,10 @@ void m1::Tema1::InitRandomEnemies() {
 	int colorIndex = rand() % 4;
 	int secondaryColorIndex = rand() % 3;
 	int line = rand() % enemyPositions.size();
-	
-	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), GREEN_COLOR, GREY_COLOR);
+
+	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), BLUE_COLOR, GREY_COLOR, 3);
 	enemy->Init();
-	
+
 	enemies.push_back(enemy);
 
 	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
@@ -159,6 +146,9 @@ void Tema1::Update(float deltaTimeSeconds) {
 	UpdateTimeCounterEnemies(deltaTimeSeconds);
 
 	UpdateEnemies(deltaTimeSeconds);
+	UpdateTurrets(deltaTimeSeconds);
+
+	CheckForEnemies(deltaTimeSeconds);
 
 	DrawRandomMoney();
 	DrawHUD();
@@ -181,7 +171,26 @@ void m1::Tema1::UpdateTimeCounterEnemies(float deltaTime) {
 	if (timeCounterEnemies > timeToSpawnEnemies) {
 		InitRandomEnemies();
 		timeCounterEnemies = 0;
+	}
+}
 
+void m1::Tema1::UpdateTurrets(float deltaTime) {
+	for each (auto turret in placedTurrets) {
+		turret->Update(deltaTime);
+	}
+}
+
+void m1::Tema1::CheckForEnemies(float deltaTime) {
+	for each (auto enemy in enemies) {
+		for each (auto turret in placedTurrets) {
+			if (turret->GetPosition().y == enemy->GetPosition().y) {
+				if (enemy->IsInCollision(turret->GetProjectile())) {
+					turret->RemoveProjectile();
+				}
+
+				turret->Fire();
+			}
+		}
 	}
 }
 
@@ -189,6 +198,7 @@ void Tema1::DrawScene() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
+	DrawPojectiles();
 	DrawEnemies();
 	base->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
@@ -204,8 +214,6 @@ void Tema1::DrawScene() {
 }
 
 void Tema1::DrawHUD() {
-	float starPriceOffset = 2.f;
-
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
@@ -244,8 +252,15 @@ void m1::Tema1::DrawLives() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	for (int i = 0; i < lives.size(); i++) {
-		lives[i]->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	totalLivesPosX = TOTAL_LIVES_START_X;
+
+	for (int i = 0; i < totalLivesNr; i++) {
+		life->SetPosition(totalLivesPosX, TOTAL_LIVES_START_Y);
+		life->SetScale(LIFE_SCALE);
+
+		life->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+
+		totalLivesPosX += 1.5 * life->GetWidth();
 	}
 }
 
@@ -262,7 +277,6 @@ void m1::Tema1::DrawTotalMoney() {
 			totalMoneyPosX = TOTAL_MONEY_START_X;
 		}
 
-
 		money->SetPosition(totalMoneyPosX, totalMoneyPosY);
 		money->SetScale(TOTAL_MONEY_SCALE);
 
@@ -270,7 +284,6 @@ void m1::Tema1::DrawTotalMoney() {
 
 		totalMoneyPosX += 2 * money->GetRadius();
 	}
-
 }
 
 void m1::Tema1::DrawRandomMoney() {
@@ -288,18 +301,30 @@ void m1::Tema1::DrawEnemies() {
 
 	for each (auto enemy in enemies) {
 		enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+		enemy->DrawDebug(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
+}
+
+void m1::Tema1::DrawPojectiles() {
+	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+
+	//for each (auto projectile in projectiles) {
+	//	projectile->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+	//}
 }
 
 void m1::Tema1::UpdateEnemies(float deltaTime) {
 	for (int i = 0; i < enemies.size(); i++) {
-		enemies[i]->Translate(-deltaTime * 10, 0);
+		enemies[i]->Translate(-deltaTime * 6, 0);
 
-		if (enemies[i]->GetPosition().x + enemies[i]->GetRadius() < 0) {
+		if (enemies[i]->GetPosition().x + enemies[i]->GetRadius() < base->GetPosition().x) {
 			Enemy* enemyToDelete = enemies[i];
 
 			enemies.erase(enemies.begin() + i);
 			i--;
+
+			totalLivesNr--;
 
 			delete enemyToDelete;
 		}
@@ -321,9 +346,9 @@ void m1::Tema1::OnInputUpdate(float deltaTime, int mods)
 }
 
 void m1::Tema1::OnKeyPress(int key, int mods) {
-	if (lives.size() > 0) {
+	if (totalLivesNr > 0) {
 		if (key == GLFW_KEY_U) {
-			lives.pop_back();
+			totalLivesNr--;
 		}
 	}
 

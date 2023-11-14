@@ -2,6 +2,8 @@
 
 Turret::Turret(const char* name, glm::vec2 position, glm::vec3 color, int cost) : Object_2D(name, position, color) {
 	this->cost = cost;
+
+	projectile = nullptr;
 }
 
 Turret::~Turret() {
@@ -31,4 +33,51 @@ void Turret::InitVertices()
 
 int Turret::GetCost() {
 	return cost;
+}
+
+void Turret::Fire() {
+	if (projectile != nullptr) {
+		return;
+	}
+
+	projectile = new Projectile("projectile", glm::vec2(0, 0), color);
+	projectile->Init();
+
+	projectile->SetPosition(position.x + GetRadius(), position.y);
+	projectile->SetScale(PROJECTILE_SCALE);
+}
+
+void Turret::Update(float deltaTime) {
+	if (projectile == nullptr) {
+		return;
+	}
+
+	projectile->Translate(deltaTime * PROJECTILE_SPEED, 0);
+	projectile->Rotate(PROJECTILE_ROTATION * -deltaTime);
+
+	if (projectile->GetPosition().x > CAMERA_ORTHO_WIDTH) {
+		delete projectile;
+		projectile = nullptr;
+	}
+}
+
+void Turret::Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) {
+	Object_2D::Draw(shader, viewMatrix, projectionMatrix);
+
+	if (projectile != nullptr) {
+		projectile->Draw(shader, viewMatrix, projectionMatrix);
+	}
+}
+
+Projectile* Turret::GetProjectile() {
+	return projectile;
+}
+
+void Turret::RemoveProjectile() {
+	if (projectile == nullptr) {
+		return;
+	}
+
+	delete projectile;
+	projectile = nullptr;
 }

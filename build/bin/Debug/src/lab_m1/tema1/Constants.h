@@ -21,16 +21,24 @@ namespace Tema1Constants {
 	const glm::vec2 TURRET_SCALE = glm::vec2(1.5f, 1.8f);
 	const glm::vec2 RANDOM_MONEY_SCALE = glm::vec2(2.f, 2.f);
 	const glm::vec2 TOTAL_MONEY_SCALE = glm::vec2(1.1f, 1.1f);
+	const glm::vec2 LIFE_SCALE = glm::vec2(2.8f, 2.8f);
+	const glm::vec2 PROJECTILE_SCALE = glm::vec2(2.1f, 2.1f);
 
-	/*glm::vec3 CHARACTERS_COLORS[] = { ORANGE_COLOR, BLUE_COLOR, YELLOW_COLOR, PURPLE_COLOR };
-	glm::vec3 CHARACTERS_SECONDARY_COLORS[] = { GREEN_COLOR, GREY_COLOR, WHITE_COLOR };*/
+	//glm::vec3 CHARACTERS_COLORS[] = { ORANGE_COLOR, BLUE_COLOR, YELLOW_COLOR, PURPLE_COLOR };
+	//glm::vec3 CHARACTERS_SECONDARY_COLORS[] = { GREEN_COLOR, GREY_COLOR, WHITE_COLOR };
 
 	const int SPAWN_RANDOM_MONEY_INTERVAL_HIGH = 7;
 	const int SPAWN_RANDOM_MONEY_INTERVAL_LOW = 3;
 
-	const int SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH = 7;
-	const int SPAWN_RANDOM_ENEMIES_INTERVAL_LOW = 3;
+	const int SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH = 3;
+	const int SPAWN_RANDOM_ENEMIES_INTERVAL_LOW = 1;
 
 	const float TOTAL_MONEY_START_X = 42.f;
 	const float TOTAL_MONEY_START_Y = 24.3f;
+
+	const float TOTAL_LIVES_START_X = 44.f;
+	const float TOTAL_LIVES_START_Y = 27.f;
+
+	const float PROJECTILE_SPEED = 10;
+	const float PROJECTILE_ROTATION = 3.f;
 }

@@ -1,7 +1,9 @@
 #include "lab_m1/tema1/objects/Enemy.h"
 
-Enemy::Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor) : Object_2D(name, position, color) {
+Enemy::Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor, int lives) : Object_2D(name, position, color) {
 	this->secondaryColor = secondaryColor;
+
+	this->lives = lives;
 }
 
 Enemy::~Enemy() {
