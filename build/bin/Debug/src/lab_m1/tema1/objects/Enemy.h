@@ -7,6 +7,9 @@ public:
 	Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 secondaryColor, int lives);
 	~Enemy();
 
+	void Hit();
+	bool IsDead();
+
 private:
 	void InitVertices() override;
 

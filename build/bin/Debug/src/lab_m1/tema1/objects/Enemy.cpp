@@ -39,3 +39,11 @@ void Enemy::InitVertices()
 		}
 	);
 }
+
+void Enemy::Hit() {
+	lives--;
+}
+
+bool Enemy::IsDead() {
+	return lives <= 0;
+}

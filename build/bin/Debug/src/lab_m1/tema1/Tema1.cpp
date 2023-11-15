@@ -181,11 +181,21 @@ void m1::Tema1::UpdateTurrets(float deltaTime) {
 }
 
 void m1::Tema1::CheckForEnemies(float deltaTime) {
-	for each (auto enemy in enemies) {
+	for (int i = 0; i < enemies.size(); i++) {
+		Enemy* enemy = enemies[i];
+
 		for each (auto turret in placedTurrets) {
 			if (turret->GetPosition().y == enemy->GetPosition().y) {
 				if (enemy->IsInCollision(turret->GetProjectile())) {
 					turret->RemoveProjectile();
+					enemy->Hit();
+
+					if (enemy->IsDead()) {
+						enemies.erase(enemies.begin() + i);
+						i--;
+
+						delete enemy;
+					}
 				}
 
 				turret->Fire();
