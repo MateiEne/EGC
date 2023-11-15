@@ -30,8 +30,8 @@ namespace Tema1Constants {
 	const int SPAWN_RANDOM_MONEY_INTERVAL_HIGH = 7;
 	const int SPAWN_RANDOM_MONEY_INTERVAL_LOW = 3;
 
-	const int SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH = 3;
-	const int SPAWN_RANDOM_ENEMIES_INTERVAL_LOW = 1;
+	const int SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH = 5;
+	const int SPAWN_RANDOM_ENEMIES_INTERVAL_LOW = 2;
 
 	const float TOTAL_MONEY_START_X = 42.f;
 	const float TOTAL_MONEY_START_Y = 24.3f;
@@ -41,4 +41,9 @@ namespace Tema1Constants {
 
 	const float PROJECTILE_SPEED = 10;
 	const float PROJECTILE_ROTATION = 3.f;
+
+	const float ENEMY_SPEED = 6;
+	const float ENEMY_RADIUS_HIT_FACTOR = 1.4f;
+
+	const float TIME_TO_FIRE = 2.f;
 }

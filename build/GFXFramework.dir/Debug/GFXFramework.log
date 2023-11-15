@@ -1,28 +1,5 @@
-﻿  Tema1.cpp
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(19,73): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(31,69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(37,67): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(50,24): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(50,19): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(109,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(110,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(117,69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(130,67): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(250,30): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(250,25): warning C4305: 'argument': truncation from 'double' to 'float'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(273,25): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(426,92): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(427,40): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(436,13): warning C4456: declaration of 'i' hides previous local declaration
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(425,12): message : see declaration of 'i'
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(454,93): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(462,41): warning C4267: 'argument': conversion from 'size_t' to 'glm::mat<3,3,glm::f32,glm::packed_highp>::length_type', possible loss of data
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(467,14): warning C4456: declaration of 'i' hides previous local declaration
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Tema1.cpp(453,13): message : see declaration of 'i'
-  Enemy.cpp
-  main.cpp
-  Generating Code...
-     Creating library C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.lib and object C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.exp
+﻿  Enemy.cpp
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Enemy.cpp(53,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets

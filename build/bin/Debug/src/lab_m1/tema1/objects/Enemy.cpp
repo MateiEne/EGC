@@ -4,6 +4,8 @@ Enemy::Enemy(const char* name, glm::vec2 position, glm::vec3 color, glm::vec3 se
 	this->secondaryColor = secondaryColor;
 
 	this->lives = lives;
+
+	radiusEndLenght = 100000;
 }
 
 Enemy::~Enemy() {
@@ -40,7 +42,15 @@ void Enemy::InitVertices()
 	);
 }
 
+void Enemy::Update(float deltaTime) {
+	if (radiusEndLenght < GetRadius()) {
+		Scale(1 - deltaTime, 1 - deltaTime);
+	}
+}
+
 void Enemy::Hit() {
+	radiusEndLenght = GetRadius() / ENEMY_RADIUS_HIT_FACTOR;
+
 	lives--;
 }
 

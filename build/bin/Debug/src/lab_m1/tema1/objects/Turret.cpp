@@ -4,6 +4,8 @@ Turret::Turret(const char* name, glm::vec2 position, glm::vec3 color, int cost) 
 	this->cost = cost;
 
 	projectile = nullptr;
+
+	timeCounter = TIME_TO_FIRE;
 }
 
 Turret::~Turret() {
@@ -36,7 +38,7 @@ int Turret::GetCost() {
 }
 
 void Turret::Fire() {
-	if (projectile != nullptr) {
+	if (projectile != nullptr || timeCounter < TIME_TO_FIRE) {
 		return;
 	}
 
@@ -45,9 +47,13 @@ void Turret::Fire() {
 
 	projectile->SetPosition(position.x + GetRadius(), position.y);
 	projectile->SetScale(PROJECTILE_SCALE);
+
+	timeCounter = 0;
 }
 
 void Turret::Update(float deltaTime) {
+	timeCounter += deltaTime;
+
 	if (projectile == nullptr) {
 		return;
 	}

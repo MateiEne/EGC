@@ -26,4 +26,6 @@ private:
 	int cost;
 
 	Projectile* projectile;
+
+	float timeCounter;
 };

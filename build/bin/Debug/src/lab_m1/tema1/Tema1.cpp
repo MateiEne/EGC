@@ -326,7 +326,9 @@ void m1::Tema1::DrawPojectiles() {
 
 void m1::Tema1::UpdateEnemies(float deltaTime) {
 	for (int i = 0; i < enemies.size(); i++) {
-		enemies[i]->Translate(-deltaTime * 6, 0);
+		enemies[i]->Update(deltaTime);
+
+		enemies[i]->Translate(-deltaTime * ENEMY_SPEED, 0);
 
 		if (enemies[i]->GetPosition().x + enemies[i]->GetRadius() < base->GetPosition().x) {
 			Enemy* enemyToDelete = enemies[i];
