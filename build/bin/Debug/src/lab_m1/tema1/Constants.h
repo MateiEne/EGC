@@ -3,6 +3,8 @@
 #include "glm/glm.hpp"
 
 #include <vector>
+#include <map>
+#include <string>
 
 namespace Tema1Constants {
 	const int CAMERA_ORTHO_WIDTH = 60;
@@ -18,6 +20,18 @@ namespace Tema1Constants {
 	const glm::vec3 WHITE_COLOR = glm::vec3(1, 1, 1);
 	const glm::vec3 GOLD_COLOR = glm::vec3(153 / 256.f, 153 / 256.f, 0);
 
+	const std::map<std::string, glm::vec3> COLORS = {
+	{"green", glm::vec3(34.0f / 256, 139.0f / 256, 34.0f / 256)},
+	{"orange", glm::vec3(255 / 255.f, 128 / 256.f, 0)},
+	{"blue", glm::vec3(0.f, 0.f, 204 / 256.f)},
+	{"yellow", glm::vec3(204 / 256.f, 204 / 256.f, 0.f)},
+	{"purple", glm::vec3(102 / 256.f, 0.f, 204 / 256.f)},
+	{"grey", glm::vec3(192 / 256.f, 192 / 256.f, 192 / 256.f)},
+	{"red", glm::vec3(1, 0, 0)},
+	{"white", glm::vec3(1, 1, 1)},
+	{"gold", glm::vec3(153 / 256.f, 153 / 256.f, 0)},
+	};
+
 	const glm::vec2 TURRET_SCALE = glm::vec2(1.5f, 1.8f);
 	const glm::vec2 RANDOM_MONEY_SCALE = glm::vec2(2.f, 2.f);
 	const glm::vec2 TOTAL_MONEY_SCALE = glm::vec2(1.1f, 1.1f);
@@ -26,8 +40,8 @@ namespace Tema1Constants {
 
 	const float TURRET_MIN_DESTROY_RADIUS = 0.1f;
 
-	//glm::vec3 CHARACTERS_COLORS[] = { ORANGE_COLOR, BLUE_COLOR, YELLOW_COLOR, PURPLE_COLOR };
-	//glm::vec3 CHARACTERS_SECONDARY_COLORS[] = { GREEN_COLOR, GREY_COLOR, WHITE_COLOR };
+	const std::vector<glm::vec3> CHARACTERS_COLORS{ ORANGE_COLOR, BLUE_COLOR, YELLOW_COLOR, PURPLE_COLOR };
+	const std::vector<glm::vec3> CHARACTERS_SECONDARY_COLORS{ GREEN_COLOR, GREY_COLOR, WHITE_COLOR };
 
 	const int SPAWN_RANDOM_MONEY_INTERVAL_HIGH = 7;
 	const int SPAWN_RANDOM_MONEY_INTERVAL_LOW = 3;

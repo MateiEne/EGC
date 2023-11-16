@@ -117,12 +117,30 @@ void m1::Tema1::InitRandomMoney() {
 	timeToSpawnRandomMoney = rand() % SPAWN_RANDOM_MONEY_INTERVAL_HIGH + SPAWN_RANDOM_MONEY_INTERVAL_LOW;
 }
 
+//void m1::Tema1::InitRandomEnemies() {
+//	int colorIndex = rand() % 4;
+//	int secondaryColorIndex = rand() % 3;
+//	int line = rand() % enemyPositions.size();
+//
+//	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), BLUE_COLOR, GREY_COLOR, 3);
+//	enemy->Init();
+//
+//	enemies.push_back(enemy);
+//
+//	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
+//}
+
 void m1::Tema1::InitRandomEnemies() {
-	int colorIndex = rand() % 4;
-	int secondaryColorIndex = rand() % 3;
+	int colorIndex = rand() % CHARACTERS_COLORS.size();
+	glm::vec3 secondaryColor = std::next(COLORS.begin(), rand() % COLORS.size())->second;
+
+	while (secondaryColor == CHARACTERS_COLORS[colorIndex]) {
+		secondaryColor = std::next(COLORS.begin(), rand() % COLORS.size())->second;
+	}
+
 	int line = rand() % enemyPositions.size();
 
-	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), BLUE_COLOR, GREY_COLOR, 3);
+	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), CHARACTERS_COLORS[colorIndex], secondaryColor, 3);
 	enemy->Init();
 
 	enemies.push_back(enemy);
@@ -333,7 +351,7 @@ void m1::Tema1::DrawEnemies() {
 
 	for each (auto enemy in enemies) {
 		enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
-		enemy->DrawDebug(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
+		//enemy->DrawDebug(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 }
 
