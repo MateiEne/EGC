@@ -33,6 +33,7 @@ public:
 
 	virtual bool IsCoordInObject(glm::vec2 coord);
 	bool IsInCollision(Object_2D* object);
+	bool IsTheSameColor(Object_2D* object);
 
 	glm::vec2 GetPosition();
 	glm::vec3 GetColor();

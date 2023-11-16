@@ -225,7 +225,7 @@ void m1::Tema1::CheckForEnemies(float deltaTime) {
 		Enemy* enemy = enemies[i];
 
 		for each (auto turret in placedTurrets) {
-			if (turret->GetPosition().y == enemy->GetPosition().y) {
+			if (turret->GetPosition().y == enemy->GetPosition().y && turret->IsTheSameColor(enemy)) {
 				if (enemy->IsInCollision(turret->GetProjectile())) {
 					turret->RemoveProjectile();
 					enemy->Hit();
@@ -248,7 +248,6 @@ void Tema1::DrawScene() {
 	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
 
-	DrawPojectiles();
 	DrawEnemies();
 	base->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 
@@ -353,15 +352,6 @@ void m1::Tema1::DrawEnemies() {
 		enemy->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 		//enemy->DrawDebug(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
 	}
-}
-
-void m1::Tema1::DrawPojectiles() {
-	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
-	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
-
-	//for each (auto projectile in projectiles) {
-	//	projectile->Draw(shaders["VertexColor"], cameraViewMatrix, cameraProjectionMatrix);
-	//}
 }
 
 void m1::Tema1::UpdateEnemies(float deltaTime) {

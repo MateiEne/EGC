@@ -119,6 +119,14 @@ bool Object_2D::IsInCollision(Object_2D* object) {
 	return false;
 }
 
+bool Object_2D::IsTheSameColor(Object_2D* object) {
+	if (object == nullptr) {
+		return false;
+	}
+
+	return GetColor() == object->GetColor();
+}
+
 Mesh* Object_2D::GetMesh()
 {
 	return objectMesh;

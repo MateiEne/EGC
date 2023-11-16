@@ -44,7 +44,6 @@ namespace m1 {
 		void DrawTotalMoney();
 		void DrawRandomMoney();
 		void DrawEnemies();
-		void DrawPojectiles();
 
 		void UpdateEnemies(float deltaTime);
 
