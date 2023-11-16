@@ -14,6 +14,9 @@ public:
 	void Fire();
 	void Update(float deltaTime);
 	void Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) override;
+	void Destroy();
+
+	bool ShouldRemove();
 
 	void RemoveProjectile();
 
@@ -28,4 +31,8 @@ private:
 	Projectile* projectile;
 
 	float timeCounter;
+
+	bool isDestroied;
+
+	float scaleFactorDestroy;
 };

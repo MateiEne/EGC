@@ -175,7 +175,29 @@ void m1::Tema1::UpdateTimeCounterEnemies(float deltaTime) {
 }
 
 void m1::Tema1::UpdateTurrets(float deltaTime) {
-	for each (auto turret in placedTurrets) {
+	for (int i = 0; i < placedTurrets.size(); i++) {
+		Turret* turret = placedTurrets[i];
+
+		for each (auto enemy in enemies) {
+			if (turret->IsInCollision(enemy)) {
+				turret->Destroy();
+			}
+		}
+
+		if (turret->ShouldRemove()) {
+			placedTurrets.erase(placedTurrets.begin() + i);
+
+			for (int j = 0; j < cells.size(); j++) {
+				if (cells[j]->IsCoordInObject(turret->GetPosition())) {
+					cellsMatrix[(cells.size() - j - 1) / 3][j % 3] = 0;
+				}
+			}
+
+			delete turret;
+
+			i--;
+		}
+
 		turret->Update(deltaTime);
 	}
 }
@@ -431,6 +453,7 @@ void m1::Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods) {
 				for (int j = 0; j < placedTurrets.size(); j++) {
 					if (placedTurrets[j]->IsCoordInObject(mouseWorldPosition)) {
 						placedTurrets.erase(placedTurrets.begin() + j);
+						// TODO: free memory
 					}
 				}
 			}

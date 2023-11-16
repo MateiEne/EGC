@@ -6,6 +6,10 @@ Turret::Turret(const char* name, glm::vec2 position, glm::vec3 color, int cost) 
 	projectile = nullptr;
 
 	timeCounter = TIME_TO_FIRE;
+
+	isDestroied = false;
+
+	scaleFactorDestroy = 1;
 }
 
 Turret::~Turret() {
@@ -52,6 +56,14 @@ void Turret::Fire() {
 }
 
 void Turret::Update(float deltaTime) {
+	if (isDestroied) {
+		if (GetRadius() >= TURRET_MIN_DESTROY_RADIUS) {
+			Scale(1 - deltaTime * TURRET_DESTROY_SCALE_SPEED, 1 - deltaTime * TURRET_DESTROY_SCALE_SPEED);
+		}
+
+		return;
+	}
+	
 	timeCounter += deltaTime;
 
 	if (projectile == nullptr) {
@@ -65,6 +77,14 @@ void Turret::Update(float deltaTime) {
 		delete projectile;
 		projectile = nullptr;
 	}
+}
+
+void Turret::Destroy() {
+	isDestroied = true;
+}
+
+bool Turret::ShouldRemove() {
+	return GetRadius() <= TURRET_MIN_DESTROY_RADIUS;
 }
 
 void Turret::Draw(Shader* shader, const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) {

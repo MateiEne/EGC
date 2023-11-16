@@ -24,6 +24,8 @@ namespace Tema1Constants {
 	const glm::vec2 LIFE_SCALE = glm::vec2(2.8f, 2.8f);
 	const glm::vec2 PROJECTILE_SCALE = glm::vec2(2.1f, 2.1f);
 
+	const float TURRET_MIN_DESTROY_RADIUS = 0.1f;
+
 	//glm::vec3 CHARACTERS_COLORS[] = { ORANGE_COLOR, BLUE_COLOR, YELLOW_COLOR, PURPLE_COLOR };
 	//glm::vec3 CHARACTERS_SECONDARY_COLORS[] = { GREEN_COLOR, GREY_COLOR, WHITE_COLOR };
 
@@ -44,6 +46,8 @@ namespace Tema1Constants {
 
 	const float ENEMY_SPEED = 6;
 	const float ENEMY_RADIUS_HIT_FACTOR = 1.4f;
+
+	const float TURRET_DESTROY_SCALE_SPEED = 6;
 
 	const float TIME_TO_FIRE = 2.f;
 }
