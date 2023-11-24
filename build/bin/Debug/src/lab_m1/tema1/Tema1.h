@@ -76,8 +76,6 @@ namespace m1 {
 
 		Turret* generatedTurret;
 
-		//vector<Square*> lives;
-
 		vector<GUIFrame*> guiFrames;
 		vector<Turret*> placedTurrets;
 

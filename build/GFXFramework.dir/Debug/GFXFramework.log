@@ -1,5 +1,6 @@
-﻿  Object_2D.cpp
-..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\objects\Object_2D.cpp(139,32): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Tema2.cpp
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(62,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(62,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   main.cpp
   Generating Code...
      Creating library C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.lib and object C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.exp

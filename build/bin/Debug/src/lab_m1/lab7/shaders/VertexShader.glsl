@@ -22,34 +22,39 @@ uniform vec3 object_color;
 // Output value to fragment shader
 out vec3 color;
 
-
 void main()
 {
-    // TODO(student): Compute world space vectors
+	// TODO(student): Compute world space vectors
+	vec3 world_position = (Model * vec4(v_position, 1)).xyz;
+	vec3 world_normal	= normalize(mat3(Model) * normalize(v_normal));
 
-    // TODO(student): Define ambient light component
-    float ambient_light = 0.25;
+	vec3 V = normalize(eye_position - world_position);
+	vec3 L = normalize(light_position - world_position);
+	vec3 H = normalize(L + V);
 
-    // TODO(student): Compute diffuse light component
-    float diffuse_light = 0;
+	// TODO(student): Define ambient light component
+	float ambient_light = 0.1;
 
-    // TODO(student): Compute specular light component
-    float specular_light = 0;
+	// TODO(student): Compute diffuse light component, culoarea luminii: 1
+	float diffuse_light = material_kd * max(dot(world_normal, L), 0);
 
-    // It's important to distinguish between "reflection model" and
-    // "shading method". In this shader, we are experimenting with the Phong
-    // (1975) and Blinn-Phong (1977) reflection models, and we are using the
-    // Gouraud (1971) shading method. There is also the Phong (1975) shading
-    // method, which we'll use in the future. Don't mix them up!
-    if (diffuse_light > 0)
-    {
+	// TODO(student): Compute specular light component
+	float specular_light = 0;
 
-    }
+	if (diffuse_light > 0)
+	{
+		// culoarea luminii: 1
+		specular_light = material_ks * pow(max(dot(world_normal, L), 0), material_shininess);
+	}
 
-    // TODO(student): Compute light
+	// TODO(student): Compute light
+	float d	= distance(light_position, world_position);
+	// float attenuation_factor = 1 / (1 + 0.14 * d + 0.07 * d * d);
+	float attenuation_factor = 1 / (d * d);
+	float light	= ambient_light + attenuation_factor * (diffuse_light + specular_light);
 
-    // TODO(student): Send color light output to fragment shader
-    color = vec3(1);
+	// TODO(student): Send color light output to fragment shader
+	color = object_color * light;
 
-    gl_Position = Projection * View * Model * vec4(v_position, 1.0);
+	gl_Position = Projection * View * Model * vec4(v_position, 1.0);
 }

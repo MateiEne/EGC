@@ -117,19 +117,6 @@ void m1::Tema1::InitRandomMoney() {
 	timeToSpawnRandomMoney = rand() % SPAWN_RANDOM_MONEY_INTERVAL_HIGH + SPAWN_RANDOM_MONEY_INTERVAL_LOW;
 }
 
-//void m1::Tema1::InitRandomEnemies() {
-//	int colorIndex = rand() % 4;
-//	int secondaryColorIndex = rand() % 3;
-//	int line = rand() % enemyPositions.size();
-//
-//	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), BLUE_COLOR, GREY_COLOR, 3);
-//	enemy->Init();
-//
-//	enemies.push_back(enemy);
-//
-//	timeToSpawnEnemies = rand() % SPAWN_RANDOM_ENEMIES_INTERVAL_HIGH + SPAWN_RANDOM_ENEMIES_INTERVAL_LOW;
-//}
-
 void m1::Tema1::InitRandomEnemies() {
 	int colorIndex = rand() % CHARACTERS_COLORS.size();
 	glm::vec3 secondaryColor = std::next(COLORS.begin(), rand() % COLORS.size())->second;
@@ -140,7 +127,7 @@ void m1::Tema1::InitRandomEnemies() {
 
 	int line = rand() % enemyPositions.size();
 
-	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), CHARACTERS_COLORS[colorIndex], secondaryColor, 3);
+	Enemy* enemy = new Enemy("enemy", enemyPositions.at(line), CHARACTERS_COLORS[colorIndex], secondaryColor, ENEMIES_LIVES[colorIndex]);
 	enemy->Init();
 
 	enemies.push_back(enemy);
@@ -160,6 +147,10 @@ void Tema1::FrameStart() {
 }
 
 void Tema1::Update(float deltaTimeSeconds) {
+	if (totalLivesNr == 0) {
+		return;
+	}
+
 	UpdateTimeCunterMoney(deltaTimeSeconds);
 	UpdateTimeCounterEnemies(deltaTimeSeconds);
 
