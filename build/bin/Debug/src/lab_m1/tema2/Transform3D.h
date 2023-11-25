@@ -3,17 +3,19 @@
 #include "utils/glm_utils.h"
 
 
-namespace transform3D
+namespace T3D
 {
 	// Translate matrix
 	inline glm::mat4 Translate(float translateX, float translateY, float translateZ)
 	{
 		// TODO(student): Implement the translation matrix
 		return glm::transpose(
-			glm::mat4(1, 0, 0, translateX,
+			glm::mat4(
+				1, 0, 0, translateX,
 				0, 1, 0, translateY,
 				0, 0, 1, translateZ,
-				0, 0, 0, 1)
+				0, 0, 0, 1
+			)
 		);
 
 	}
@@ -23,10 +25,12 @@ namespace transform3D
 	{
 		// TODO(student): Implement the scaling matrix
 		return glm::transpose(
-			glm::mat4(scaleX, 0, 0, 0,
+			glm::mat4(
+				scaleX, 0, 0, 0,
 				0, scaleY, 0, 0,
 				0, 0, scaleZ, 0,
-				0, 0, 0, 1)
+				0, 0, 0, 1
+			)
 		);
 
 	}
@@ -36,10 +40,12 @@ namespace transform3D
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
-			glm::mat4(cos(radians), -sin(radians), 0, 0,
+			glm::mat4(
+				cos(radians), -sin(radians), 0, 0,
 				sin(radians), cos(radians), 0, 0,
 				0, 0, 1, 0,
-				0, 0, 0, 1)
+				0, 0, 0, 1
+			)
 		);
 
 	}
@@ -49,10 +55,12 @@ namespace transform3D
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
-			glm::mat4(cos(radians), 0, -sin(radians), 0,
+			glm::mat4(
+				cos(radians), 0, -sin(radians), 0,
 				0, 1, 0, 0,
 				sin(radians), 0, cos(radians), 0,
-				0, 0, 0, 1)
+				0, 0, 0, 1
+			)
 		);
 
 	}
@@ -62,11 +70,40 @@ namespace transform3D
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
-			glm::mat4(1, 0, 0, 0,
+			glm::mat4(
+				1, 0, 0, 0,
 				0, cos(radians), -sin(radians), 0,
 				0, sin(radians), cos(radians), 0,
-				0, 0, 0, 1)
+				0, 0, 0, 1
+			)
 		);
 
 	}
-}   // namespace transform3D
+}   // namespace T3D
+
+class Transform3D {
+public:
+	Transform3D();
+	~Transform3D();
+
+	void SetPosition(glm::vec3 position);
+	void SetPosition(float x, float y, float z);
+
+	void SetScale(glm::vec3 scale);
+	void SetScale(float scaleX, float scaleY, float scaleZ);
+
+	void Translate(glm::vec3 translate);
+	void Translate(float translateX, float translateY, float translateZ);
+	
+	void Scale(glm::vec3 scale);
+	void Scale(float scaleX, float scaleY, float scaleZ);
+
+	void Rotate(float radians);
+
+	glm::mat4 GetModelMatrix();
+
+protected:
+	glm::vec3 position;
+	glm::vec3 scale;
+	float radians;
+};

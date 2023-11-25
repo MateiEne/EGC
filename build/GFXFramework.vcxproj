@@ -512,6 +512,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema1\Transform2D.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Transform3D.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\scene_input.cpp" />
     <ClCompile Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\simple_scene.cpp" />

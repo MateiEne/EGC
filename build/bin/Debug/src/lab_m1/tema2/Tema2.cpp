@@ -25,8 +25,8 @@ void Tema2::Init() {
 	tank->Init(
 		"C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\Tank1",
 		"base.obj", 
-		"gun.obj", 
 		"turret.obj", 
+		"gun.obj", 
 		"wheel.obj"
 	);
 }
