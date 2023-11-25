@@ -36,13 +36,13 @@ namespace T3D
 	}
 
 	// Rotate matrix relative to the OZ axis
-	inline glm::mat4 RotateOZ(float radians)
+	inline glm::mat4 RotateOZ(float degrees)
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
 			glm::mat4(
-				cos(radians), -sin(radians), 0, 0,
-				sin(radians), cos(radians), 0, 0,
+				cos(degrees), -sin(degrees), 0, 0,
+				sin(degrees), cos(degrees), 0, 0,
 				0, 0, 1, 0,
 				0, 0, 0, 1
 			)
@@ -51,14 +51,14 @@ namespace T3D
 	}
 
 	// Rotate matrix relative to the OY axis
-	inline glm::mat4 RotateOY(float radians)
+	inline glm::mat4 RotateOY(float degrees)
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
 			glm::mat4(
-				cos(radians), 0, -sin(radians), 0,
+				cos(degrees), 0, -sin(degrees), 0,
 				0, 1, 0, 0,
-				sin(radians), 0, cos(radians), 0,
+				sin(degrees), 0, cos(degrees), 0,
 				0, 0, 0, 1
 			)
 		);
@@ -66,14 +66,14 @@ namespace T3D
 	}
 
 	// Rotate matrix relative to the OX axis
-	inline glm::mat4 RotateOX(float radians)
+	inline glm::mat4 RotateOX(float degrees)
 	{
 		// TODO(student): Implement the rotation matrix
 		return glm::transpose(
 			glm::mat4(
 				1, 0, 0, 0,
-				0, cos(radians), -sin(radians), 0,
-				0, sin(radians), cos(radians), 0,
+				0, cos(degrees), -sin(degrees), 0,
+				0, sin(degrees), cos(degrees), 0,
 				0, 0, 0, 1
 			)
 		);
@@ -98,12 +98,16 @@ public:
 	void Scale(glm::vec3 scale);
 	void Scale(float scaleX, float scaleY, float scaleZ);
 
-	void Rotate(float radians);
+	void RotateOX(float degrees);
+	void RotateOY(float degrees);
+	void RotateOZ(float degrees);
 
 	glm::mat4 GetModelMatrix();
 
 protected:
 	glm::vec3 position;
 	glm::vec3 scale;
-	float radians;
+	float degreesOX;
+	float degreesOY;
+	float degreesOZ;
 };

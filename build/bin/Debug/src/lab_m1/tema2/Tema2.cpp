@@ -24,9 +24,9 @@ void Tema2::Init() {
 	tank = new Tank();
 	tank->Init(
 		"C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\Tank1",
-		"base.obj", 
-		"turret.obj", 
-		"gun.obj", 
+		"base.obj",
+		"turret.obj",
+		"gun.obj",
 		"wheel.obj"
 	);
 }
@@ -53,7 +53,7 @@ void Tema2::Update(float deltaTimeSeconds)
 
 	tank->Draw(shaders["VertexNormal"], cameraViewMatrix, cameraProjectionMatrix);
 
-	
+
 	DrawCoordinateSystem();
 
 	glClear(GL_DEPTH_BUFFER_BIT);
@@ -72,9 +72,19 @@ void Tema2::FrameEnd()
  */
 
 
-void Tema2::OnInputUpdate(float deltaTime, int mods)
-{
-
+void Tema2::OnInputUpdate(float deltaTime, int mods) {
+	if (window->KeyHold(GLFW_KEY_W)) {
+		tank->MoveForward(deltaTime);
+	}
+	else if (window->KeyHold(GLFW_KEY_S)) {
+		tank->MoveBackwards(deltaTime);
+	}
+	else if (window->KeyHold(GLFW_KEY_A)) {
+		tank->RotateLeft(deltaTime);
+	}
+	else if (window->KeyHold(GLFW_KEY_D)) {
+		tank->RotateRight(deltaTime);
+	}
 }
 
 

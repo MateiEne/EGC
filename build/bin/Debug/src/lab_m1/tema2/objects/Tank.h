@@ -1,11 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <string>
+#include <map>
 #include "core/gpu/mesh.h"
 #include "core/gpu/shader.h"
 #include "components/camera.h"
 
 #include "lab_m1/tema2/Transform3D.h"
+#include "lab_m1/tema2/Constants.h"
 
 using namespace std;
 
@@ -32,7 +35,7 @@ public:
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
-	void DrawMesh(Mesh* mesh, Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation);
 
 	Mesh* baseMesh;
 	Mesh* turretMesh;
