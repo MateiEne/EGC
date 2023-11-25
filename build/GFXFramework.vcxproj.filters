@@ -118,6 +118,9 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp">
       <Filter>src\lab_m1\tema2</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp">
+      <Filter>src\lab_m1\tema2\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera.h">
@@ -306,6 +309,12 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.h">
       <Filter>src\lab_m1\tema2</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Transform3D.h">
+      <Filter>src\lab_m1\tema2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.h">
+      <Filter>src\lab_m1\tema2\objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\CMakeLists.txt" />
@@ -382,6 +391,9 @@
     </Filter>
     <Filter Include="src\lab_m1\tema2">
       <UniqueIdentifier>{693d0b19-4513-44b8-a75f-b7c3bebabfbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lab_m1\tema2\objects">
+      <UniqueIdentifier>{da415a28-4954-499e-86b0-e85c6dfc36b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

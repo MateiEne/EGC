@@ -2,6 +2,13 @@
 
 #include "components/simple_scene.h"
 
+#include <vector>
+#include <string>
+#include <iostream>
+
+#include "lab_m1/tema2/Transform3D.h"
+#include "lab_m1/tema2/objects/Tank.h"
+
 
 namespace m1
 {
@@ -38,24 +45,11 @@ namespace m1
         void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
         void OnWindowResize(int width, int height) override;
 
-        void RenderScene();
-    protected:
-        glm::mat4 modelMatrix;
-        float translateX, translateY, translateZ;
-        float scaleX, scaleY, scaleZ;
-        float angularStepOX, angularStepOY, angularStepOZ;
+    private:
         GLenum polygonMode;
         ViewportArea miniViewportArea;
-
-        bool isViewPortUp;
-        bool isViewPortLeft;
-        bool isViewPortDown;
-        bool isViewPortRight;
-
-        bool isViewPortPositiveScale;
-        bool isViewPortNegativeScale;
-
-        glm::vec3 secondCubeCenterCoordinates;
+    
+        Tank* tank;
     };
 }   // namespace m1
 
