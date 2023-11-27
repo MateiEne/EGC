@@ -21,6 +21,10 @@ Tema2::~Tema2() {
 void Tema2::Init() {
 	polygonMode = GL_FILL;
 
+	camera = new implemented::GameCamera();
+	camera->SetPerspective(60, window->props.aspectRatio, 0.01, 200.f);
+	camera->Set(glm::vec3(0, 2, 3.5f), glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
+
 	tank = new Tank();
 	tank->Init(
 		"C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\Tank1",
@@ -29,6 +33,7 @@ void Tema2::Init() {
 		"gun.obj",
 		"wheel.obj"
 	);
+	tank->SetPosition(camera->GetTargetPosition());
 }
 
 void Tema2::FrameStart()
@@ -48,17 +53,14 @@ void Tema2::Update(float deltaTimeSeconds)
 	glm::ivec2 resolution = window->GetResolution();
 	glViewport(0, 0, resolution.x, resolution.y);
 
-	glm::mat4 cameraViewMatrix = GetSceneCamera()->GetViewMatrix();
-	glm::mat4 cameraProjectionMatrix = GetSceneCamera()->GetProjectionMatrix();
+	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
+	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
 
 	tank->Draw(shaders["VertexNormal"], cameraViewMatrix, cameraProjectionMatrix);
 
-
-	DrawCoordinateSystem();
+	DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix);
 
 	glClear(GL_DEPTH_BUFFER_BIT);
-
-
 }
 
 void Tema2::FrameEnd()
@@ -75,15 +77,23 @@ void Tema2::FrameEnd()
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
 		tank->MoveForward(deltaTime);
+
+		camera->MoveForward(deltaTime * CST::TANK_SPEED);
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
 		tank->MoveBackwards(deltaTime);
+
+		camera->MoveForward(-deltaTime * CST::TANK_SPEED);
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
 		tank->RotateLeft(deltaTime);
+
+		camera->RotateThirdPerson_OY(deltaTime * CST::TANK_ROTATION_SPEED * TO_RADIANS);
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
 		tank->RotateRight(deltaTime);
+
+		camera->RotateThirdPerson_OY(-deltaTime * CST::TANK_ROTATION_SPEED * TO_RADIANS);
 	}
 }
 

@@ -8,6 +8,7 @@
 
 #include "lab_m1/tema2/Transform3D.h"
 #include "lab_m1/tema2/objects/Tank.h"
+#include "lab_m1/tema2/GameCamera.h"
 
 
 namespace m1
@@ -46,6 +47,8 @@ namespace m1
         void OnWindowResize(int width, int height) override;
 
     private:
+        implemented::GameCamera* camera;
+
         GLenum polygonMode;
         ViewportArea miniViewportArea;
     

@@ -9,6 +9,7 @@
 
 #include "lab_m1/tema2/Transform3D.h"
 #include "lab_m1/tema2/Constants.h"
+#include "lab_m1/tema2/GameCamera.h"
 
 using namespace std;
 

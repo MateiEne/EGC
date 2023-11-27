@@ -174,8 +174,8 @@ void Lab5::OnInputUpdate(float deltaTime, int mods)
 
 		if (window->KeyHold(GLFW_KEY_W)) {
 			// TODO(student): Translate the camera forward
-			//camera->MoveForward(deltaTime);
-			camera->TranslateForward(deltaTime * cameraSpeed);
+			camera->MoveForward(deltaTime);
+			//camera->TranslateForward(deltaTime * cameraSpeed);
 		}
 
 		if (window->KeyHold(GLFW_KEY_A)) {
@@ -186,7 +186,7 @@ void Lab5::OnInputUpdate(float deltaTime, int mods)
 		if (window->KeyHold(GLFW_KEY_S)) {
 			// TODO(student): Translate the camera backward
 			//camera->MoveForward(-deltaTime);
-			camera->TranslateForward(-deltaTime * cameraSpeed);
+			camera->MoveForward(-deltaTime * cameraSpeed);
 		}
 
 		if (window->KeyHold(GLFW_KEY_D)) {

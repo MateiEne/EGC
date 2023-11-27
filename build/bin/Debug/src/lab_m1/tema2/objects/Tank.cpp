@@ -24,6 +24,8 @@ void Tank::Init(
 
 	wheelMesh = new Mesh("wheel");
 	wheelMesh->LoadMesh(fileLocation, wheelFileName);
+
+	RotateOY(90);
 }
 
 void Tank::Update(float dt) {
@@ -38,11 +40,11 @@ void Tank::MoveBackwards(float dt) {
 }
 
 void Tank::RotateRight(float dt) {
-	RotateOY(dt * CST::TANK_ROTATION_SPEED);
+	RotateOY(-dt * CST::TANK_ROTATION_SPEED);
 }
 
 void Tank::RotateLeft(float dt) {
-	RotateOY(-dt * CST::TANK_ROTATION_SPEED);
+	RotateOY(dt * CST::TANK_ROTATION_SPEED);
 }
 
 void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
@@ -62,14 +64,14 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 	DrawPart(wheelMesh, shader, CST::TANK_LEFT_WHEEL_INITIAL_POS);
 }
 
-void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation) {
+void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset) {
 	if (!mesh) {
 		return;
 	}
 
 	// Render an object using the specified shader and the specified position
 	glUniformMatrix4fv(shader->loc_model_matrix, 1, GL_FALSE, glm::value_ptr(
-		GetModelMatrix() * T3D::Translate(translation.x, translation.y, translation.z)
+		GetModelMatrix() * T3D::Translate(partOffset.x, partOffset.y, partOffset.z)
 	));
 
 	mesh->Render();
