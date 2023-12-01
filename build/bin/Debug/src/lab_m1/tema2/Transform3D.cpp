@@ -52,8 +52,6 @@ void Transform3D::RotateOX(float degrees) {
 void Transform3D::RotateOY(float degrees) {
 	//degreesOY -= T3D::degreesToRadians(degrees);
 	degreesOY = degreesOY - (degrees * TO_RADIANS);
-
-	std::cout << degreesOY << " ";
 }
 
 void Transform3D::RotateOZ(float degrees) {
@@ -71,4 +69,8 @@ glm::mat4 Transform3D::GetModelMatrix()
 	modelMatrix *= T3D::Scale(scale.x, scale.y, scale.z);
 
 	return modelMatrix;
+}
+
+glm::vec3 Transform3D::GetPosition() {
+	return position;
 }

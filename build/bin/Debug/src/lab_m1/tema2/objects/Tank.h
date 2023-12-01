@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
+
 #include "core/gpu/mesh.h"
 #include "core/gpu/shader.h"
 #include "components/camera.h"
@@ -10,6 +12,7 @@
 #include "lab_m1/tema2/Transform3D.h"
 #include "lab_m1/tema2/Constants.h"
 #include "lab_m1/tema2/GameCamera.h"
+#include "lab_m1/tema2/objects/Missile.h"
 
 using namespace std;
 
@@ -33,7 +36,13 @@ public:
 	void RotateRight(float dt);
 	void RotateLeft(float dt);
 
+	void Fire();
+
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+
+private:
+	glm::vec3 GetGunHeadPosition();
+	glm::vec3 GetDirection();
 
 private:
 	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation);
@@ -42,4 +51,6 @@ private:
 	Mesh* turretMesh;
 	Mesh* gunMesh;
 	Mesh* wheelMesh;
+
+	vector<Missile*> missiles;
 };

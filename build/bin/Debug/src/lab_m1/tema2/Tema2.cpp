@@ -27,7 +27,7 @@ void Tema2::Init() {
 
 	tank = new Tank();
 	tank->Init(
-		"C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\Tank1",
+		CST::TANK_ASSETS_FILE_LOCATION,
 		"base.obj",
 		"turret.obj",
 		"gun.obj",
@@ -52,6 +52,8 @@ void Tema2::Update(float deltaTimeSeconds)
 	// Sets the screen area where to draw
 	glm::ivec2 resolution = window->GetResolution();
 	glViewport(0, 0, resolution.x, resolution.y);
+
+	tank->Update(deltaTimeSeconds);
 
 	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
@@ -98,9 +100,10 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 }
 
 
-void Tema2::OnKeyPress(int key, int mods)
-{
-
+void Tema2::OnKeyPress(int key, int mods) {
+	if (key == GLFW_KEY_SPACE) {
+		tank->Fire();
+	}
 }
 
 

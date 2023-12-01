@@ -108,6 +108,8 @@ public:
 	void RotateOZ(float degrees);
 
 	glm::mat4 GetModelMatrix();
+	
+	glm::vec3 GetPosition();
 
 protected:
 	glm::vec3 position;

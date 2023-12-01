@@ -29,6 +29,15 @@ void Tank::Init(
 }
 
 void Tank::Update(float dt) {
+	for (int i = 0; i < missiles.size(); i++) {
+		missiles[i]->Update(dt);
+
+		if (missiles[i]->IsDead()) {
+			missiles.erase(missiles.begin() + i);
+
+			i--;
+		}
+	}
 }
 
 void Tank::MoveForward(float dt) {
@@ -47,6 +56,22 @@ void Tank::RotateLeft(float dt) {
 	RotateOY(dt * CST::TANK_ROTATION_SPEED);
 }
 
+glm::vec3 Tank::GetGunHeadPosition() {
+	return glm::vec3(GetPosition().x + 3 * cos(degreesOY), CST::TANK_GUN_INITIAL_POS.y, GetPosition().z + 3 * sin(degreesOY));
+}
+
+glm::vec3 Tank::GetDirection() {
+	return glm::vec3(cos(degreesOY), 0, sin(degreesOY));
+}
+
+void Tank::Fire() {
+	Missile* missile = new Missile(GetGunHeadPosition(), GetDirection());
+	missile->Init(CST::TANK_ASSETS_FILE_LOCATION, "missile.obj");
+	missile->SetScale(.2f, .2f, .2f);
+
+	missiles.push_back(missile);
+}
+
 void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
 	if (!shader || !shader->program) {
 		return;
@@ -62,6 +87,10 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 	DrawPart(gunMesh, shader, CST::TANK_GUN_INITIAL_POS);
 	DrawPart(wheelMesh, shader, CST::TANK_RIGHT_WHEEL_INITIAL_POS);
 	DrawPart(wheelMesh, shader, CST::TANK_LEFT_WHEEL_INITIAL_POS);
+
+	for each (auto missile in missiles) {
+		missile->Draw(shader, viewMatrix, projectionMatrix);
+	}
 }
 
 void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset) {
