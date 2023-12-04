@@ -1,9 +1,6 @@
 #include "Missile.h"
 
-Missile::Missile(glm::vec3 initialPosition, glm::vec3 direction) {
-	this->initialPosition = initialPosition;
-	this->direction = direction;
-
+Missile::Missile() {
 	isDead = false;
 }
 
@@ -12,12 +9,20 @@ Missile::~Missile() {
 
 void Missile::Init(
 	const string& fileLocation,
-	const string& missileFileName
+	const string& missileFileName,
+	glm::vec3 initialPosition,
+	glm::vec3 direction,
+	glm::vec3 color
 ) {
 	mesh = new Mesh("missile");
 	mesh->LoadMesh(fileLocation, missileFileName);
 
+	this->initialPosition = initialPosition;
+	this->direction = direction;
+
 	SetPosition(initialPosition);
+
+	this->color = color;
 }
 
 void Missile::Update(float dt) {
@@ -51,12 +56,20 @@ void Missile::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMat
 	}
 
 	// Render an object using the specified shader and the specified position
-	shader->Use();
-	glUniformMatrix4fv(shader->loc_view_matrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-	glUniformMatrix4fv(shader->loc_projection_matrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+	glUseProgram(shader->program);
 
+	int viewMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "View");
+	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+
+	int projectionMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Projection");
+	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 	// Render an object using the specified shader and the specified position
 	glUniformMatrix4fv(shader->loc_model_matrix, 1, GL_FALSE, glm::value_ptr(GetModelMatrix()));
 
-	mesh->Render();
+	int objectColorLocation = glGetUniformLocation(shader->GetProgramID(), "objectColor");
+	glUniform3fv(objectColorLocation, 1, glm::value_ptr(color));
+
+	// Draw the object
+	glBindVertexArray(mesh->GetBuffers()->m_VAO);
+	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
 }

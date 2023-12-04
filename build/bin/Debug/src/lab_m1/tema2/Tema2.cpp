@@ -21,9 +21,14 @@ Tema2::~Tema2() {
 void Tema2::Init() {
 	polygonMode = GL_FILL;
 
-	camera = new implemented::GameCamera();
+	camera = new GameCamera3P(5, 20);
 	camera->SetPerspective(60, window->props.aspectRatio, 0.01, 200.f);
-	camera->Set(glm::vec3(0, 2, 3.5f), glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
+
+	Shader* shader = new Shader("TemaShaders");
+	shader->AddShader(PATH_JOIN(window->props.selfDir, SOURCE_PATH::M1, "tema2", "shaders", "VertexShader.glsl"), GL_VERTEX_SHADER);
+	shader->AddShader(PATH_JOIN(window->props.selfDir, SOURCE_PATH::M1, "tema2", "shaders", "FragmentShader.glsl"), GL_FRAGMENT_SHADER);
+	shader->CreateAndLink();
+	shaders[shader->GetName()] = shader;
 
 	tank = new Tank();
 	tank->Init(
@@ -31,9 +36,15 @@ void Tema2::Init() {
 		"base.obj",
 		"turret.obj",
 		"gun.obj",
-		"wheel.obj"
+		"wheel.obj",
+		CST::COLORS.at("dark_green"),
+		CST::COLORS.at("green"),
+		CST::COLORS.at("light_green"),
+		CST::COLORS.at("light_green")
 	);
-	tank->SetPosition(camera->GetTargetPosition());
+
+	ground = new Ground();
+	ground->Init(CST::GROUND_ASSETS_FILE_LOCATION, "ground.obj", CST::COLORS.at("grey"));
 }
 
 void Tema2::FrameStart()
@@ -54,11 +65,13 @@ void Tema2::Update(float deltaTimeSeconds)
 	glViewport(0, 0, resolution.x, resolution.y);
 
 	tank->Update(deltaTimeSeconds);
+	camera->LookAtTarget(tank->GetPosition(), tank->GetDirection(), tank->GetUpDirection());
 
 	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
-
-	tank->Draw(shaders["VertexNormal"], cameraViewMatrix, cameraProjectionMatrix);
+	
+	ground->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	tank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
 	DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix);
 
@@ -79,23 +92,28 @@ void Tema2::FrameEnd()
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
 		tank->MoveForward(deltaTime);
-
-		camera->MoveForward(deltaTime * CST::TANK_SPEED);
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
 		tank->MoveBackwards(deltaTime);
-
-		camera->MoveForward(-deltaTime * CST::TANK_SPEED);
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
 		tank->RotateLeft(deltaTime);
-
-		camera->RotateThirdPerson_OY(deltaTime * CST::TANK_ROTATION_SPEED * TO_RADIANS);
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
 		tank->RotateRight(deltaTime);
+	}
 
-		camera->RotateThirdPerson_OY(-deltaTime * CST::TANK_ROTATION_SPEED * TO_RADIANS);
+	if (window->KeyHold(GLFW_KEY_Z)) {
+		camera->SetDistanceToTarget(camera->GetDistanceToTarget() + 0.5);
+	}
+	if (window->KeyHold(GLFW_KEY_X)) {
+		camera->SetDistanceToTarget(camera->GetDistanceToTarget() - 0.5);
+	}
+	if (window->KeyHold(GLFW_KEY_F)) {
+		camera->SetTargetAngle(camera->GetTargetAngle() + 0.5);
+	}
+	if (window->KeyHold(GLFW_KEY_V)) {
+		camera->SetTargetAngle(camera->GetTargetAngle() - 0.5);
 	}
 }
 

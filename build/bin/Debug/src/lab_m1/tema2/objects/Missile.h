@@ -12,12 +12,15 @@ using namespace std;
 
 class Missile : public Transform3D {
 public:
-	Missile(glm::vec3 initialPosition, glm::vec3 direction);
+	Missile();
 	~Missile();
 
 	void Init(
 		const string& fileLocation, 
-		const string& missileFileName
+		const string& missileFileName, 
+		glm::vec3 initialPosition, 
+		glm::vec3 direction, 
+		glm::vec3 color
 	);
 
 	void Update(float dt);
@@ -34,4 +37,6 @@ private:
 	glm::vec3 initialPosition;
 
 	bool isDead;
+
+	glm::vec3 color;
 };

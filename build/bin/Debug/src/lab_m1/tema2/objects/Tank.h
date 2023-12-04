@@ -26,7 +26,11 @@ public:
 		const string& baseFileName, 
 		const string& turretFileName, 
 		const string& gunFileName, 
-		const string& wheelFileName
+		const string& wheelFileName,
+		glm::vec3 baseColor,
+		glm::vec3 turretColor,
+		glm::vec3 gunColor,
+		glm::vec3 wheelColor
 	);
 
 	void Update(float dt);
@@ -38,14 +42,16 @@ public:
 
 	void Fire();
 
+	glm::vec3 GetDirection();
+	glm::vec3 GetUpDirection();
+
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
 	glm::vec3 GetGunHeadPosition();
-	glm::vec3 GetDirection();
 
 private:
-	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation);
+	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation, glm::vec3 color);
 
 	Mesh* baseMesh;
 	Mesh* turretMesh;
@@ -53,4 +59,9 @@ private:
 	Mesh* wheelMesh;
 
 	vector<Missile*> missiles;
+
+	glm::vec3 baseColor;
+	glm::vec3 turretColor;
+	glm::vec3 gunColor;
+	glm::vec3 wheelColor;
 };

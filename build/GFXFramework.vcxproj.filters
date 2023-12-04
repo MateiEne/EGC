@@ -416,5 +416,16 @@
     <Filter Include="src\lab_m1\tema2\objects">
       <UniqueIdentifier>{da415a28-4954-499e-86b0-e85c6dfc36b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\lab_m1\tema2\shaders">
+      <UniqueIdentifier>{33a755a0-c8c8-45a3-91c2-7a2aa6b4e556}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\shaders\FragmentShader.glsl">
+      <Filter>src\lab_m1\tema2\shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\shaders\VertexShader.glsl">
+      <Filter>src\lab_m1\tema2\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

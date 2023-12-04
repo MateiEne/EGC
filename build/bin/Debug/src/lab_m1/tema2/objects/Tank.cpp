@@ -11,8 +11,17 @@ void Tank::Init(
 	const string& baseFileName,
 	const string& turretFileName,
 	const string& gunFileName,
-	const string& wheelFileName
+	const string& wheelFileName,
+	glm::vec3 baseColor,
+	glm::vec3 turretColor,
+	glm::vec3 gunColor,
+	glm::vec3 wheelColor
 ) {
+	this->baseColor = baseColor;
+	this->turretColor = turretColor;
+	this->gunColor = gunColor;
+	this->wheelColor = wheelColor;
+
 	baseMesh = new Mesh("base");
 	baseMesh->LoadMesh(fileLocation, baseFileName);
 
@@ -64,9 +73,13 @@ glm::vec3 Tank::GetDirection() {
 	return glm::vec3(cos(degreesOY), 0, sin(degreesOY));
 }
 
+glm::vec3 Tank::GetUpDirection() {
+	return glm::vec3(0, 1, 0);
+}
+
 void Tank::Fire() {
-	Missile* missile = new Missile(GetGunHeadPosition(), GetDirection());
-	missile->Init(CST::TANK_ASSETS_FILE_LOCATION, "missile.obj");
+	Missile* missile = new Missile();
+	missile->Init(CST::TANK_ASSETS_FILE_LOCATION, "missile.obj", GetGunHeadPosition(), GetDirection(), CST::COLORS.at("black"));
 	missile->SetScale(.2f, .2f, .2f);
 
 	missiles.push_back(missile);
@@ -78,31 +91,40 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 	}
 
 	// Render an object using the specified shader and the specified position
-	shader->Use();
-	glUniformMatrix4fv(shader->loc_view_matrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-	glUniformMatrix4fv(shader->loc_projection_matrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+	glUseProgram(shader->program);
 
-	DrawPart(baseMesh, shader, CST::TANK_BASE_INITIAL_POS);
-	DrawPart(turretMesh, shader, CST::TANK_TURRET_INITIAL_POS);
-	DrawPart(gunMesh, shader, CST::TANK_GUN_INITIAL_POS);
-	DrawPart(wheelMesh, shader, CST::TANK_RIGHT_WHEEL_INITIAL_POS);
-	DrawPart(wheelMesh, shader, CST::TANK_LEFT_WHEEL_INITIAL_POS);
+	int viewMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "View");
+	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+
+	int projectionMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Projection");
+	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
+	DrawPart(baseMesh, shader, CST::TANK_BASE_INITIAL_POS, baseColor);
+	DrawPart(turretMesh, shader, CST::TANK_TURRET_INITIAL_POS, turretColor);
+	DrawPart(gunMesh, shader, CST::TANK_GUN_INITIAL_POS, gunColor);
+	DrawPart(wheelMesh, shader, CST::TANK_RIGHT_WHEEL_INITIAL_POS, wheelColor);
+	DrawPart(wheelMesh, shader, CST::TANK_LEFT_WHEEL_INITIAL_POS, wheelColor);
 
 	for each (auto missile in missiles) {
 		missile->Draw(shader, viewMatrix, projectionMatrix);
 	}
 }
 
-void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset) {
+void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 color) {
 	if (!mesh) {
 		return;
 	}
+	
+	// TODO(student): Get shader location for uniform mat4 "Model"
+	int modelMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Model");
+	// TODO(student): Set shader uniform "Model" to modelMatrix
+	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(GetModelMatrix() * T3D::Translate(partOffset.x, partOffset.y, partOffset.z)));
 
-	// Render an object using the specified shader and the specified position
-	glUniformMatrix4fv(shader->loc_model_matrix, 1, GL_FALSE, glm::value_ptr(
-		GetModelMatrix() * T3D::Translate(partOffset.x, partOffset.y, partOffset.z)
-	));
+	int objectColorLocation = glGetUniformLocation(shader->GetProgramID(), "objectColor");
+	glUniform3fv(objectColorLocation, 1, glm::value_ptr(color));
 
-	mesh->Render();
+	// Draw the object
+	glBindVertexArray(mesh->GetBuffers()->m_VAO);
+	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
 }
 
