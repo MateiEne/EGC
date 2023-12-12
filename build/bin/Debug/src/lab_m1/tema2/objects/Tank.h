@@ -24,14 +24,19 @@ public:
 
 	void Init(
 		const string& fileLocation,
-		const string& baseFileName, 
-		const string& turretFileName, 
-		const string& gunFileName, 
+		const string& baseFileName,
+		const string& turretFileName,
+		const string& gunFileName,
 		const string& wheelFileName,
 		glm::vec3 baseColor,
 		glm::vec3 turretColor,
 		glm::vec3 gunColor,
-		glm::vec3 wheelColor
+		glm::vec3 wheelColor,
+		glm::vec3 baseOffset,
+		glm::vec3 turretOffset,
+		glm::vec3 gunOffset,
+		glm::vec3 rightWheelOffset,
+		glm::vec3 leftWheelOffset
 	);
 
 	void Update(float dt);
@@ -56,6 +61,7 @@ public:
 
 private:
 	glm::vec3 GetGunHeadPosition();
+	glm::vec3 GetLowestPoint();
 
 private:
 	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation, glm::vec3 color);
@@ -71,4 +77,12 @@ private:
 	glm::vec3 turretColor;
 	glm::vec3 gunColor;
 	glm::vec3 wheelColor;
+
+	glm::vec3 baseOffset;
+	glm::vec3 turretOffset;
+	glm::vec3 gunOffset;
+	glm::vec3 rightWheelOffset;
+	glm::vec3 leftWheelOffset;
+
+	string fileLocation;
 };

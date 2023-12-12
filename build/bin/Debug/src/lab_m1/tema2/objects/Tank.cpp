@@ -15,14 +15,27 @@ void Tank::Init(
 	glm::vec3 baseColor,
 	glm::vec3 turretColor,
 	glm::vec3 gunColor,
-	glm::vec3 wheelColor
+	glm::vec3 wheelColor,
+	glm::vec3 baseOffset,
+	glm::vec3 turretOffset,
+	glm::vec3 gunOffset,
+	glm::vec3 rightWheelOffset,
+	glm::vec3 leftWheelOffset
 ) {
+	this->fileLocation = fileLocation;
+
 	this->baseColor = baseColor;
 	this->turretColor = turretColor;
 	this->gunColor = gunColor;
 	this->wheelColor = wheelColor;
 
-	baseMesh = new Mesh("base");	
+	this->baseOffset = baseOffset;
+	this->turretOffset = turretOffset;
+	this->gunOffset = gunOffset;
+	this->rightWheelOffset = rightWheelOffset;
+	this->leftWheelOffset = leftWheelOffset;
+
+	baseMesh = new Mesh("base");
 	baseMesh->LoadMesh(fileLocation, baseFileName);
 
 	turretMesh = new Mesh("turret");
@@ -34,30 +47,7 @@ void Tank::Init(
 	wheelMesh = new Mesh("wheel");
 	wheelMesh->LoadMesh(fileLocation, wheelFileName);
 
-	//cout << "base mesh:" << endl;
-	//for each (auto i in baseMesh->positions) {
-	//	cout << i << endl;
-	//}
-	//cout << endl;
-
-
-
-	//cout << "turret mesh:" << endl;
-	//for each (auto i in turretMesh->positions) {
-	//	cout << i << endl;
-	//}
-	//cout << endl;
-
-
-
-	//cout << "wheel mesh:" << endl;
-	//for each (auto i in wheelMesh->positions) {
-	//	cout << i << endl;
-	//}
-	//cout << endl;
-
-	//cout << GetHeight();
-	//SetPosition(0, 1, 0);
+	SetPosition(0, -GetLowestPoint().y - leftWheelOffset.y, 0);
 	RotateOY(90);
 }
 
@@ -90,7 +80,23 @@ void Tank::RotateLeft(float dt) {
 }
 
 glm::vec3 Tank::GetGunHeadPosition() {
-	return glm::vec3(GetPosition().x + 3 * cos(degreesOY), CST::TANK_GUN_INITIAL_POS.y, GetPosition().z + 3 * sin(degreesOY));
+	return glm::vec3(GetPosition().x + 3 * cos(degreesOY), gunOffset.y, GetPosition().z + 3 * sin(degreesOY));
+}
+
+glm::vec3 Tank::GetLowestPoint() {
+	glm::vec3 lowestPoint = glm::vec3(0);
+
+	float yMin = 1000;
+
+	for each (auto pos in wheelMesh->positions) {
+		if (pos.y < yMin) {
+			yMin = pos.y;
+
+			lowestPoint = pos;
+		}
+	}
+
+	return lowestPoint;
 }
 
 float Tank::GetHeight() {
@@ -104,14 +110,14 @@ float Tank::GetHeight() {
 			yMin = pos.y;
 		}
 	}
-	height += yMin - CST::TANK_LEFT_WHEEL_INITIAL_POS.y;
+	height += yMin - leftWheelOffset.y;
 
 	for each (auto pos in baseMesh->positions) {
 		if (pos.y > yMax) {
 			yMax = pos.y;
 		}
 	}
-	height += yMax + CST::TANK_BASE_INITIAL_POS.y;
+	height += yMax + baseOffset.y;
 	yMax = -1000;
 
 	for each (auto pos in turretMesh->positions) {
@@ -119,7 +125,7 @@ float Tank::GetHeight() {
 			yMax = pos.y;
 		}
 	}
-	height += yMax + CST::TANK_TURRET_INITIAL_POS.y;
+	height += yMax + turretOffset.y;
 
 
 	return height;
@@ -133,15 +139,15 @@ float Tank::GetBaseRadius() {
 	glm::vec3 maxPoint = glm::vec3(0);
 
 	for each (auto pos in baseMesh->positions) {
-		if (abs(pos.x + CST::TANK_BASE_INITIAL_POS.x) > maxX) {
+		if (abs(pos.x + baseOffset.x) > maxX) {
 			maxX = abs(pos.x);
 			maxPoint = pos;
 		}
-		if (abs(pos.y + CST::TANK_BASE_INITIAL_POS.y) > maxY) {
+		if (abs(pos.y + baseOffset.y) > maxY) {
 			maxY = abs(pos.y);
 			maxPoint = pos;
 		}
-		if (abs(pos.z + CST::TANK_BASE_INITIAL_POS.z) > maxZ) {
+		if (abs(pos.z + baseOffset.z) > maxZ) {
 			maxZ = abs(pos.z);
 			maxPoint = pos;
 		}
@@ -192,7 +198,7 @@ glm::vec3 Tank::GetUpDirection() {
 
 void Tank::Fire() {
 	Missile* missile = new Missile();
-	missile->Init(CST::TANK_ASSETS_FILE_LOCATION, "missile.obj", GetGunHeadPosition(), GetDirection(), CST::COLORS.at("black"));
+	missile->Init(fileLocation, "missile.obj", GetGunHeadPosition(), GetDirection(), CST::COLORS.at("black"));
 	missile->SetScale(.2f, .2f, .2f);
 
 	missiles.push_back(missile);
@@ -212,11 +218,11 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 	int projectionMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Projection");
 	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
-	DrawPart(baseMesh, shader, CST::TANK_BASE_INITIAL_POS, baseColor);
-	DrawPart(turretMesh, shader, CST::TANK_TURRET_INITIAL_POS, turretColor);
-	DrawPart(gunMesh, shader, CST::TANK_GUN_INITIAL_POS, gunColor);
-	DrawPart(wheelMesh, shader, CST::TANK_RIGHT_WHEEL_INITIAL_POS, wheelColor);
-	DrawPart(wheelMesh, shader, CST::TANK_LEFT_WHEEL_INITIAL_POS, wheelColor);
+	DrawPart(baseMesh, shader, baseOffset, baseColor);
+	DrawPart(turretMesh, shader, turretOffset, turretColor);
+	DrawPart(gunMesh, shader, gunOffset, gunColor);
+	DrawPart(wheelMesh, shader, rightWheelOffset, wheelColor);
+	DrawPart(wheelMesh, shader, leftWheelOffset, wheelColor);
 
 	for each (auto missile in missiles) {
 		missile->Draw(shader, viewMatrix, projectionMatrix);

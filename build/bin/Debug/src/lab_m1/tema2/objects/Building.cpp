@@ -24,15 +24,15 @@ float Building::GetRadius() {
 	glm::vec3 maxPoint = glm::vec3(0);
 
 	for each (auto pos in mesh->positions) {
-		if (abs(pos.x + CST::TANK_BASE_INITIAL_POS.x) > maxX) {
+		if (abs(pos.x) > maxX) {
 			maxX = abs(pos.x);
 			maxPoint = pos;
 		}
-		if (abs(pos.y + CST::TANK_BASE_INITIAL_POS.y) > maxY) {
+		if (abs(pos.y) > maxY) {
 			maxY = abs(pos.y);
 			maxPoint = pos;
 		}
-		if (abs(pos.z + CST::TANK_BASE_INITIAL_POS.z) > maxZ) {
+		if (abs(pos.z) > maxZ) {
 			maxZ = abs(pos.z);
 			maxPoint = pos;
 		}

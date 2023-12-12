@@ -23,6 +23,8 @@ public:
 
 	void Update(float dt);
 
+	float GetHeight();
+
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:

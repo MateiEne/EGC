@@ -15,6 +15,50 @@ void Ground::Init(const string& fileLocation, const string& groundFileName, glm:
 	this->color = color;
 }
 
+float Ground::GetHeight() {
+	float maxX = -10;
+	float maxY = -10;
+	float maxZ = -10;
+
+	float minX = 10;
+	float minY = 10;
+
+	glm::vec3 maxPoint = glm::vec3(0);
+	glm::vec3 minPoint = glm::vec3(0);
+
+	for each (auto pos in mesh->positions) {
+		if (pos.z >= maxZ) {
+			maxZ = pos.z;
+
+			if (pos.x >= maxX) {
+				maxX = pos.x;
+
+				if (pos.y >= maxY) {
+					maxY = pos.y;
+
+					maxPoint = pos;
+				}
+			}
+		}
+
+		if (pos.z >= maxZ) {
+			maxZ = pos.z;
+
+			if (pos.x <= minX) {
+				minX = pos.x;
+
+				if (pos.y <= minY) {
+					minY = pos.y;
+
+					minPoint = pos;
+				}
+			}
+		}
+	}
+
+	return (maxPoint.y - minPoint.y) * scale.y;
+}
+
 void Ground::Update(float dt) {
 }
 

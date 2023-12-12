@@ -11,15 +11,59 @@ namespace CST {
 	const float WORLD_SCALE_Y = 0.1;
 	const float WORLD_SCALE_Z = 1000.0;
 
-	const std::string TANK_ASSETS_FILE_LOCATION = "C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\Tank1";
-	const std::string GROUND_ASSETS_FILE_LOCATION = "C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\ground";
-	const std::string BUILDING_ASSETS_FILE_LOCATION = "C:\\gfx framework\\gfx-framework-master\\gfx-framework-master\\src\\lab_m1\\tema2\\assets\\buildings";
+	const std::string TANK1_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\Tank1";
+	const std::string TANK2_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\Tank2";
+	const std::string TANK3_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\Tank3";
+	const std::string GROUND_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\ground";
+	const std::string BUILDING_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\buildings";
 
-	const glm::vec3 TANK_BASE_INITIAL_POS = glm::vec3(0, 0.3, 0);
-	const glm::vec3 TANK_TURRET_INITIAL_POS = glm::vec3(0, 0.65, 0);
-	const glm::vec3 TANK_GUN_INITIAL_POS = glm::vec3(1.0268, 0.65, 0);
-	const glm::vec3 TANK_RIGHT_WHEEL_INITIAL_POS = glm::vec3(0, 0.11, 0.35);
-	const glm::vec3 TANK_LEFT_WHEEL_INITIAL_POS = glm::vec3(0, 0.11, -0.35);
+
+	/*
+	"tank1": {
+		"base":[0, 0, 0],
+		"gun":[1.03784, 0.35, 0],
+		"turret":[0, 0.35, 0],
+		"rightWheel":[0, -0.21, 0.35],
+		"leftWheel":[0, -0.21, -0.35]
+	},
+	*/
+	const glm::vec3 TANK1_BASE_INITIAL_POS = glm::vec3(0, 0, 0);
+	const glm::vec3 TANK1_TURRET_INITIAL_POS = glm::vec3(0, 0.35, 0);
+	const glm::vec3 TANK1_GUN_INITIAL_POS = glm::vec3(1.03784, 0.35, 0);
+	const glm::vec3 TANK1_RIGHT_WHEEL_INITIAL_POS = glm::vec3(0, -0.21, 0.35);
+	const glm::vec3 TANK1_LEFT_WHEEL_INITIAL_POS = glm::vec3(0, -0.21, -0.35);
+
+
+	/*
+	"tank2": {
+		"base": [0, 0, 0],
+		"gun":[0.869467, 0.366997, 0],
+		"turret": [0, 0.35024, 0],
+		"rightWheel":[0, -0.155503, 0.35],
+		"leftWheel":[0, -0.155503, -0.35]
+	},
+	*/
+	const glm::vec3 TANK2_BASE_INITIAL_POS = glm::vec3(0, 0, 0);
+	const glm::vec3 TANK2_TURRET_INITIAL_POS = glm::vec3(0, 0.35024, 0);
+	const glm::vec3 TANK2_GUN_INITIAL_POS = glm::vec3(0.869467, 0.366997, 0);
+	const glm::vec3 TANK2_RIGHT_WHEEL_INITIAL_POS = glm::vec3(0, -0.155503, 0.35);
+	const glm::vec3 TANK2_LEFT_WHEEL_INITIAL_POS = glm::vec3(0, -0.155503, -0.35);
+
+	/*
+	"tank3": {
+		"base":[0, 0, 0],
+		"gun":[0.853213, 0.318301, 0],
+		"turret":[-0.204477, 0.340029, 0],
+		"rightWheel":[0, -0.081699, 0.5],
+		"leftWheel":[0, -0.081699, -0.5]
+	}
+	*/
+
+	const glm::vec3 TANK3_BASE_INITIAL_POS = glm::vec3(0, 0, 0);
+	const glm::vec3 TANK3_TURRET_INITIAL_POS = glm::vec3(-0.204477, 0.340029, 0);
+	const glm::vec3 TANK3_GUN_INITIAL_POS = glm::vec3(0.853213, 0.318301, 0);
+	const glm::vec3 TANK3_RIGHT_WHEEL_INITIAL_POS = glm::vec3(0, -0.081699, 0.5);
+	const glm::vec3 TANK3_LEFT_WHEEL_INITIAL_POS = glm::vec3(0, -0.081699, -0.5);
 
 	const std::map<std::string, glm::vec3> COLORS = {
 		{"light_green", glm::vec3(187.0f / 256, 237.0f / 256, 201.0f / 256)},

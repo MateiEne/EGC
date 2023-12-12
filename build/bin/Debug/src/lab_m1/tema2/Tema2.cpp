@@ -32,36 +32,46 @@ void Tema2::Init() {
 
 	tank = new Tank();
 	tank->Init(
-		CST::TANK_ASSETS_FILE_LOCATION,
-		"base.obj",
-		"turret.obj",
-		"gun.obj",
-		"wheel.obj",
+		CST::TANK3_ASSETS_FILE_LOCATION,
+		"Base.obj",
+		"Turret.obj",
+		"Gun.obj",
+		"Wheel.obj",
 		CST::COLORS.at("dark_green"),
 		CST::COLORS.at("green"),
 		CST::COLORS.at("light_green"),
-		CST::COLORS.at("light_green")
+		CST::COLORS.at("light_green"),
+		CST::TANK3_BASE_INITIAL_POS,
+		CST::TANK3_TURRET_INITIAL_POS,
+		CST::TANK3_GUN_INITIAL_POS,
+		CST::TANK3_RIGHT_WHEEL_INITIAL_POS,
+		CST::TANK3_LEFT_WHEEL_INITIAL_POS
 	);
 
 	testTank = new Tank();
 	testTank->Init(
-		CST::TANK_ASSETS_FILE_LOCATION,
-		"base.obj",
-		"turret.obj",
-		"gun.obj",
-		"wheel.obj",
+		CST::TANK3_ASSETS_FILE_LOCATION,
+		"Base.obj",
+		"Turret.obj",
+		"Gun.obj",
+		"Wheel.obj",
 		CST::COLORS.at("dark_green"),
 		CST::COLORS.at("green"),
 		CST::COLORS.at("light_green"),
-		CST::COLORS.at("light_green")
+		CST::COLORS.at("light_green"),
+		CST::TANK3_BASE_INITIAL_POS,
+		CST::TANK3_TURRET_INITIAL_POS,
+		CST::TANK3_GUN_INITIAL_POS,
+		CST::TANK3_RIGHT_WHEEL_INITIAL_POS,
+		CST::TANK3_LEFT_WHEEL_INITIAL_POS
 	);
-
-	testTank->SetPosition(5, 0, 0);
-
-	cout << testTank->GetBaseRadius() << endl;
 
 	ground = new Ground();
 	ground->Init(CST::GROUND_ASSETS_FILE_LOCATION, "ground.obj", CST::COLORS.at("grey"));
+
+	tank->Translate(0, ground->GetHeight() / 2, 0);
+	testTank->Translate(5, ground->GetHeight() / 2, 0);
+
 
 	for (int i = 0; i < 10; i++) {
 		Building* building = new Building();
