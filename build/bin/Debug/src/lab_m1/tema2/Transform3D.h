@@ -80,10 +80,6 @@ namespace T3D
 		);
 
 	}
-
-	inline float degreesToRadians(float degrees) {
-		return degrees * 3.14 / 180.0;
-	}
 }   // namespace T3D
 
 class Transform3D {

@@ -46,7 +46,7 @@ void Transform3D::Scale(float scaleX, float scaleY, float scaleZ) {
 }
 
 void Transform3D::RotateOX(float degrees) {
-	degreesOX -= T3D::degreesToRadians(degrees);
+	degreesOX -= degrees * TO_RADIANS;
 }
 
 void Transform3D::RotateOY(float degrees) {
@@ -55,7 +55,7 @@ void Transform3D::RotateOY(float degrees) {
 }
 
 void Transform3D::RotateOZ(float degrees) {
-	degreesOZ -= T3D::degreesToRadians(degrees);
+	degreesOZ -= degrees * TO_RADIANS;
 }
 
 glm::mat4 Transform3D::GetModelMatrix()

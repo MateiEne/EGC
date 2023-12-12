@@ -18,6 +18,9 @@ namespace CST {
 	const std::string BUILDING_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets\\buildings";
 
 
+	const std::string SPHERE_ASSETS_FILE_LOCATION = ".\\src\\lab_m1\\tema2\\assets";
+
+
 	/*
 	"tank1": {
 		"base":[0, 0, 0],
@@ -78,4 +81,6 @@ namespace CST {
 	const float TANK_ROTATION_SPEED = 90;
 
 	const float MISSILE_SPEED = 15;
+
+	const float COLLISION_OVERLAP_EPS = 0.01;
 }

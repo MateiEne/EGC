@@ -247,3 +247,37 @@ void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 
 	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
 }
 
+void Tank::DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
+	if (!shader || !shader->program) {
+		return;
+	}
+
+	// Render an object using the specified shader and the specified position
+	glUseProgram(shader->program);
+
+	int viewMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "View");
+	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+
+	int projectionMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Projection");
+	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
+	Mesh* mesh = new Mesh("sphere");
+	mesh->LoadMesh(CST::SPHERE_ASSETS_FILE_LOCATION, "sphere.obj");
+	float scale = 2 * GetBaseRadius();
+
+	// TODO(student): Get shader location for uniform mat4 "Model"
+	int modelMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Model");
+	// TODO(student): Set shader uniform "Model" to modelMatrix
+	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(GetModelMatrix() * T3D::Scale(scale, scale, scale)));
+
+	int objectColorLocation = glGetUniformLocation(shader->GetProgramID(), "objectColor");
+	glUniform3fv(objectColorLocation, 1, glm::value_ptr(glm::vec3(1, 0, 0)));
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// Draw the object
+	glBindVertexArray(mesh->GetBuffers()->m_VAO);
+	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	
+	delete mesh;
+}

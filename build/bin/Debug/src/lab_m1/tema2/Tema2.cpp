@@ -127,6 +127,9 @@ void Tema2::Update(float deltaTimeSeconds)
 	tank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	testTank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
+	tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+
 	for each (auto building in buildings) {
 		building->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	}
@@ -149,10 +152,30 @@ void Tema2::FrameEnd()
 
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
-		tank->MoveForward(deltaTime);
 		if (tank->IsInCollisionWithTank(testTank)) {
-			tank->MoveBackwards(deltaTime);
+			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
+			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
+					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
+					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
+
+			if (overlap < CST::COLLISION_OVERLAP_EPS) {
+				overlap = CST::COLLISION_OVERLAP_EPS;
+			}
+
+			glm::vec3 direction = overlap * glm::normalize(dif);
+			
+
+
+			cout << overlap << endl;
+
+			tank->Translate(direction * -0.5f);
+			testTank->Translate(direction * 0.5f);
 		}
+		else {
+			tank->MoveForward(deltaTime);
+		}
+
 
 		for each (auto building in buildings) {
 			if (tank->IsInCollisionWithBuilding(building)) {
@@ -161,9 +184,21 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
-		tank->MoveBackwards(deltaTime);
 		if (tank->IsInCollisionWithTank(testTank)) {
-			tank->MoveForward(deltaTime);
+			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
+			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
+					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
+					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
+			glm::vec3 direction = overlap * glm::normalize(dif);
+
+			cout << overlap << endl;
+
+			tank->Translate(direction * -0.5f);
+			testTank->Translate(direction * 0.5f);
+		}
+		else {
+			tank->MoveBackwards(deltaTime);
 		}
 
 		for each (auto building in buildings) {
@@ -173,9 +208,21 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
-		tank->RotateLeft(deltaTime);
 		if (tank->IsInCollisionWithTank(testTank)) {
-			tank->RotateRight(deltaTime);
+			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
+			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
+					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
+					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
+			glm::vec3 direction = overlap * glm::normalize(dif);
+
+			cout << overlap << endl;
+
+			tank->Translate(direction * -0.5f);
+			testTank->Translate(direction * 0.5f);
+		}
+		else {
+			tank->RotateLeft(deltaTime);
 		}
 
 		for each (auto building in buildings) {
@@ -185,9 +232,19 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
-		tank->RotateRight(deltaTime);
 		if (tank->IsInCollisionWithTank(testTank)) {
-			tank->RotateLeft(deltaTime);
+			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
+			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
+					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
+					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
+			glm::vec3 direction = overlap * glm::normalize(dif);
+
+			tank->Translate(direction * -0.5f);
+			testTank->Translate(direction * 0.5f);
+		}
+		else {
+			tank->RotateRight(deltaTime);
 		}
 
 		for each (auto building in buildings) {

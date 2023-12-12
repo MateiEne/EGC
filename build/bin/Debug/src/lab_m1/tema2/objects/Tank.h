@@ -58,6 +58,7 @@ public:
 	bool IsInCollisionWithBuilding(Building* building);
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
 	glm::vec3 GetGunHeadPosition();
