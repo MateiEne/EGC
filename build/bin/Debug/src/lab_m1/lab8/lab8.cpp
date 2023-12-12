@@ -26,6 +26,8 @@ Lab8::~Lab8()
 
 void Lab8::Init()
 {
+    ANGLE_SPEEDUP = 30.f;
+
     {
         Mesh* mesh = new Mesh("box");
         mesh->LoadMesh(PATH_JOIN(window->props.selfDir, RESOURCE_PATH::MODELS, "primitives"), "box.obj");
@@ -56,10 +58,19 @@ void Lab8::Init()
     // Light & material properties
     {
         lightPosition = glm::vec3(0, 1, 1);
+        secondLightPosition = glm::vec3(0, 1, -1);
+
         lightDirection = glm::vec3(0, -1, 0);
+        secondLightDirection = glm::vec3(0, -1, 0);
+        
         materialShininess = 30;
         materialKd = 0.5;
         materialKs = 0.5;
+
+        typeOfLight = 0;
+        angleOX = 0.f;
+        angleOY = 0.f;
+        cutoffAngle = 30.f;
     }
 }
 
@@ -82,7 +93,7 @@ void Lab8::Update(float deltaTimeSeconds)
         glm::mat4 modelMatrix = glm::mat4(1);
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0, 1, 0));
         // TODO(student): Add or change the object colors
-        RenderSimpleMesh(meshes["sphere"], shaders["LabShader"], modelMatrix);
+        RenderSimpleMesh(meshes["sphere"], shaders["LabShader"], modelMatrix, glm::vec3(.447f, .737f, .831f));
 
     }
 
@@ -92,8 +103,7 @@ void Lab8::Update(float deltaTimeSeconds)
         modelMatrix = glm::rotate(modelMatrix, RADIANS(60.0f), glm::vec3(1, 0, 0));
         modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5f));
         // TODO(student): Add or change the object colors
-        RenderSimpleMesh(meshes["box"], shaders["LabShader"], modelMatrix);
-
+        RenderSimpleMesh(meshes["box"], shaders["LabShader"], modelMatrix, glm::vec3(.54f, .15f, .46f));
     }
 
     {
@@ -109,14 +119,21 @@ void Lab8::Update(float deltaTimeSeconds)
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0, 0.01f, 0));
         modelMatrix = glm::scale(modelMatrix, glm::vec3(0.25f));
         // TODO(student): Add or change the object colors
-        RenderSimpleMesh(meshes["plane"], shaders["LabShader"], modelMatrix);
-
+        RenderSimpleMesh(meshes["plane"], shaders["LabShader"], modelMatrix, glm::vec3(.5f, .5f, .5f));
     }
 
     // Render the point light in the scene
     {
         glm::mat4 modelMatrix = glm::mat4(1);
         modelMatrix = glm::translate(modelMatrix, lightPosition);
+        modelMatrix = glm::scale(modelMatrix, glm::vec3(0.1f));
+        RenderMesh(meshes["sphere"], shaders["Simple"], modelMatrix);
+    }
+
+    // Render the secpmd point light in the scene
+    {
+        glm::mat4 modelMatrix = glm::mat4(1);
+        modelMatrix = glm::translate(modelMatrix, secondLightPosition);
         modelMatrix = glm::scale(modelMatrix, glm::vec3(0.1f));
         RenderMesh(meshes["sphere"], shaders["Simple"], modelMatrix);
     }
@@ -141,8 +158,14 @@ void Lab8::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & modelM
     int light_position = glGetUniformLocation(shader->program, "light_position");
     glUniform3f(light_position, lightPosition.x, lightPosition.y, lightPosition.z);
 
+    int second_light_position = glGetUniformLocation(shader->program, "second_light_position");
+    glUniform3f(second_light_position, secondLightPosition.x, secondLightPosition.y, secondLightPosition.z);
+
     int light_direction = glGetUniformLocation(shader->program, "light_direction");
     glUniform3f(light_direction, lightDirection.x, lightDirection.y, lightDirection.z);
+
+    int second_light_direction = glGetUniformLocation(shader->program, "second_light_direction");
+    glUniform3f(second_light_direction, secondLightDirection.x, secondLightDirection.y, secondLightDirection.z);
 
     // Set eye position (camera position) uniform
     glm::vec3 eyePosition = GetSceneCamera()->m_transform->GetWorldPosition();
@@ -163,6 +186,11 @@ void Lab8::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & modelM
     glUniform3f(object_color, color.r, color.g, color.b);
 
     // TODO(student): Set any other shader uniforms that you need
+    GLint type = glGetUniformLocation(shader->program, "type_of_light");
+    glUniform1i(type, typeOfLight);
+
+    GLint cut_off_angle = glGetUniformLocation(shader->program, "cut_off_angle");
+    glUniform1f(cut_off_angle, cutoffAngle);
 
     // Bind model matrix
     GLint loc_model_matrix = glGetUniformLocation(shader->program, "Model");
@@ -210,7 +238,38 @@ void Lab8::OnInputUpdate(float deltaTime, int mods)
         if (window->KeyHold(GLFW_KEY_Q)) lightPosition -= up * deltaTime * speed;
 
         // TODO(student): Set any other keys that you might need
+        if (window->KeyHold(GLFW_KEY_UP))
+        {
+            angleOX += deltaTime * speed;
+        }
+        if (window->KeyHold(GLFW_KEY_DOWN))
+        {
+            angleOX -= deltaTime * speed;
+        }
+        if (window->KeyHold(GLFW_KEY_LEFT))
+        {
+            angleOY += deltaTime * speed;
+        }
+        if (window->KeyHold(GLFW_KEY_RIGHT))
+        {
+            angleOY -= deltaTime * speed;
+        }
 
+        if (window->KeyHold(GLFW_KEY_R))
+        {
+            cutoffAngle += deltaTime * ANGLE_SPEEDUP;
+        }
+        if (window->KeyHold(GLFW_KEY_T))
+        {
+            cutoffAngle -= deltaTime * ANGLE_SPEEDUP;
+        }
+
+        glm::mat4 turn = glm::mat4(1);
+        turn = glm::rotate(turn, angleOY, glm::vec3(0, 1, 0));
+        turn = glm::rotate(turn, angleOX, glm::vec3(1, 0, 0));
+
+        lightDirection = glm::vec3(0, -1, 0);
+        lightDirection = glm::vec3(turn * glm::vec4(lightDirection, 0));
     }
 }
 
@@ -220,7 +279,9 @@ void Lab8::OnKeyPress(int key, int mods)
     // Add key press event
 
     // TODO(student): Set keys that you might need
-
+    if (key == GLFW_KEY_F) { 
+        typeOfLight ^= 1;
+    }
 }
 
 

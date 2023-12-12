@@ -22,7 +22,7 @@ void Tank::Init(
 	this->gunColor = gunColor;
 	this->wheelColor = wheelColor;
 
-	baseMesh = new Mesh("base");
+	baseMesh = new Mesh("base");	
 	baseMesh->LoadMesh(fileLocation, baseFileName);
 
 	turretMesh = new Mesh("turret");
@@ -34,6 +34,30 @@ void Tank::Init(
 	wheelMesh = new Mesh("wheel");
 	wheelMesh->LoadMesh(fileLocation, wheelFileName);
 
+	//cout << "base mesh:" << endl;
+	//for each (auto i in baseMesh->positions) {
+	//	cout << i << endl;
+	//}
+	//cout << endl;
+
+
+
+	//cout << "turret mesh:" << endl;
+	//for each (auto i in turretMesh->positions) {
+	//	cout << i << endl;
+	//}
+	//cout << endl;
+
+
+
+	//cout << "wheel mesh:" << endl;
+	//for each (auto i in wheelMesh->positions) {
+	//	cout << i << endl;
+	//}
+	//cout << endl;
+
+	//cout << GetHeight();
+	//SetPosition(0, 1, 0);
 	RotateOY(90);
 }
 
@@ -67,6 +91,77 @@ void Tank::RotateLeft(float dt) {
 
 glm::vec3 Tank::GetGunHeadPosition() {
 	return glm::vec3(GetPosition().x + 3 * cos(degreesOY), CST::TANK_GUN_INITIAL_POS.y, GetPosition().z + 3 * sin(degreesOY));
+}
+
+float Tank::GetHeight() {
+	float height = 0;
+
+	float yMin = 1000;
+	float yMax = -1000;
+
+	for each (auto pos in wheelMesh->positions) {
+		if (pos.y < yMin) {
+			yMin = pos.y;
+		}
+	}
+	height += yMin - CST::TANK_LEFT_WHEEL_INITIAL_POS.y;
+
+	for each (auto pos in baseMesh->positions) {
+		if (pos.y > yMax) {
+			yMax = pos.y;
+		}
+	}
+	height += yMax + CST::TANK_BASE_INITIAL_POS.y;
+	yMax = -1000;
+
+	for each (auto pos in turretMesh->positions) {
+		if (pos.y > yMax) {
+			yMax = pos.y;
+		}
+	}
+	height += yMax + CST::TANK_TURRET_INITIAL_POS.y;
+
+
+	return height;
+}
+
+float Tank::GetBaseRadius() {
+	float maxX = -10;
+	float maxY = -10;
+	float maxZ = -10;
+
+	glm::vec3 maxPoint = glm::vec3(0);
+
+	for each (auto pos in baseMesh->positions) {
+		if (abs(pos.x + CST::TANK_BASE_INITIAL_POS.x) > maxX) {
+			maxX = abs(pos.x);
+			maxPoint = pos;
+		}
+		if (abs(pos.y + CST::TANK_BASE_INITIAL_POS.y) > maxY) {
+			maxY = abs(pos.y);
+			maxPoint = pos;
+		}
+		if (abs(pos.z + CST::TANK_BASE_INITIAL_POS.z) > maxZ) {
+			maxZ = abs(pos.z);
+			maxPoint = pos;
+		}
+	}
+
+	float distanceXOZ = sqrt(pow(maxPoint.x, 2) + pow(maxPoint.z, 2));
+	float distanceY = maxPoint.y;
+
+	float radius = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
+
+	return radius;
+}
+
+bool Tank::IsInColisionWithTank(Tank* tank) {
+	float distanceXOZ = sqrt(pow((position.x - tank->position.x), 2) + pow((position.z - tank->position.z), 2));
+	float distanceY = position.y - tank->position.y;
+
+	float distance = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
+
+	return distance < (GetBaseRadius() + tank->GetBaseRadius());
 }
 
 glm::vec3 Tank::GetDirection() {

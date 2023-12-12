@@ -43,8 +43,42 @@ void Tema2::Init() {
 		CST::COLORS.at("light_green")
 	);
 
+	testTank = new Tank();
+	testTank->Init(
+		CST::TANK_ASSETS_FILE_LOCATION,
+		"base.obj",
+		"turret.obj",
+		"gun.obj",
+		"wheel.obj",
+		CST::COLORS.at("dark_green"),
+		CST::COLORS.at("green"),
+		CST::COLORS.at("light_green"),
+		CST::COLORS.at("light_green")
+	);
+
+	testTank->SetPosition(5, 0, 0);
+
+	cout << testTank->GetBaseRadius() << endl;
+
 	ground = new Ground();
 	ground->Init(CST::GROUND_ASSETS_FILE_LOCATION, "ground.obj", CST::COLORS.at("grey"));
+
+	for (int i = 0; i < 10; i++) {
+		Building* building = new Building();
+		building->Init(CST::BUILDING_ASSETS_FILE_LOCATION, "building.obj", CST::COLORS.at("light_blue"));
+
+		float x = -50 + rand() % 101;
+		float z = -50 + rand() % 101;
+
+		float scaleX = rand() % 5 + 2;
+		float scaleY = rand() % 15 + 5;
+		float scaleZ = rand() % 5 + 2;
+
+		building->SetScale(scaleX, scaleY, scaleZ);
+		building->SetPosition(x, 1, z);
+
+		buildings.push_back(building);
+	}
 }
 
 void Tema2::FrameStart()
@@ -69,11 +103,16 @@ void Tema2::Update(float deltaTimeSeconds)
 
 	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
-	
+
 	ground->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	tank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	testTank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
-	DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix);
+	for each (auto building in buildings) {
+		building->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	}
+
+	//DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix);
 
 	glClear(GL_DEPTH_BUFFER_BIT);
 }
@@ -92,15 +131,27 @@ void Tema2::FrameEnd()
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
 		tank->MoveForward(deltaTime);
+		if (tank->IsInColisionWithTank(testTank)) {
+			tank->MoveBackwards(deltaTime);
+		}
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
 		tank->MoveBackwards(deltaTime);
+		if (tank->IsInColisionWithTank(testTank)) {
+			tank->MoveForward(deltaTime);
+		}
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
 		tank->RotateLeft(deltaTime);
+		if (tank->IsInColisionWithTank(testTank)) {
+			tank->RotateRight(deltaTime);
+		}
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
 		tank->RotateRight(deltaTime);
+		if (tank->IsInColisionWithTank(testTank)) {
+			tank->RotateLeft(deltaTime);
+		}
 	}
 
 	if (window->KeyHold(GLFW_KEY_Z)) {

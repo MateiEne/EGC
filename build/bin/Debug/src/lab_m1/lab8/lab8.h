@@ -31,12 +31,20 @@ namespace m1
         void OnWindowResize(int width, int height) override;
 
         glm::vec3 lightPosition;
+        glm::vec3 secondLightPosition;
+       
         glm::vec3 lightDirection;
+        glm::vec3 secondLightDirection;
+        
         unsigned int materialShininess;
         float materialKd;
         float materialKs;
 
         // TODO(student): If you need any other class variables, define them here.
+		GLint typeOfLight;
+		GLfloat angleOX, angleOY;
+		GLfloat cutoffAngle;
 
+        float ANGLE_SPEEDUP;
     };
 }   // namespace m1

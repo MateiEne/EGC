@@ -45,6 +45,11 @@ public:
 	glm::vec3 GetDirection();
 	glm::vec3 GetUpDirection();
 
+	float GetHeight();
+	float GetBaseRadius();
+
+	bool IsInColisionWithTank(Tank* tank);
+
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:

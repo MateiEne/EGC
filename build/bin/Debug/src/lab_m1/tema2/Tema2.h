@@ -10,6 +10,7 @@
 #include "lab_m1/tema2/objects/Tank.h"
 #include "lab_m1/tema2/GameCamera.h"
 #include "lab_m1/tema2/objects/Ground.h"
+#include "lab_m1/tema2/objects/Building.h"
 
 
 namespace m1
@@ -54,8 +55,11 @@ namespace m1
         ViewportArea miniViewportArea;
     
         Tank* tank;
+        Tank* testTank;
 
         Ground* ground;
+
+        vector<Building*> buildings;
     };
 }   // namespace m1
 

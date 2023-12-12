@@ -10,8 +10,7 @@ void Ground::Init(const string& fileLocation, const string& groundFileName, glm:
 	mesh = new Mesh("ground");
 	mesh->LoadMesh(fileLocation, groundFileName);
 
-	SetPosition(0, -1, 0);
-	SetScale(100, 1, 100);
+	SetScale(CST::WORLD_SCALE_X, CST::WORLD_SCALE_Y, CST::WORLD_SCALE_Z);
 
 	this->color = color;
 }
