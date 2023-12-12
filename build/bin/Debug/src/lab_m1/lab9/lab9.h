@@ -39,5 +39,8 @@ namespace m1
         GLuint randomTextureID;
 
         bool mixTextures;
+        bool isEarthTexture;
+        bool isGrassTexture;
+        float angle;
     };
 }   // namespace m1

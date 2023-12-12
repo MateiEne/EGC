@@ -67,6 +67,10 @@ void Tema2::Init() {
 		Building* building = new Building();
 		building->Init(CST::BUILDING_ASSETS_FILE_LOCATION, "building.obj", CST::COLORS.at("light_blue"));
 
+		cout << "building " << i << "with width: " << building->GetWidth() << endl;
+		cout << "building " << i << "with length: " << building->GetLength() << endl;
+		cout << "building " << i << "with height: " << building->GetHeight() << endl;
+
 		float x = -50 + rand() % 101;
 		float z = -50 + rand() % 101;
 
@@ -76,6 +80,11 @@ void Tema2::Init() {
 
 		building->SetScale(scaleX, scaleY, scaleZ);
 		building->SetPosition(x, 1, z);
+
+
+		cout << "building " << i << "with width: " << building->GetWidth() << "after scaling z with: " << scaleZ << endl;
+		cout << "building " << i << "with length: " << building->GetLength() << "after scaling x with: " << scaleX << endl;
+		cout << "building " << i << "with height: " << building->GetHeight() << "after scaling y with: " << scaleY << endl;
 
 		buildings.push_back(building);
 	}
@@ -112,8 +121,8 @@ void Tema2::Update(float deltaTimeSeconds)
 		building->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	}
 
-	//DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix);
-
+	//DrawCoordinateSystem(cameraViewMatrix, cameraProjectionMatrix
+	
 	glClear(GL_DEPTH_BUFFER_BIT);
 }
 
@@ -131,26 +140,50 @@ void Tema2::FrameEnd()
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
 		tank->MoveForward(deltaTime);
-		if (tank->IsInColisionWithTank(testTank)) {
+		if (tank->IsInCollisionWithTank(testTank)) {
 			tank->MoveBackwards(deltaTime);
+		}
+
+		for each (auto building in buildings) {
+			if (tank->IsInCollisionWithBuilding(building)) {
+				tank->MoveBackwards(deltaTime);
+			}
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
 		tank->MoveBackwards(deltaTime);
-		if (tank->IsInColisionWithTank(testTank)) {
+		if (tank->IsInCollisionWithTank(testTank)) {
 			tank->MoveForward(deltaTime);
+		}
+
+		for each (auto building in buildings) {
+			if (tank->IsInCollisionWithBuilding(building)) {
+				tank->MoveForward(deltaTime);
+			}
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
 		tank->RotateLeft(deltaTime);
-		if (tank->IsInColisionWithTank(testTank)) {
+		if (tank->IsInCollisionWithTank(testTank)) {
 			tank->RotateRight(deltaTime);
+		}
+
+		for each (auto building in buildings) {
+			if (tank->IsInCollisionWithBuilding(building)) {
+				tank->RotateRight(deltaTime);
+			}
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
 		tank->RotateRight(deltaTime);
-		if (tank->IsInColisionWithTank(testTank)) {
+		if (tank->IsInCollisionWithTank(testTank)) {
 			tank->RotateLeft(deltaTime);
+		}
+
+		for each (auto building in buildings) {
+			if (tank->IsInCollisionWithBuilding(building)) {
+				tank->RotateLeft(deltaTime);
+			}
 		}
 	}
 

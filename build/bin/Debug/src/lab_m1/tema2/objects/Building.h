@@ -24,6 +24,11 @@ public:
 
 	void Update(float dt);
 
+	float GetRadius();
+	float GetLength();
+	float GetHeight();
+	float GetWidth();
+
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:

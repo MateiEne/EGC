@@ -13,6 +13,7 @@
 #include "lab_m1/tema2/Constants.h"
 #include "lab_m1/tema2/GameCamera.h"
 #include "lab_m1/tema2/objects/Missile.h"
+#include "lab_m1/tema2/objects/Building.h"
 
 using namespace std;
 
@@ -48,7 +49,8 @@ public:
 	float GetHeight();
 	float GetBaseRadius();
 
-	bool IsInColisionWithTank(Tank* tank);
+	bool IsInCollisionWithTank(Tank* tank);
+	bool IsInCollisionWithBuilding(Building* building);
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 

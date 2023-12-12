@@ -98,9 +98,9 @@ void Lab9::Init()
         {
             // TODO(student): Complete texture coordinates for the square
             glm::vec2(0.0f, 0.0f),
-            glm::vec2(1.f, 0.f),
+            glm::vec2(0.f, 1.f),
             glm::vec2(1.f, 1.f),
-            glm::vec2(0.f, 1.f)
+            glm::vec2(1.f, 0.f)
         };
 
         vector<unsigned int> indices =
@@ -124,6 +124,10 @@ void Lab9::Init()
     }
 
     mixTextures = false;
+    isEarthTexture = false;
+    isGrassTexture = false;
+
+    angle = 0;
 }
 
 
@@ -155,7 +159,9 @@ void Lab9::Update(float deltaTimeSeconds)
         glm::mat4 modelMatrix = glm::mat4(1);
         modelMatrix = glm::translate(modelMatrix, glm::vec3(1, 1, -3));
         modelMatrix = glm::scale(modelMatrix, glm::vec3(2));
+        isEarthTexture = true;
         RenderSimpleMesh(meshes["sphere"], shaders["LabShader"], modelMatrix, mapTextures["earth"], nullptr);
+        isEarthTexture = false;
     }
 
     {
@@ -180,7 +186,9 @@ void Lab9::Update(float deltaTimeSeconds)
         modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5f));
         
         mixTextures = true;
+        isGrassTexture = true;
         RenderSimpleMesh(meshes["square"], shaders["LabShader"], modelMatrix, mapTextures["grass"], mapTextures["earth"]);
+        isGrassTexture = false;
         mixTextures = false;
     }
 
@@ -223,6 +231,12 @@ void Lab9::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & modelM
 
     // TODO(student): Set any other shader uniforms that you need
     glUniform1i(glGetUniformLocation(shader->program, "mix_textures"), mixTextures);
+
+    glUniform1i(glGetUniformLocation(shader->program, "isEarthTexture"), isEarthTexture);
+    glUniform1i(glGetUniformLocation(shader->program, "isGrassTexture"), isGrassTexture);
+
+    glUniform1f(glGetUniformLocation(shader->program, "time"), Engine::GetElapsedTime());
+    glUniform1f(glGetUniformLocation(shader->program, "angle"), angle);
 
     if (texture1)
     {
@@ -323,6 +337,9 @@ void Lab9::OnInputUpdate(float deltaTime, int mods)
         glm::vec3 right = GetSceneCamera()->m_transform->GetLocalOXVector();
         glm::vec3 forward = GetSceneCamera()->m_transform->GetLocalOZVector();
         forward = glm::normalize(glm::vec3(forward.x, 0, forward.z));
+    }
+    else {
+        angle += 3 * deltaTime;
     }
 }
 
