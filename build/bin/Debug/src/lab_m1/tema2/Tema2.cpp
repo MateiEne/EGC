@@ -152,9 +152,9 @@ void Tema2::FrameEnd()
 
 void Tema2::OnInputUpdate(float deltaTime, int mods) {
 	if (window->KeyHold(GLFW_KEY_W)) {
-		if (tank->IsInCollisionWithTank(testTank)) {
+		if (tank->IsInCollision(testTank)) {
 			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
-			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+			float overlap = tank->GetRadius() + testTank->GetRadius()
 				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
 					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
 					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
@@ -184,9 +184,9 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_S)) {
-		if (tank->IsInCollisionWithTank(testTank)) {
+		if (tank->IsInCollision(testTank)) {
 			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
-			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+			float overlap = tank->GetRadius() + testTank->GetRadius()
 				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
 					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
 					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
@@ -208,9 +208,9 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_A)) {
-		if (tank->IsInCollisionWithTank(testTank)) {
+		if (tank->IsInCollision(testTank)) {
 			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
-			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+			float overlap = tank->GetRadius() + testTank->GetRadius()
 				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
 					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
 					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));
@@ -232,9 +232,9 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 	}
 	else if (window->KeyHold(GLFW_KEY_D)) {
-		if (tank->IsInCollisionWithTank(testTank)) {
+		if (tank->IsInCollision(testTank)) {
 			glm::vec3 dif = (testTank->GetPosition() - tank->GetPosition());
-			float overlap = tank->GetBaseRadius() + testTank->GetBaseRadius()
+			float overlap = tank->GetRadius() + testTank->GetRadius()
 				- sqrt(pow((tank->GetPosition().x - testTank->GetPosition().x), 2)
 					+ pow((tank->GetPosition().y - testTank->GetPosition().y), 2)
 					+ pow((tank->GetPosition().z - testTank->GetPosition().z), 2));

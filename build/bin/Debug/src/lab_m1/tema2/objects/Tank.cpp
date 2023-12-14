@@ -49,6 +49,8 @@ void Tank::Init(
 
 	SetPosition(0, -GetLowestPoint().y - leftWheelOffset.y, 0);
 	RotateOY(90);
+
+	radius = GetBaseRadius();
 }
 
 void Tank::Update(float dt) {
@@ -159,6 +161,14 @@ float Tank::GetBaseRadius() {
 	float radius = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
 
 	return radius;
+}
+
+glm::vec3 Tank::GetCenter() {
+	return position;
+}
+
+float Tank::GetRadius() {
+	return radius * max(max(scale.x, scale.y), scale.z);
 }
 
 bool Tank::IsInCollisionWithTank(Tank* tank) {

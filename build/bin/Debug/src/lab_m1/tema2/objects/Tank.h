@@ -14,10 +14,11 @@
 #include "lab_m1/tema2/GameCamera.h"
 #include "lab_m1/tema2/objects/Missile.h"
 #include "lab_m1/tema2/objects/Building.h"
+#include "lab_m1/tema2/SphereCollider.h"
 
 using namespace std;
 
-class Tank : public Transform3D {
+class Tank : public Transform3D, public SphereCollider {
 public:
 	Tank();
 	~Tank();
@@ -51,8 +52,10 @@ public:
 	glm::vec3 GetDirection();
 	glm::vec3 GetUpDirection();
 
+	glm::vec3 GetCenter() override;
+	float GetRadius() override;
+
 	float GetHeight();
-	float GetBaseRadius();
 
 	bool IsInCollisionWithTank(Tank* tank);
 	bool IsInCollisionWithBuilding(Building* building);
@@ -61,6 +64,8 @@ public:
 	void DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
+	float GetBaseRadius();
+
 	glm::vec3 GetGunHeadPosition();
 	glm::vec3 GetLowestPoint();
 
@@ -73,6 +78,8 @@ private:
 	Mesh* wheelMesh;
 
 	vector<Missile*> missiles;
+
+	float radius;
 
 	glm::vec3 baseColor;
 	glm::vec3 turretColor;
