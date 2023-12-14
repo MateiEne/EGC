@@ -128,7 +128,7 @@ void Tema2::Update(float deltaTimeSeconds)
 	testTank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
 	tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
 	for each (auto building in buildings) {
 		building->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
