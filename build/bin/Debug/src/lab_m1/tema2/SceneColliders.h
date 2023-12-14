@@ -31,52 +31,33 @@ public:
 	}
 
 	void DeleteCollider(Collider* collider) {
-		//if (Missile* m = dynamic_cast<Missile*>(collider)) {
-		//	cout << "mmmm" << endl;
-		//}
+		for (int i = 0; i < colliders.size(); i++) {
+			if (colliders[i] == collider) {
+				colliders.erase(colliders.begin() + i);
 
-		colliders.remove(collider);
-	}
-
-	list<Collider*> GetColliders() {
-		return colliders;
+				return;
+			}
+		}
 	}
 
 	void CheckCollisions() {
-		for each (auto collider in colliders) {
-			for each (auto c in colliders)
-			{
-				if (c == collider) {
-					continue;
+		list<pair<Collider*, Collider*>> damagedColliders;
+
+		for (int i = 0; i < colliders.size() - 1; i++) {
+			for (int j = i + 1; j < colliders.size(); j++) {
+				if (colliders[j]->IsInCollision(colliders[i])) {
+					damagedColliders.push_back(make_pair(colliders[i], colliders[j]));
 				}
-
-				if (c->IsInCollision(collider)) {
-					c->TakeDamage(collider);
-					collider->TakeDamage(c);
-				}
-
-			}
-		}
-	}
-
-	bool IsInCollision(Collider* collider) {
-		for each (auto c in colliders) {
-			if (c == collider) {
-				continue;
-			}
-
-			if (c->IsInCollision(collider)) {
-				c->TakeDamage(collider);
-				collider->TakeDamage(c);
-
-				return true;
 			}
 		}
 
-		return false;
+		for each (auto pair in damagedColliders) {
+			pair.first->TakeDamage(pair.second);
+			pair.second->TakeDamage(pair.first);
+		}
 	}
 
 private:
 
-	list<Collider*> colliders;
+	vector<Collider*> colliders;
 };
