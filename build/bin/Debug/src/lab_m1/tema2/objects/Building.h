@@ -25,7 +25,6 @@ public:
 
 	void Update(float dt);
 
-	float GetRadius();
 	float GetLength() override;
 	float GetHeight() override;
 	float GetWidth() override;
@@ -35,6 +34,15 @@ public:
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
+	float CalculateLength();
+	float CalculateHeight();
+	float CalculateWidth();
+
+private:
+	float length;
+	float width;
+	float height;
+
 	Mesh* mesh;
 
 	glm::vec3 color;

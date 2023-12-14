@@ -23,6 +23,8 @@ void Missile::Init(
 	SetPosition(initialPosition);
 
 	this->color = color;
+
+	radius = CalculateRadius();
 }
 
 void Missile::Update(float dt) {
@@ -48,6 +50,47 @@ bool Missile::IsDead() {
 
 glm::vec3 Missile::GetDirection() {
 	return direction;
+}
+
+
+float Missile::CalculateRadius()
+{
+	float maxX = -10;
+	float maxY = -10;
+	float maxZ = -10;
+
+	glm::vec3 maxPoint = glm::vec3(0);
+
+	for each (auto pos in mesh->positions) {
+		if (abs(pos.x) > maxX) {
+			maxX = abs(pos.x);
+			maxPoint = pos;
+		}
+		if (abs(pos.y) > maxY) {
+			maxY = abs(pos.y);
+			maxPoint = pos;
+		}
+		if (abs(pos.z) > maxZ) {
+			maxZ = abs(pos.z);
+			maxPoint = pos;
+		}
+	}
+
+	float distanceXOZ = sqrt(pow(maxPoint.x * scale.x, 2) + pow(maxPoint.z * scale.z, 2));
+	float distanceY = maxPoint.y * scale.y;
+
+	float radius = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
+
+	return radius;
+}
+
+
+float Missile::GetRadius() {
+	return radius * max(max(scale.x, scale.y), scale.z);;
+}
+
+glm::vec3 Missile::GetCenter() {
+	return position;
 }
 
 void Missile::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {

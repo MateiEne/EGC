@@ -11,86 +11,17 @@ void Building::Init(const string& fileLocation, const string& buildingFileName, 
 	mesh->LoadMesh(fileLocation, buildingFileName);
 
 	this->color = color;
+
+	length = CalculateLength();
+	height = CalculateHeight();
+	width = CalculateWidth();
 }
 
 void Building::Update(float dt) {
 }
 
-float Building::GetRadius() {
-	float maxX = -10;
-	float maxY = -10;
-	float maxZ = -10;
 
-	glm::vec3 maxPoint = glm::vec3(0);
-
-	for each (auto pos in mesh->positions) {
-		if (abs(pos.x) > maxX) {
-			maxX = abs(pos.x);
-			maxPoint = pos;
-		}
-		if (abs(pos.y) > maxY) {
-			maxY = abs(pos.y);
-			maxPoint = pos;
-		}
-		if (abs(pos.z) > maxZ) {
-			maxZ = abs(pos.z);
-			maxPoint = pos;
-		}
-	}
-
-	float distanceXOZ = sqrt(pow(maxPoint.x * scale.x, 2) + pow(maxPoint.z * scale.z, 2));
-	float distanceY = maxPoint.y * scale.y;
-
-	float radius = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
-
-	return radius;
-}
-
-float Building::GetLength() {
-	float maxX = -10;
-	float maxY = -10;
-	float maxZ = -10;
-
-	float minX = 10;
-	float minY = 10;
-
-	glm::vec3 maxPoint = glm::vec3(0);
-	glm::vec3 minPoint = glm::vec3(0);
-
-	for each (auto pos in mesh->positions) {
-		if (pos.z >= maxZ) {
-			maxZ = pos.z;
-		
-			if (pos.x >= maxX) {
-				maxX = pos.x;
-				
-				if (pos.y >= maxY) {
-					maxY = pos.y;
-
-					maxPoint = pos;
-				}
-			}
-		}
-
-		if (pos.z >= maxZ) {
-			maxZ = pos.z;
-
-			if (pos.x <= minX) {
-				minX = pos.x;
-
-				if (pos.y <= minY) {
-					minY = pos.y;
-
-					minPoint = pos;
-				}
-			}
-		}
-	}
-
-	return (maxPoint.x - minPoint.x) * scale.x;
-}
-
-float Building::GetHeight() {
+float Building::CalculateLength() {
 	float maxX = -10;
 	float maxY = -10;
 	float maxZ = -10;
@@ -130,11 +61,55 @@ float Building::GetHeight() {
 			}
 		}
 	}
-	
-	return (maxPoint.y - minPoint.y) * scale.y;
+
+	return (maxPoint.x - minPoint.x);
 }
 
-float Building::GetWidth() {
+float Building::CalculateHeight() {
+	float maxX = -10;
+	float maxY = -10;
+	float maxZ = -10;
+
+	float minX = 10;
+	float minY = 10;
+
+	glm::vec3 maxPoint = glm::vec3(0);
+	glm::vec3 minPoint = glm::vec3(0);
+
+	for each (auto pos in mesh->positions) {
+		if (pos.z >= maxZ) {
+			maxZ = pos.z;
+
+			if (pos.x >= maxX) {
+				maxX = pos.x;
+
+				if (pos.y >= maxY) {
+					maxY = pos.y;
+
+					maxPoint = pos;
+				}
+			}
+		}
+
+		if (pos.z >= maxZ) {
+			maxZ = pos.z;
+
+			if (pos.x <= minX) {
+				minX = pos.x;
+
+				if (pos.y <= minY) {
+					minY = pos.y;
+
+					minPoint = pos;
+				}
+			}
+		}
+	}
+
+	return (maxPoint.y - minPoint.y);
+}
+
+float Building::CalculateWidth() {
 	float maxX = -10;
 	float maxY = -10;
 	float maxZ = -10;
@@ -176,7 +151,19 @@ float Building::GetWidth() {
 		}
 	}
 
-	return (maxPoint.z - minPoint.z) * scale.z;
+	return (maxPoint.z - minPoint.z);
+}
+
+float Building::GetLength() {
+	return length * scale.x;
+}
+
+float Building::GetHeight() {
+	return height * scale.y;
+}
+
+float Building::GetWidth() {
+	return width * scale.z;
 }
 
 glm::vec3 Building::GetCenter() {

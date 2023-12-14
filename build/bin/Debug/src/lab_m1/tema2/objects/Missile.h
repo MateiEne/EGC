@@ -5,12 +5,13 @@
 
 #include "lab_m1/tema2/Transform3D.h"
 #include "lab_m1/tema2/Constants.h"
+#include "lab_m1/tema2/SphereCollider.h"
 
 #include <string>
 
 using namespace std;
 
-class Missile : public Transform3D {
+class Missile : public Transform3D, public SphereCollider {
 public:
 	Missile();
 	~Missile();
@@ -28,10 +29,17 @@ public:
 	bool IsDead();
 
 	glm::vec3 GetDirection();
+	float GetRadius() override;
+	glm::vec3 GetCenter() override;
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
+	float CalculateRadius();
+
+private:
+	float radius;
+
 	Mesh* mesh;
 	glm::vec3 direction;
 	glm::vec3 initialPosition;
