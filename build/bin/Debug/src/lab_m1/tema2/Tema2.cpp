@@ -139,8 +139,8 @@ void Tema2::Update(float deltaTimeSeconds)
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
 
 	ground->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	tank->Draw(shaders["TankShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	testTank->Draw(shaders["TankShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	tank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
+	testTank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
 
 	//tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);

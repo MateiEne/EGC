@@ -208,7 +208,9 @@ void Tank::Fire() {
 	SceneColliders::GetInstance().AddCollider(missile);
 }
 
-void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
+void Tank::Draw(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
+	Shader* shader = shaders["TankShaders"];
+	
 	if (!shader || !shader->program) {
 		return;
 	}
@@ -229,7 +231,7 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 	DrawPart(wheelMesh, shader, leftWheelOffset, wheelColor);
 
 	for each (auto missile in missiles) {
-		missile->Draw(shader, viewMatrix, projectionMatrix);
+		missile->Draw(shaders["TemaShaders"], viewMatrix, projectionMatrix);
 	}
 }
 
@@ -261,10 +263,12 @@ void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 
 	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
 }
 
-void Tank::DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
+void Tank::DrawDebug(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
 	if (hp <= 0) {
 		return;
 	}
+
+	Shader* shader = shaders["TemaShaders"];
 
 	if (!shader || !shader->program) {
 		return;

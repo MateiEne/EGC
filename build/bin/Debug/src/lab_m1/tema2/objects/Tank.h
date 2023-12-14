@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 #include "core/gpu/mesh.h"
@@ -62,8 +62,8 @@ public:
 
 	float GetHeight();
 
-	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
-	void DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void Draw(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void DrawDebug(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
 private:
 	float GetBaseRadius();
