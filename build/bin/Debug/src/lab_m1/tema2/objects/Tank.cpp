@@ -21,7 +21,7 @@ void Tank::Init(
 	glm::vec3 gunOffset,
 	glm::vec3 rightWheelOffset,
 	glm::vec3 leftWheelOffset,
-	float hp
+	int maxHp
 ) {
 	this->fileLocation = fileLocation;
 
@@ -53,7 +53,9 @@ void Tank::Init(
 
 	radius = GetBaseRadius();
 
-	this->hp = hp;
+	this->maxHp = maxHp;
+
+	hp = maxHp;
 }
 
 void Tank::Update(float dt) {
@@ -247,6 +249,12 @@ void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 
 
 	int objectColorLocation = glGetUniformLocation(shader->GetProgramID(), "objectColor");
 	glUniform3fv(objectColorLocation, 1, glm::value_ptr(color));
+
+	int hpLocation = glGetUniformLocation(shader->GetProgramID(), "hp");
+	glUniform1i(hpLocation, hp);
+
+	int maxHpLocation = glGetUniformLocation(shader->GetProgramID(), "maxHp");
+	glUniform1i(maxHpLocation, maxHp);
 
 	// Draw the object
 	glBindVertexArray(mesh->GetBuffers()->m_VAO);

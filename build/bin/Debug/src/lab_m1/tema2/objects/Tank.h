@@ -40,7 +40,7 @@ public:
 		glm::vec3 gunOffset,
 		glm::vec3 rightWheelOffset,
 		glm::vec3 leftWheelOffset,
-		float hp
+		int maxHp
 	);
 
 	void Update(float dt);
@@ -74,7 +74,8 @@ private:
 	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation, glm::vec3 color);
 
 private:
-	float hp;
+	int hp;
+	int maxHp;
 
 	Mesh* baseMesh;
 	Mesh* turretMesh;

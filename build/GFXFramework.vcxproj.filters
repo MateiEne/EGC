@@ -451,5 +451,8 @@
     <None Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\shaders\VertexShader.glsl">
       <Filter>src\lab_m1\tema2\shaders</Filter>
     </None>
+    <None Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\shaders\TankVertexShader.glsl">
+      <Filter>src\lab_m1\tema2\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

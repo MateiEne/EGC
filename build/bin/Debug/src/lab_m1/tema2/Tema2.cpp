@@ -16,7 +16,7 @@ Tema2::Tema2() {
 
 Tema2::~Tema2() {
 }
-
+	
 
 void Tema2::Init() {
 	polygonMode = GL_FILL;
@@ -29,6 +29,12 @@ void Tema2::Init() {
 	shader->AddShader(PATH_JOIN(window->props.selfDir, SOURCE_PATH::M1, "tema2", "shaders", "FragmentShader.glsl"), GL_FRAGMENT_SHADER);
 	shader->CreateAndLink();
 	shaders[shader->GetName()] = shader;
+
+	Shader* tankShader = new Shader("TankShaders");
+	tankShader->AddShader(PATH_JOIN(window->props.selfDir, SOURCE_PATH::M1, "tema2", "shaders", "TankVertexShader.glsl"), GL_VERTEX_SHADER);
+	tankShader->AddShader(PATH_JOIN(window->props.selfDir, SOURCE_PATH::M1, "tema2", "shaders", "FragmentShader.glsl"), GL_FRAGMENT_SHADER);
+	tankShader->CreateAndLink();
+	shaders[tankShader->GetName()] = tankShader;
 
 	tank = new Tank();
 	tank->Init(
@@ -133,11 +139,11 @@ void Tema2::Update(float deltaTimeSeconds)
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
 
 	ground->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	tank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	testTank->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	tank->Draw(shaders["TankShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	testTank->Draw(shaders["TankShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
-	tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
-	testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	//tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
+	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 
 	for each (auto building in buildings) {
 		building->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
