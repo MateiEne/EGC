@@ -5,13 +5,14 @@
 
 #include "lab_m1/tema2/Transform3D.h"
 #include "lab_m1/tema2/Constants.h"
+#include "lab_m1/tema2/BoxCollider.h"
 
 #include "core/gpu/shader.h"
 #include "core/gpu/mesh.h"
 
 using namespace std;
 
-class Building : public Transform3D {
+class Building : public Transform3D, public BoxCollider {
 public:
 	Building();
 	~Building();
@@ -25,9 +26,11 @@ public:
 	void Update(float dt);
 
 	float GetRadius();
-	float GetLength();
-	float GetHeight();
-	float GetWidth();
+	float GetLength() override;
+	float GetHeight() override;
+	float GetWidth() override;
+
+	glm::vec3 GetCenter() override;
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 

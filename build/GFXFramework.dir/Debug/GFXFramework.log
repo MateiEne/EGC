@@ -8,6 +8,9 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Cons
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(14,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
   
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(32,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(25,56): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(84,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(85,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -22,6 +25,15 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(261,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(264,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(267,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Building.cpp
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Building.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Building.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Building.cpp(41,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Building.cpp(44,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Tank.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
@@ -32,11 +44,12 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Cons
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(14,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
   
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(32,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(158,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(161,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(175,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(178,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(196,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(187,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   main.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
@@ -47,7 +60,12 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Cons
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(14,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
   
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h(32,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
+  
   Generating Code...
+  LINK : C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe not found or not built by the last incremental link; performing full link
+     Creating library C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.lib and object C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.exp
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets

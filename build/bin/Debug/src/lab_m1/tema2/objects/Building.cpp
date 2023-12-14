@@ -179,6 +179,10 @@ float Building::GetWidth() {
 	return (maxPoint.z - minPoint.z) * scale.z;
 }
 
+glm::vec3 Building::GetCenter() {
+	return position;
+}
+
 void Building::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
 	if (!shader || !shader->program || !mesh) {
 		return;

@@ -178,7 +178,7 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 
 
 		for each (auto building in buildings) {
-			if (tank->IsInCollisionWithBuilding(building)) {
+			if (tank->IsInCollision(building)) {
 				tank->MoveBackwards(deltaTime);
 			}
 		}
@@ -202,7 +202,7 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 
 		for each (auto building in buildings) {
-			if (tank->IsInCollisionWithBuilding(building)) {
+			if (tank->IsInCollision(building)) {
 				tank->MoveForward(deltaTime);
 			}
 		}
@@ -226,7 +226,7 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 
 		for each (auto building in buildings) {
-			if (tank->IsInCollisionWithBuilding(building)) {
+			if (tank->IsInCollision(building)) {
 				tank->RotateRight(deltaTime);
 			}
 		}
@@ -248,7 +248,7 @@ void Tema2::OnInputUpdate(float deltaTime, int mods) {
 		}
 
 		for each (auto building in buildings) {
-			if (tank->IsInCollisionWithBuilding(building)) {
+			if (tank->IsInCollision(building)) {
 				tank->RotateLeft(deltaTime);
 			}
 		}

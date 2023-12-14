@@ -345,6 +345,9 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h">
       <Filter>src\lab_m1\tema2</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\BoxCollider.h">
+      <Filter>src\lab_m1\tema2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\CMakeLists.txt" />

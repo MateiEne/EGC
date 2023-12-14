@@ -57,9 +57,6 @@ public:
 
 	float GetHeight();
 
-	bool IsInCollisionWithTank(Tank* tank);
-	bool IsInCollisionWithBuilding(Building* building);
-
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 	void DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 

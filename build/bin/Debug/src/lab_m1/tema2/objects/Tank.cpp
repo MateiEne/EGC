@@ -171,33 +171,6 @@ float Tank::GetRadius() {
 	return radius * max(max(scale.x, scale.y), scale.z);
 }
 
-bool Tank::IsInCollisionWithTank(Tank* tank) {
-	float distanceXOZ = sqrt(pow((position.x - tank->position.x), 2) + pow((position.z - tank->position.z), 2));
-	float distanceY = position.y - tank->position.y;
-
-	float distance = sqrt(pow(distanceXOZ, 2) + pow(distanceY, 2));
-
-	return distance < (GetBaseRadius() + tank->GetBaseRadius());
-}
-
-bool Tank::IsInCollisionWithBuilding(Building* building) {
-	float buildingMinX = building->GetPosition().x - building->GetLength() / 2;
-	float buildingMinY = building->GetPosition().y - building->GetHeight() / 2;
-	float buildingMinZ = building->GetPosition().z - building->GetWidth() / 2;
-
-	float buildingMaxX = building->GetPosition().x + building->GetLength() / 2;
-	float buildingMaxY = building->GetPosition().y + building->GetHeight() / 2;
-	float buildingMaxZ = building->GetPosition().z + building->GetWidth() / 2;
-		
-	float x = max(buildingMinX, min(position.x, buildingMaxX));
-	float y = max(buildingMinY, min(position.y, buildingMaxY));
-	float z = max(buildingMinZ, min(position.z, buildingMaxZ));
-
-	float distance = sqrt(pow((x - position.x), 2) + pow((y - position.y), 2) + pow((z - position.z), 2));
-
-	return distance < GetBaseRadius();
-}
-
 glm::vec3 Tank::GetDirection() {
 	return glm::vec3(cos(degreesOY), 0, sin(degreesOY));
 }
