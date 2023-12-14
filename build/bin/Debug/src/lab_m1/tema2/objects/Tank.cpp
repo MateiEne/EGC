@@ -57,7 +57,8 @@ void Tank::Update(float dt) {
 	for (int i = 0; i < missiles.size(); i++) {
 		missiles[i]->Update(dt);
 
-		if (missiles[i]->IsDead()) {
+		if (missiles[i]->IsDead() || SceneColliders::GetInstance().IsInCollision(missiles[i])) {
+			SceneColliders::GetInstance().DeleteCollider(missiles[i]);
 			missiles.erase(missiles.begin() + i);
 
 			i--;
@@ -185,6 +186,7 @@ void Tank::Fire() {
 	missile->SetScale(.2f, .2f, .2f);
 
 	missiles.push_back(missile);
+	SceneColliders::GetInstance().AddCollider(missile);
 }
 
 void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {

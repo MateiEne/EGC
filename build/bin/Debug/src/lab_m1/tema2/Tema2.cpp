@@ -97,7 +97,12 @@ void Tema2::Init() {
 		cout << "building " << i << "with height: " << building->GetHeight() << "after scaling y with: " << scaleY << endl;
 
 		buildings.push_back(building);
+		
+		SceneColliders::GetInstance().AddCollider(building);
 	}
+
+	SceneColliders::GetInstance().AddCollider(tank);
+	SceneColliders::GetInstance().AddCollider(testTank);
 }
 
 void Tema2::FrameStart()

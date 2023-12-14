@@ -12,6 +12,9 @@
 #include "lab_m1/tema2/objects/Ground.h"
 #include "lab_m1/tema2/objects/Building.h"
 
+#include "Collider.h"
+
+#include "SceneColliders.h"
 
 namespace m1
 {

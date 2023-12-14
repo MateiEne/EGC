@@ -16,6 +16,8 @@
 #include "lab_m1/tema2/objects/Building.h"
 #include "lab_m1/tema2/SphereCollider.h"
 
+#include "lab_m1/tema2/SceneColliders.h"
+
 using namespace std;
 
 class Tank : public Transform3D, public SphereCollider {
