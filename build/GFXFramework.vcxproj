@@ -573,6 +573,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\State.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Transform3D.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\TranslateState.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\WaitState.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera_input.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\exports.h" />

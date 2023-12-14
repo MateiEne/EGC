@@ -16,7 +16,19 @@ void IdiotTank::Update(float dt) {
 		cout << "ASdasdasdasdds" << endl;
 		states.push(new RotateOYState(this, targetPosiition, 100));
 		states.front()->Start();
+
+		states.push(new WaitState(3));
+
+		states.push(new TranslateXOZState(this, targetPosiition, 10));
+
+
 	}
 
 	states.front()->Update(dt);
+
+	if (states.front()->HasFinished()) {
+		states.pop();
+
+		states.front()->Start();
+	}
 }

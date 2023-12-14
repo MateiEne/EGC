@@ -2,6 +2,8 @@
 
 #include "Tank.h"
 #include "lab_m1/tema2/RotateState.h"
+#include "lab_m1/tema2/TranslateState.h"
+#include "lab_m1/tema2/WaitState.h"
 
 #include <queue>
 
