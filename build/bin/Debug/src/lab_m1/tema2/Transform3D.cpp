@@ -58,6 +58,10 @@ void Transform3D::RotateOZ(float degrees) {
 	degreesOZ -= degrees * TO_RADIANS;
 }
 
+glm::vec3 Transform3D::GetRotation() {
+	return glm::vec3(degreesOX, degreesOY, degreesOZ);
+}
+
 glm::mat4 Transform3D::GetModelMatrix()
 {
 	glm::mat4 modelMatrix = glm::mat4(1);

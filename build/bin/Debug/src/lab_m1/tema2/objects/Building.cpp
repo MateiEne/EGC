@@ -171,7 +171,7 @@ glm::vec3 Building::GetCenter() {
 }
 
 void Building::TakeDamage(Collider* collider) {
-	cout << "building hitted" << endl;
+	//cout << "building hitted" << endl;
 }
 
 void Building::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {

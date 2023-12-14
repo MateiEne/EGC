@@ -11,7 +11,7 @@
 #include "lab_m1/tema2/GameCamera.h"
 #include "lab_m1/tema2/objects/Ground.h"
 #include "lab_m1/tema2/objects/Building.h"
-
+#include "lab_m1/tema2/objects/IdiotTank.h"
 #include "Collider.h"
 
 #include "SceneColliders.h"
@@ -59,6 +59,8 @@ namespace m1
     
         Tank* tank;
         Tank* testTank;
+
+        IdiotTank* idiot;
 
         Ground* ground;
 

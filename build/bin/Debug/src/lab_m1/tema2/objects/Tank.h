@@ -65,7 +65,7 @@ public:
 	void Draw(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 	void DrawDebug(unordered_map<std::string, Shader*> shaders, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 
-private:
+protected:
 	float GetBaseRadius();
 
 	glm::vec3 GetGunHeadPosition();
@@ -73,7 +73,7 @@ private:
 
 	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation, glm::vec3 color);
 
-private:
+protected:
 	int hp;
 	int maxHp;
 

@@ -1,12 +1,24 @@
-﻿  Tank.cpp
+﻿  Tema2.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
   
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(167,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(170,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(25,56): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(114,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(115,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(117,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(118,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(119,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(202,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(234,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(258,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(282,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(303,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(306,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(309,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(312,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets

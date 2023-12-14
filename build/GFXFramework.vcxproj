@@ -513,6 +513,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Collider.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Building.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Ground.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\IdiotTank.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Missile.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp" />
@@ -563,10 +564,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\GameCamera.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Building.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Ground.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\IdiotTank.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Missile.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\RotateState.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SphereCollider.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\State.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Transform3D.h" />
     <ClInclude Include="C:\gfx framework\gfx-framework-master\gfx-framework-master\src\components\camera.h" />

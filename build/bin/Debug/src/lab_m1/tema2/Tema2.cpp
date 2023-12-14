@@ -36,6 +36,9 @@ void Tema2::Init() {
 	tankShader->CreateAndLink();
 	shaders[tankShader->GetName()] = tankShader;
 
+	ground = new Ground();
+	ground->Init(CST::GROUND_ASSETS_FILE_LOCATION, "ground.obj", CST::COLORS.at("grey"));
+
 	tank = new Tank();
 	tank->Init(
 		CST::TANK3_ASSETS_FILE_LOCATION,
@@ -54,6 +57,8 @@ void Tema2::Init() {
 		CST::TANK3_LEFT_WHEEL_INITIAL_POS, 
 		3
 	);
+	tank->Translate(0, ground->GetHeight() / 2, 0);
+	SceneColliders::GetInstance().AddCollider(tank);
 
 	testTank = new Tank();
 	testTank->Init(
@@ -73,12 +78,29 @@ void Tema2::Init() {
 		CST::TANK3_LEFT_WHEEL_INITIAL_POS, 
 		3
 	);
-
-	ground = new Ground();
-	ground->Init(CST::GROUND_ASSETS_FILE_LOCATION, "ground.obj", CST::COLORS.at("grey"));
-
-	tank->Translate(0, ground->GetHeight() / 2, 0);
 	testTank->Translate(5, ground->GetHeight() / 2, 0);
+	SceneColliders::GetInstance().AddCollider(testTank);
+
+	idiot = new IdiotTank(glm::vec3(0));
+	idiot->Init(
+		CST::TANK2_ASSETS_FILE_LOCATION,
+		"Base.obj",
+		"Turret.obj",
+		"Gun.obj",
+		"Wheel.obj",
+		CST::COLORS.at("dark_green"),
+		CST::COLORS.at("green"),
+		CST::COLORS.at("light_green"),
+		CST::COLORS.at("light_green"),
+		CST::TANK2_BASE_INITIAL_POS,
+		CST::TANK2_TURRET_INITIAL_POS,
+		CST::TANK2_GUN_INITIAL_POS,
+		CST::TANK2_RIGHT_WHEEL_INITIAL_POS,
+		CST::TANK2_LEFT_WHEEL_INITIAL_POS,
+		3
+	);
+	idiot->Translate(-5, ground->GetHeight() / 2, -17);
+	SceneColliders::GetInstance().AddCollider(idiot);
 
 
 	for (int i = 0; i < 10; i++) {
@@ -99,6 +121,12 @@ void Tema2::Init() {
 		building->SetScale(scaleX, scaleY, scaleZ);
 		building->SetPosition(x, 1, z);
 
+		if (building->IsInCollision(tank) || building->IsInCollision(testTank)) {
+			i--;
+
+			continue;
+		}
+
 
 		cout << "building " << i << "with width: " << building->GetWidth() << "after scaling z with: " << scaleZ << endl;
 		cout << "building " << i << "with length: " << building->GetLength() << "after scaling x with: " << scaleX << endl;
@@ -109,8 +137,6 @@ void Tema2::Init() {
 		SceneColliders::GetInstance().AddCollider(building);
 	}
 
-	SceneColliders::GetInstance().AddCollider(tank);
-	SceneColliders::GetInstance().AddCollider(testTank);
 }
 
 void Tema2::FrameStart()
@@ -135,12 +161,16 @@ void Tema2::Update(float deltaTimeSeconds)
 	tank->Update(deltaTimeSeconds);
 	camera->LookAtTarget(tank->GetPosition(), tank->GetDirection(), tank->GetUpDirection());
 
+	idiot->Update(deltaTimeSeconds);
+
 	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
 
 	ground->Draw(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	tank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
 	testTank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
+	idiot->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
+
 
 	//tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
