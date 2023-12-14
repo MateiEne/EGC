@@ -20,7 +20,8 @@ void Tank::Init(
 	glm::vec3 turretOffset,
 	glm::vec3 gunOffset,
 	glm::vec3 rightWheelOffset,
-	glm::vec3 leftWheelOffset
+	glm::vec3 leftWheelOffset,
+	float hp
 ) {
 	this->fileLocation = fileLocation;
 
@@ -51,14 +52,19 @@ void Tank::Init(
 	RotateOY(90);
 
 	radius = GetBaseRadius();
+
+	this->hp = hp;
 }
 
 void Tank::Update(float dt) {
+	if (hp <= 0) {
+		return;
+	}
+
 	for (int i = 0; i < missiles.size(); i++) {
 		missiles[i]->Update(dt);
 
-		if (missiles[i]->IsDead() || SceneColliders::GetInstance().IsInCollision(missiles[i])) {
-			SceneColliders::GetInstance().DeleteCollider(missiles[i]);
+		if (missiles[i]->IsDead()) {
 			missiles.erase(missiles.begin() + i);
 
 			i--;
@@ -172,6 +178,17 @@ float Tank::GetRadius() {
 	return radius * max(max(scale.x, scale.y), scale.z);
 }
 
+void Tank::TakeDamage(Collider* collider) {
+	if (Missile* m = dynamic_cast<Missile*>(collider)) {
+		cout << "Asdfadsfasd" << endl;
+
+		hp--;
+	}
+
+
+	cout << "hitted" << endl;
+}
+
 glm::vec3 Tank::GetDirection() {
 	return glm::vec3(cos(degreesOY), 0, sin(degreesOY));
 }
@@ -215,10 +232,14 @@ void Tank::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix
 }
 
 void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 color) {
+	if (hp <= 0) {
+		return;
+	}
+
 	if (!mesh) {
 		return;
 	}
-	
+
 	// TODO(student): Get shader location for uniform mat4 "Model"
 	int modelMatrixLocation = glGetUniformLocation(shader->GetProgramID(), "Model");
 	// TODO(student): Set shader uniform "Model" to modelMatrix
@@ -233,6 +254,10 @@ void Tank::DrawPart(Mesh* mesh, Shader* shader, glm::vec3 partOffset, glm::vec3 
 }
 
 void Tank::DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {
+	if (hp <= 0) {
+		return;
+	}
+
 	if (!shader || !shader->program) {
 		return;
 	}
@@ -263,6 +288,6 @@ void Tank::DrawDebug(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionM
 	glBindVertexArray(mesh->GetBuffers()->m_VAO);
 	glDrawElements(mesh->GetDrawMode(), static_cast<int>(mesh->indices.size()), GL_UNSIGNED_INT, 0);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	
+
 	delete mesh;
 }

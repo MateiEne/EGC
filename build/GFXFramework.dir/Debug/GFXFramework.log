@@ -1,29 +1,24 @@
-﻿  Tema2.cpp
+﻿  Missile.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
   
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(26,7): error C2535: 'void SceneColliders::operator =(const SceneColliders &)': member function already defined or declared
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
-  C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(18,7):
-  see declaration of 'SceneColliders::operator ='
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,7): error C2065: 'Missile': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(25,56): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(84,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(85,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(87,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(88,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(89,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(162,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(194,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(218,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(242,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(263,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(266,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(269,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(272,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,16): error C2065: 'm': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,33): error C2061: syntax error: identifier 'Missile'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,54): error C2143: syntax error: missing ';' before '{'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Missile.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Missile.cpp(80,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Missile.cpp(83,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Tank.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
@@ -31,13 +26,53 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Cons
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(26,7): error C2535: 'void SceneColliders::operator =(const SceneColliders &)': member function already defined or declared
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,7): error C2065: 'Missile': undeclared identifier
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
-  C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(18,7):
-  see declaration of 'SceneColliders::operator ='
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(159,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(162,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,16): error C2065: 'm': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,33): error C2061: syntax error: identifier 'Missile'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,54): error C2143: syntax error: missing ';' before '{'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/Tank.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(165,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\objects\Tank.cpp(168,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Tema2.cpp
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,7): error C2065: 'Missile': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,16): error C2065: 'm': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,33): error C2061: syntax error: identifier 'Missile'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,54): error C2143: syntax error: missing ';' before '{'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(25,56): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(86,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(87,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(89,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(90,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(91,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(166,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(198,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(222,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(246,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(267,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(270,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(273,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(276,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   main.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
@@ -45,9 +80,16 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Cons
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
   
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(26,7): error C2535: 'void SceneColliders::operator =(const SceneColliders &)': member function already defined or declared
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,7): error C2065: 'Missile': undeclared identifier
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
-  C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(18,7):
-  see declaration of 'SceneColliders::operator ='
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,16): error C2065: 'm': undeclared identifier
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,33): error C2061: syntax error: identifier 'Missile'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
+  
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\SceneColliders.h(35,54): error C2143: syntax error: missing ';' before '{'
+  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
   
   Generating Code...

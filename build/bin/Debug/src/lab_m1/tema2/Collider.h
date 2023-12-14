@@ -14,4 +14,6 @@ public:
 	virtual ColliderType GetColliderType() = 0;
 
 	bool IsInCollision(Collider* other);
+
+	virtual void TakeDamage(Collider* collider) = 0;
 };

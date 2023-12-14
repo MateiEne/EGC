@@ -45,7 +45,8 @@ void Tema2::Init() {
 		CST::TANK3_TURRET_INITIAL_POS,
 		CST::TANK3_GUN_INITIAL_POS,
 		CST::TANK3_RIGHT_WHEEL_INITIAL_POS,
-		CST::TANK3_LEFT_WHEEL_INITIAL_POS
+		CST::TANK3_LEFT_WHEEL_INITIAL_POS, 
+		3
 	);
 
 	testTank = new Tank();
@@ -63,7 +64,8 @@ void Tema2::Init() {
 		CST::TANK3_TURRET_INITIAL_POS,
 		CST::TANK3_GUN_INITIAL_POS,
 		CST::TANK3_RIGHT_WHEEL_INITIAL_POS,
-		CST::TANK3_LEFT_WHEEL_INITIAL_POS
+		CST::TANK3_LEFT_WHEEL_INITIAL_POS, 
+		3
 	);
 
 	ground = new Ground();
@@ -121,6 +123,8 @@ void Tema2::Update(float deltaTimeSeconds)
 	// Sets the screen area where to draw
 	glm::ivec2 resolution = window->GetResolution();
 	glViewport(0, 0, resolution.x, resolution.y);
+
+	SceneColliders::GetInstance().CheckCollisions();
 
 	tank->Update(deltaTimeSeconds);
 	camera->LookAtTarget(tank->GetPosition(), tank->GetDirection(), tank->GetUpDirection());

@@ -30,6 +30,7 @@ public:
 	float GetWidth() override;
 
 	glm::vec3 GetCenter() override;
+	void TakeDamage(Collider* collider) override;
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 

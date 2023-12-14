@@ -7,6 +7,8 @@
 #include "lab_m1/tema2/Constants.h"
 #include "lab_m1/tema2/SphereCollider.h"
 
+#include "lab_m1/tema2/SceneColliders.h"
+
 #include <string>
 
 using namespace std;
@@ -31,6 +33,7 @@ public:
 	glm::vec3 GetDirection();
 	float GetRadius() override;
 	glm::vec3 GetCenter() override;
+	void TakeDamage(Collider* collider) override;
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
 

@@ -37,6 +37,7 @@ void Missile::Update(float dt) {
 		|| position.z > initialPosition.z + 20
 		|| position.z < initialPosition.z - 20) {
 		isDead = true;
+		SceneColliders::GetInstance().DeleteCollider(this);
 
 		return;
 	}
@@ -91,6 +92,13 @@ float Missile::GetRadius() {
 
 glm::vec3 Missile::GetCenter() {
 	return position;
+}
+
+void Missile::TakeDamage(Collider* collider) {
+	isDead = true;
+
+	SceneColliders::GetInstance().DeleteCollider(this);
+	cout << "missile hitted" << endl;
 }
 
 void Missile::Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) {

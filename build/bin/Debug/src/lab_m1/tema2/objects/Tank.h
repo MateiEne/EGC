@@ -39,7 +39,8 @@ public:
 		glm::vec3 turretOffset,
 		glm::vec3 gunOffset,
 		glm::vec3 rightWheelOffset,
-		glm::vec3 leftWheelOffset
+		glm::vec3 leftWheelOffset,
+		float hp
 	);
 
 	void Update(float dt);
@@ -57,6 +58,8 @@ public:
 	glm::vec3 GetCenter() override;
 	float GetRadius() override;
 
+	void TakeDamage(Collider* collider) override;
+
 	float GetHeight();
 
 	void Draw(Shader* shader, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
@@ -68,8 +71,10 @@ private:
 	glm::vec3 GetGunHeadPosition();
 	glm::vec3 GetLowestPoint();
 
-private:
 	void DrawPart(Mesh* mesh, Shader* shader, glm::vec3 translation, glm::vec3 color);
+
+private:
+	float hp;
 
 	Mesh* baseMesh;
 	Mesh* turretMesh;
