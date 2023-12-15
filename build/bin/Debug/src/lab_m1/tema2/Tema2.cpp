@@ -81,7 +81,7 @@ void Tema2::Init() {
 	testTank->Translate(5, ground->GetHeight() / 2, 0);
 	SceneColliders::GetInstance().AddCollider(testTank);
 
-	idiot = new IdiotTank(glm::vec3(0));
+	idiot = new IdiotTank(glm::vec3(-100, 0, 100), glm::vec3(100, 0, -100));
 	idiot->Init(
 		CST::TANK2_ASSETS_FILE_LOCATION,
 		"Base.obj",

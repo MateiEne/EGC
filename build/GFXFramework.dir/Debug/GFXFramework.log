@@ -22,16 +22,6 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(306,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(309,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(312,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  IdiotTank.cpp
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/IdiotTank.cpp')
-  
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/IdiotTank.cpp')
-  
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\TranslateState.h(23,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/objects/IdiotTank.cpp')
-  
   main.cpp
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')

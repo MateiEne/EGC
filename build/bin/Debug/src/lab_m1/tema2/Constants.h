@@ -83,4 +83,8 @@ namespace CST {
 	const float MISSILE_SPEED = 15;
 
 	const float COLLISION_OVERLAP_EPS = 0.01;
+
+	const int WAIT_STATE_PROBABILITY = 3;
+	const float MIN_WAIT_TIME = 1;
+	const float MAX_WAIT_TIME = 4;
 }
