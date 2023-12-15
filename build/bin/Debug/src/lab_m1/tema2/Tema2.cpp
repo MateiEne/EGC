@@ -102,6 +102,27 @@ void Tema2::Init() {
 	idiot->Translate(-5, ground->GetHeight() / 2, -17);
 	SceneColliders::GetInstance().AddCollider(idiot);
 
+	definedPathTank = new DefinedPathTank(glm::vec3(20, 0, -45), glm::vec3(-20, 0, 45));
+	definedPathTank->Init(
+		CST::TANK1_ASSETS_FILE_LOCATION,
+		"Base.obj",
+		"Turret.obj",
+		"Gun.obj",
+		"Wheel.obj",
+		CST::COLORS.at("dark_green"),
+		CST::COLORS.at("green"),
+		CST::COLORS.at("light_green"),
+		CST::COLORS.at("light_green"),
+		CST::TANK1_BASE_INITIAL_POS,
+		CST::TANK1_TURRET_INITIAL_POS,
+		CST::TANK1_GUN_INITIAL_POS,
+		CST::TANK1_RIGHT_WHEEL_INITIAL_POS,
+		CST::TANK1_LEFT_WHEEL_INITIAL_POS,
+		3
+	);
+	definedPathTank->Translate(-5, ground->GetHeight() / 2, -5);
+	SceneColliders::GetInstance().AddCollider(definedPathTank);
+
 
 	for (int i = 0; i < 10; i++) {
 		Building* building = new Building();
@@ -137,6 +158,7 @@ void Tema2::Init() {
 		SceneColliders::GetInstance().AddCollider(building);
 	}
 
+	time = 0;
 }
 
 void Tema2::FrameStart()
@@ -148,6 +170,14 @@ void Tema2::FrameStart()
 
 void Tema2::Update(float deltaTimeSeconds)
 {
+	if (time >= CST::END_TIME) {
+		cout << "================== GAME ENDED ==========================" << endl;
+
+		return;
+	}
+
+	time += deltaTimeSeconds;
+
 	glLineWidth(3);
 	glPointSize(5);
 	glPolygonMode(GL_FRONT_AND_BACK, polygonMode);
@@ -162,6 +192,7 @@ void Tema2::Update(float deltaTimeSeconds)
 	camera->LookAtTarget(tank->GetPosition(), tank->GetDirection(), tank->GetUpDirection());
 
 	idiot->Update(deltaTimeSeconds);
+	definedPathTank->Update(deltaTimeSeconds);
 
 	glm::mat4 cameraViewMatrix = camera->GetViewMatrix();
 	glm::mat4 cameraProjectionMatrix = camera->GetProjectionMatrix();
@@ -170,7 +201,7 @@ void Tema2::Update(float deltaTimeSeconds)
 	tank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
 	testTank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
 	idiot->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
-
+	definedPathTank->Draw(shaders, cameraViewMatrix, cameraProjectionMatrix);
 
 	//tank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);
 	//testTank->DrawDebug(shaders["TemaShaders"], cameraViewMatrix, cameraProjectionMatrix);

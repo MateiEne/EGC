@@ -9,31 +9,19 @@ C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tran
   (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/lab_m1/tema2/Tema2.cpp')
   
 C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(25,56): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(114,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(115,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(117,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(118,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(119,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(202,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(234,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(258,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(282,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(303,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(306,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(309,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(312,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  main.cpp
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(11,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
-  
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Constants.h(85,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
-  
-C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\TranslateState.h(23,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file '../../../../../../../../../gfx%20framework/gfx-framework-master/gfx-framework-master/src/main.cpp')
-  
-  Generating Code...
-     Creating library C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.lib and object C:/Users/enema/Work/College/Anul 3/Semestrul 1/ECG/EGC/build/Debug/GFXFramework.exp
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(135,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(136,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(138,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(139,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(140,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(233,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(265,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(289,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(313,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(334,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(337,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(340,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\gfx framework\gfx-framework-master\gfx-framework-master\src\lab_m1\tema2\Tema2.cpp(343,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   GFXFramework.vcxproj -> C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\GFXFramework.exe
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\src <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\src
   Junction created for C:\Users\enema\Work\College\Anul 3\Semestrul 1\ECG\EGC\build\bin\Debug\assets <<===>> C:\gfx framework\gfx-framework-master\gfx-framework-master\assets

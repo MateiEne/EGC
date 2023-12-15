@@ -87,4 +87,6 @@ namespace CST {
 	const int WAIT_STATE_PROBABILITY = 3;
 	const float MIN_WAIT_TIME = 1;
 	const float MAX_WAIT_TIME = 4;
+
+	const float END_TIME = 30;
 }

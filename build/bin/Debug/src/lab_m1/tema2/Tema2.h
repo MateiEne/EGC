@@ -12,6 +12,7 @@
 #include "lab_m1/tema2/objects/Ground.h"
 #include "lab_m1/tema2/objects/Building.h"
 #include "lab_m1/tema2/objects/IdiotTank.h"
+#include "lab_m1/tema2/DefinedPathTank.h"
 #include "Collider.h"
 
 #include "SceneColliders.h"
@@ -61,10 +62,13 @@ namespace m1
         Tank* testTank;
 
         IdiotTank* idiot;
+        DefinedPathTank* definedPathTank;
 
         Ground* ground;
 
         vector<Building*> buildings;
+
+        float time;
     };
 }   // namespace m1
 
